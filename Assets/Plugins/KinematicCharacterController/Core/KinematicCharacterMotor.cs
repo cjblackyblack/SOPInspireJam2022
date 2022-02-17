@@ -156,6 +156,7 @@ namespace KinematicCharacterController
     public class KinematicCharacterMotor : MonoBehaviour
     {
 #pragma warning disable 0414
+        public float LocalTime;
         [Header("Components")]
         /// <summary>
         /// The capsule collider of this motor

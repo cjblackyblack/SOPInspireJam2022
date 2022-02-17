@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23551a0bef202dc4bb2fcb8d98a108f9, type: 3}
+  m_Name: Locomotion Grounded State
+  m_EditorClassIdentifier: 
+  SmartStates:
+  - {fileID: 11400000, guid: f07d27c4bb2a8554795b767daeded836, type: 2}
+  - {fileID: 11400000, guid: 32a61998f7ad3084287d8d9a5c21a22e, type: 2}
+  - {fileID: 11400000, guid: 816a0813a9dac4c4e94a081c38fc0cb1, type: 2}
+  - {fileID: 11400000, guid: c3828a2c1ae16f74fab86d1b62f7817a, type: 2}
+  - {fileID: 11400000, guid: 8598dc422d3721040b25a85882e7a686, type: 2}
+  - {fileID: 11400000, guid: da53407147d88774faa527cb6c15d22e, type: 2}
+  - {fileID: 11400000, guid: 5529904f8c869e1439f515b30efb6571, type: 2}
+  - {fileID: 11400000, guid: 4538125806bf30c489a401c8b85ef92a, type: 2}
+  bonusOrientationMethod: 1
+  OrientationSharpness: 16
+  BonusOrientationSharpness: 10
+  MaxStableMoveSpeed: 5.5
+  StableMovementSharpness: 25
+  FinishRotationTime: 6
+  friction: 0.85
