@@ -11,6 +11,13 @@ TagManager:
   - 
   - Water
   - UI
+  - Entity
+  - Hitbox
+  - Hurtbox
+  - Targetable
+  - Obstacle
+  - Ledge
+  - NoColEntity
   - 
   - 
   - 
@@ -29,14 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Hidden
   m_SortingLayers:
   - name: Default
     uniqueID: 0

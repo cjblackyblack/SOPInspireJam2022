@@ -608,10 +608,10 @@ public class SmartControllerProperties
 public class Stats //beginning of actively measured stats that exist on the  object initially determined by BaseStats but then modified by StatMods
 {
     [VerticalGroup("Stats")]
-    [FoldoutGroup("Stats/Level")]
-    public int Level;
-    [FoldoutGroup("Stats/Level")]
-    public int EXP;
+    //[FoldoutGroup("Stats/Level")]
+    //public int Level;
+    //[FoldoutGroup("Stats/Level")]
+    //public int EXP;
     [FoldoutGroup("Stats/Resources")]
     [BoxGroup("Stats/Resources/HP")]
     public int HP;

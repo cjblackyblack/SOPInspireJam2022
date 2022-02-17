@@ -158,14 +158,14 @@ public class StandardTravelProjectileState : ProjectileState
 		{
 			case PhysicalObjectTangibility.Normal:
 				{
-
+					CreateHitFX(0, hurtBox);
 				}
 				break;
 			case PhysicalObjectTangibility.Armor:
 				{
 					if (FlagsExtensions.HasFlag(hitbox.DamageInstance.breakthroughType, BreakthroughType.ArmorPierce))
 					{
-
+						CreateHitFX(0, hurtBox);
 					}
 					else
 					{
@@ -177,7 +177,8 @@ public class StandardTravelProjectileState : ProjectileState
 				{
 					if (FlagsExtensions.HasFlag(hitbox.DamageInstance.breakthroughType, BreakthroughType.GuardPierce) || hitbox.DamageInstance.unstoppable)
 					{
-
+						if(!hitbox.DamageInstance.unstoppable)
+							CreateHitFX(0, hurtBox);
 					}
 					else
 					{
@@ -195,6 +196,10 @@ public class StandardTravelProjectileState : ProjectileState
 		//Instantiate(HitParticles[(int)hitBox.CurrentBoxTangibility], hitBox.transform.position, Quaternion.identity);
 	}
 
+	void CreateHitFX(int index, CombatBox hitbox)
+	{
+		Instantiate(HitParticles[index], hitbox.transform.position, Quaternion.identity);
+	}
 
 	private void OnValidate()
 	{

@@ -259,7 +259,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c5f583890bd62744aaaa6cccd8409ef4, type: 2}
   TangibilityFrames: []
   HitParticles:
-  - {fileID: 0}
+  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

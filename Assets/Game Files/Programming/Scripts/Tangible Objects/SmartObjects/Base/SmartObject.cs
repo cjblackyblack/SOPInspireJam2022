@@ -18,6 +18,9 @@ public class SmartObject : PhysicalObject, ICharacterController
 	public Action<ActionStates> OnActionChange;
 	public Action<LocomotionStates> OnLocomotionChange;
 
+	[PropertyOrder(-98)]
+	public StatMods StatMods;
+
 	[TitleGroup("Properties")]
 	public SmartObjectProperties SmartObjectProperties;
 
