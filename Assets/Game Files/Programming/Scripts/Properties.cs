@@ -64,7 +64,7 @@ public enum ActionStates
     Idle, 
     Move, 
     Jump, 
-    Dodge, 
+    Boost, 
     Attack,
     Blocked,
     Guard, 
@@ -346,6 +346,14 @@ public class MotionCurve
          + (smartObject.Motor.CharacterRight * LateralCurve.Evaluate(smartObject.CurrentFrame))
          + (smartObject.Motor.CharacterUp * VerticalCurve.Evaluate(smartObject.CurrentFrame))
          + (smartObject.InputVector.normalized * FreeMoveCurve.Evaluate(smartObject.CurrentFrame));
+    }
+
+    public Vector3 GetFixedTotalCurve(SmartObject smartObject, bool UseStoreForFreeMove)
+    {
+        return (smartObject.Motor.CharacterForward * ForwardCurve.Evaluate(smartObject.CurrentFrame) * smartObject.Controller.input.y)
+         + (smartObject.Motor.CharacterRight * LateralCurve.Evaluate(smartObject.CurrentFrame) * smartObject.Controller.input.x)
+         + (smartObject.Motor.CharacterUp * VerticalCurve.Evaluate(smartObject.CurrentFrame))
+         + ( UseStoreForFreeMove ? (smartObject.MovementVector.normalized * FreeMoveCurve.Evaluate(smartObject.CurrentFrame)) : (smartObject.InputVector.normalized * FreeMoveCurve.Evaluate(smartObject.CurrentFrame)));
     }
 
     public Vector3 GetFixedForwardCurve(SmartObject smartObject)

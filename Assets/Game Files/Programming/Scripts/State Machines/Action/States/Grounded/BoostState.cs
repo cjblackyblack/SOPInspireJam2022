@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "CharacterState/ActionState/Grounded/Dodge")]
-public class DodgeState : SmartState
+[CreateAssetMenu(menuName = "CharacterState/ActionState/Grounded/Boost")]
+public class BoostState : SmartState
 {
 	public TangibilityFrames[] TangibilityFrames;
 	public MotionCurve MotionCurve;
+	public float DirectionControl;
+	public int CoyoteTime;
 
 	public override void OnEnter(SmartObject smartObject)
 	{
@@ -28,6 +30,13 @@ public class DodgeState : SmartState
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
 		//smartObject.MovementVector = smartObject.InputVector;
+		if (smartObject.CurrentAirTime <= CoyoteTime && smartObject.Controller.Button4Buffer > 0)
+		{
+			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Grounded);
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
+		}
+
+		smartObject.MovementVector = Vector3.SmoothDamp(smartObject.MovementVector, smartObject.InputVector == Vector3.zero ? smartObject.StoredMovementVector : smartObject.InputVector.normalized,ref smartObject.MovementVector ,DirectionControl);
 		MotionCurve.GravityMod(smartObject);
 		CombatUtilities.CreateTangibilityFrames(smartObject, TangibilityFrames);
 	}
@@ -47,14 +56,14 @@ public class DodgeState : SmartState
 	{
 		if (smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.Grounded)
 		{
-			currentVelocity = MotionCurve.GetFixedTotalCurve(smartObject);
+			currentVelocity = MotionCurve.GetFixedTotalCurve(smartObject, true);
 			float currentVelocityMagnitude = currentVelocity.magnitude;
 
 
-			if (smartObject.CurrentFrame < MotionCurve.TurnAroundTime && (smartObject.InputVector != Vector3.zero) && smartObject.OrientationMethod != OrientationMethod.TowardsCamera)
-			{
-					smartObject.Motor.RotateCharacter(MotionCurve.TurnAroundRotation(smartObject, ref currentVelocity, true));
-			}
+			//if (smartObject.CurrentFrame < MotionCurve.TurnAroundTime && (smartObject.InputVector != Vector3.zero) && smartObject.OrientationMethod != OrientationMethod.TowardsCamera)
+			//{
+			//		smartObject.Motor.RotateCharacter(MotionCurve.TurnAroundRotation(smartObject, ref currentVelocity, true));
+			//}
 
 			Vector3 effectiveGroundNormal = smartObject.Motor.GroundingStatus.GroundNormal;
 			if (currentVelocityMagnitude > 0f && smartObject.Motor.GroundingStatus.SnappingPrevented)
@@ -75,7 +84,7 @@ public class DodgeState : SmartState
 			currentVelocity = smartObject.Motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNormal) * currentVelocityMagnitude;
 
 			// Calculate target velocity
-			Vector3 inputRight = Vector3.Cross(smartObject.Motor.CharacterForward, smartObject.Motor.CharacterUp);
+			Vector3 inputRight = Vector3.Cross(currentVelocity, smartObject.Motor.CharacterUp);
 			Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized * currentVelocityMagnitude; ;
 			Vector3 targetMovementVelocity = reorientedInput * 1;
 
@@ -126,7 +135,13 @@ public class DodgeState : SmartState
 	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
 		base.AfterCharacterUpdate(smartObject, deltaTime);
-		if (smartObject.CurrentFrame > MaxTime)
+		if (smartObject.Controller.Button2ReleaseBuffer > 0 || smartObject.Controller.Button2Hold == false)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
+
+		if (smartObject.Controller.Button1Buffer > 0)
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+
+		if (smartObject.Controller.Button4Buffer > 0 && ((smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.Grounded) || (smartObject.CurrentAirTime > CoyoteTime && smartObject.AirJumps > 0 && smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.Aerial)))
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);  
 	}
 }

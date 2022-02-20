@@ -60,6 +60,8 @@ public class SmartObject : PhysicalObject, ICharacterController
 	public bool GuardSuccess;
 
 	public Transform[] FirePoints;
+	public int MaxAirJumps;
+	public int AirJumps;
 
 	public override void Start()
 	{

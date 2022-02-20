@@ -15,5 +15,5 @@ MonoBehaviour:
   AnimationState: T Pose
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
-  MaxTime: 60
-  GravityMod: 0.1
+  MaxTime: 150
+  GravityMod: 0

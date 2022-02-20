@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ad0afbe02c48c479d5bc905a8db9d9, type: 3}
-  m_Name: Dodge
+  m_Name: Boost
   m_EditorClassIdentifier: 
   AnimationState: HangJump
   AnimationTransitionTime: 0
@@ -50,13 +50,40 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 15
+        value: 10
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 3.541034
+        value: 5.2040815
+        inSlope: -1.1843426
+        outSlope: -1.1843426
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 5.8955407
+        value: 0
+        inSlope: -1.372493
+        outSlope: -1.372493
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.6353679
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.9289217
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       - serializedVersion: 3
         time: 19.929562
         value: 0
@@ -92,7 +119,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 10
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -100,13 +127,22 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 4
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
+        time: 3.672323
+        value: 4.8979597
+        inSlope: -1.4110389
+        outSlope: -1.4110389
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
+        outWeight: 0.5220232
+      - serializedVersion: 3
+        time: 7.135584
+        value: 0
+        inSlope: -1.1018254
+        outSlope: -1.1018254
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.6818928
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 28.404625
@@ -271,7 +307,7 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.3313359
+        time: 10.28601
         value: 0
         inSlope: 0.000042563224
         outSlope: 0.000042563224
@@ -280,8 +316,8 @@ MonoBehaviour:
         inWeight: 0.7004185
         outWeight: 0
       - serializedVersion: 3
-        time: 7.6658673
-        value: 1.0375366
+        time: 12.993419
+        value: 0.4552456
         inSlope: 0.03315278
         outSlope: 0.03315278
         tangentMode: 0
@@ -296,7 +332,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 15
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -305,7 +341,7 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 5
-        value: 0
+        value: 15
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -314,7 +350,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 55
-        value: 0
+        value: 15
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -323,7 +359,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 56
-        value: 0
+        value: 15
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -332,7 +368,7 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 60
-        value: 0
+        value: 15
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -361,3 +397,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     TurnAroundTime: 4
+    TrackingResistance: 0
+  DirectionControl: 0.05
+  CoyoteTime: 0

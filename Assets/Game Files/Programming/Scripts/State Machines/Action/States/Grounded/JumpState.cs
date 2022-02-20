@@ -17,7 +17,9 @@ public class JumpState : SmartState
 	public override void OnEnter(SmartObject smartObject)
 	{
 		base.OnEnter(smartObject);
-        smartObject.Controller.Button4Buffer = 0;
+        if (smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Boost && smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.Grounded)
+        { smartObject.CurrentTime = JumpFrame - 1; smartObject.CurrentFrame = JumpFrame - 1; }
+            smartObject.Controller.Button4Buffer = 0;
         smartObject.MovementVector = Vector3.zero;
     }
 

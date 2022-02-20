@@ -56,11 +56,11 @@ public class DriftState : SmartState
         if (smartObject.Motor.GroundingStatus.IsStableOnGround)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
-        if (smartObject.Controller.Button4Buffer > 0 && smartObject.CurrentAirTime > CoyoteTime)
+        if (smartObject.Controller.Button4Buffer > 0 && smartObject.CurrentAirTime > CoyoteTime && smartObject.AirJumps > 0)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
 
         if (smartObject.Controller.Button2Buffer > 0)
-            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Dodge);
+            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
 
     }
 }

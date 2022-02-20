@@ -11,6 +11,7 @@ public class LocomotionGroundedState : LocomotionState
     public float friction;
     public override void OnEnter(SmartObject smartObject)
 	{
+        smartObject.AirJumps = smartObject.MaxAirJumps;
 	}
 
 	public override void OnExit(SmartObject smartObject)
@@ -61,7 +62,7 @@ public class LocomotionGroundedState : LocomotionState
 		if (!smartObject.Motor.GroundingStatus.IsStableOnGround && smartObject.Motor.LastGroundingStatus.IsStableOnGround)
 		{
 			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
-            if (smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Dodge && smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Jump)
+            if (smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Boost && smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Jump)
             {
                 //Debug.Log("force fall");
                 smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);

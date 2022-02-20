@@ -17,8 +17,8 @@ public class AerialDodgeState : SmartState
 		smartObject.Controller.Button4Buffer = 0;
 		smartObject.CurrentAirTime = 0;
 		smartObject.CurrentFrame = 0;
-
-		smartObject.MovementVector = smartObject.InputVector.normalized == Vector3.zero ? Vector3.zero: smartObject.Motor.CharacterForward.normalized;
+		smartObject.AirJumps--;
+		smartObject.MovementVector = new Vector3(Mathf.RoundToInt(smartObject.InputVector.x), Mathf.RoundToInt(smartObject.InputVector.y), Mathf.RoundToInt(smartObject.InputVector.z));
 
 	}
 

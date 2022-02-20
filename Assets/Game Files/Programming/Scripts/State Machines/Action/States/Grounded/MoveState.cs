@@ -15,7 +15,7 @@ public class MoveState : SmartState
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
 		if (smartObject.Controller.Button2Buffer > 0)
-			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Dodge);
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
 
 		if (smartObject.Controller.Button4Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);

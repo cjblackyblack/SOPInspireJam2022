@@ -43,7 +43,7 @@ public class GlideState : SmartState
         if (smartObject.Controller.Button1Buffer > 0)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
-        if (!smartObject.Controller.Button2Hold || smartObject.Controller.Button2ReleaseBuffer > 0)
+        if (!smartObject.Controller.Button2Hold || smartObject.Controller.Button2ReleaseBuffer > 0 || smartObject.CurrentFrame > MaxTime)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
     }

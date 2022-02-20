@@ -11,7 +11,8 @@
                     "id": "ce6ec011-d75a-4462-96c8-edc61734c631",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Look",
@@ -19,7 +20,8 @@
                     "id": "ad8388ce-12a9-4f65-bba8-e0c3367e0382",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Button1Press",
@@ -27,7 +29,8 @@
                     "id": "0c14faa9-b0aa-46b5-b295-d14bdc0957d6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Button1Release",
@@ -35,7 +38,8 @@
                     "id": "984699e8-6dfd-495e-b028-af4bead2bb1e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Button2Press",
@@ -43,7 +47,8 @@
                     "id": "e5eba456-6342-4b2b-a619-c8ae6e8cdac5",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Button2Release",
@@ -51,7 +56,8 @@
                     "id": "71f96fb7-cab7-4b87-adfd-24af849c8d0c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Button3Press",
@@ -59,7 +65,8 @@
                     "id": "a6076511-8fa8-47a5-ad1a-122179ab1f82",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Button3Release",
@@ -67,7 +74,8 @@
                     "id": "9b606915-64b1-4d16-a9ed-d819a8647e06",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Button4Press",
@@ -75,7 +83,8 @@
                     "id": "c461cc24-6f69-466a-b204-2df13bd88ca4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Button4Release",
@@ -83,7 +92,8 @@
                     "id": "e97d6165-82e6-49f3-b4a0-b03795706ac9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ButtonRecenterPress",
@@ -91,7 +101,8 @@
                     "id": "a7e5f31e-8005-4b74-a97f-92cb60e15729",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ButtonRecenterRelease",
@@ -99,7 +110,8 @@
                     "id": "09be2f54-98ae-40fd-9ab0-ebfa0f758617",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ButtonLockPress",
@@ -107,7 +119,8 @@
                     "id": "71fa64f7-83bb-4b3d-9e07-1de80053e2ed",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ButtonLockRelease",
@@ -115,7 +128,8 @@
                     "id": "a94af98a-b38d-4169-aff2-6a56ebc2b0b6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Pause",
@@ -123,7 +137,8 @@
                     "id": "17f7f94e-065f-402f-a271-194daafc4f11",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -295,7 +310,7 @@
                 {
                     "name": "",
                     "id": "3916b719-fdf3-4dc6-bbf7-c8b3f2b01d2b",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -316,8 +331,8 @@
                 },
                 {
                     "name": "",
-                    "id": "35f96e7a-5491-47bd-8a9b-19d7cb7e9614",
-                    "path": "<Gamepad>/buttonWest",
+                    "id": "04651b63-01e2-460e-ada9-741deea72130",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -557,7 +572,8 @@
                     "id": "31aa798d-a562-443a-8607-9610342a3256",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Back",
@@ -565,7 +581,8 @@
                     "id": "72ec32e8-ec18-49f8-98d4-623c266567fe",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Point",
@@ -573,7 +590,8 @@
                     "id": "3d990e1b-4f39-4397-a7db-beb8dba2376e",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Move",
@@ -581,7 +599,8 @@
                     "id": "f3d509db-b7d6-4144-a2b6-c68f3c0cd4ed",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
