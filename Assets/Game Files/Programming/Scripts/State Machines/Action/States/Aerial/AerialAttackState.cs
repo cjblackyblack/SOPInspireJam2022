@@ -31,6 +31,8 @@ public class AerialAttackState : SmartState
 
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
+		if(smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.AerialShoot)
+			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
 		//smartObject.MovementVector = smartObject.InputVector;
 		MotionCurve.GravityMod(smartObject);
 		CombatUtilities.CreateTangibilityFrames(smartObject, TangibilityFrames);

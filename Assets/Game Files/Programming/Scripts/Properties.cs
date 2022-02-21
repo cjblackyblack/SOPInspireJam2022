@@ -140,26 +140,12 @@ public enum PersonalityType
     Cowardly,   //targets lowest recent damage offender
 }
 
-public enum GambitTarget
-{
-    Ally,
-    AllyExcludeSelf,
-    Enemy,
-    Neutral,
-    Any,
-    AnyExcludeAlly,
-    AnyExcludeEnemy,
-    AnyExcludeNeutral,
-    AnyExcludeSelf,
-    Self
-}
-
 public enum ValueType
 {
     HP,
     MaxHP,
     MP,
-    MaxMP,
+    MaxMP
 }
 
 [System.Flags]
@@ -700,6 +686,8 @@ public class BodyReferences
     public GameObject[] ShootFX;
     public GameObject[] BoostFX;
     public GameObject[] HoverFX;
+    public GameObject LeftArmWeapon;
+    public GameObject RightArmWeapon;
 }
 
 #endregion

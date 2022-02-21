@@ -8,7 +8,7 @@ using KinematicCharacterController;
 public class SmartObject : PhysicalObject, ICharacterController
 {
 	public KinematicCharacterMotor Motor => GetComponent<KinematicCharacterMotor>();
-	public PlayerController Controller => GetComponent<PlayerController>();
+	public BaseController Controller => GetComponent<BaseController>();
 	public ActionStateMachine ActionStateMachine => GetComponent<ActionStateMachine>();
 	public LocomotionStateMachine LocomotionStateMachine => GetComponent<LocomotionStateMachine>();
 	public EffectMachine EffectMachine => GetComponent<EffectMachine>();
@@ -213,23 +213,7 @@ public class SmartObject : PhysicalObject, ICharacterController
 			StoredMovementVector = MovementVector;
 
 
-
-		if (Controller.ButtonLockBuffer > 0 && (!Controller.ButtonLockHold || Controller.ButtonLockReleaseBuffer > 0))
-		{
-			Controller.ButtonLockBuffer = 0;
-			TargetingManager.Instance.ToggleLockOn();
-		}
-		else if (Controller.ButtonLockBuffer <= 1 && Controller.ButtonLockHold && Controller.ButtonLockReleaseBuffer == 0)
-		{
-				Controller.ButtonLockBuffer = 0;
-				TargetingManager.Instance.SwitchTarget(PossibleTargets);
-		}
-			if (Controller.ButtonRecenterBuffer > 0)
-		{
-			Controller.ButtonRecenterBuffer = 0;
-			CameraManager.Instance.ResetCamera();
-		}
-
+		Controller.BeforeObjectUpdate();
 
 
 		//Motor.BaseVelocity *= LocalTimeScale;
@@ -348,16 +332,7 @@ public class SmartObject : PhysicalObject, ICharacterController
 		ShadowAnimator.SetFloat("Time", speed);
 	}
 
-	public void PollForTargets()
-	{
-		PossibleTargets = new Collider[16];
-		PhysicsExtensions.OverlapColliderNonAlloc(TargetingCollider, PossibleTargets, TargetingManager.Instance.Targetable);
 
-
-		foreach (Collider collider in PossibleTargets)
-			if (collider != null)
-			{	TargetingManager.Instance.AutoTarget(PossibleTargets); break; }		
-	}
 
 	public void ToggleGuns(bool toggle)
 	{

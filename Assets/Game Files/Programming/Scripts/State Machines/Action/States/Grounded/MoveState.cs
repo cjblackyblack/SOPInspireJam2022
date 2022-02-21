@@ -40,7 +40,7 @@ public class MoveState : SmartState
 		if (smartObject.Controller.Button2Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
 
-		if (smartObject.Controller.Button3Buffer > 0)
+		if (smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold)
 		{
 			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Move);

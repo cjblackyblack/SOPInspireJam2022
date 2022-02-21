@@ -60,7 +60,7 @@ public class TargetingManager : Singleton<TargetingManager>
 			if (PlayerManager.Instance.PlayerObject.ActionStateMachine.CurrentActionEnum != ActionStates.Attack)
 			{
 				targetUpdateTicker = 0;
-				PlayerManager.Instance.PlayerObject.PollForTargets(); //Calls AutoTarget if things are found
+				PlayerManager.Instance.PlayerObject.Controller.PollForTargets(); //Calls AutoTarget if things are found
 			}
 		}
 

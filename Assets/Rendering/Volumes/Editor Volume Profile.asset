@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad71758d66b75b45a6157133f3e6024, type: 3}
   m_Name: AccumulationMotionBlurVolume
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   weight:
     m_OverrideState: 0

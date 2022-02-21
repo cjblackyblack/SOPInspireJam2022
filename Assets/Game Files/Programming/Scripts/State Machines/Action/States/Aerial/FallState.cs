@@ -76,7 +76,7 @@ public class FallState : SmartState
         if (smartObject.Controller.Button1Buffer > 0)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
-        if (smartObject.Controller.Button3Buffer > 0 && !smartObject.Motor.GroundingStatus.IsStableOnGround)
+        if ((smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold) && !smartObject.Motor.GroundingStatus.IsStableOnGround)
         {
             smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.AerialShoot);
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);

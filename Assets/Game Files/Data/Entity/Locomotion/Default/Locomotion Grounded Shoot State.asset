@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5529904f8c869e1439f515b30efb6571, type: 2}
   - {fileID: 11400000, guid: 4538125806bf30c489a401c8b85ef92a, type: 2}
   bonusOrientationMethod: 1
-  OrientationSharpness: 25
+  OrientationSharpness: 1000
   BonusOrientationSharpness: 15
   MaxStableMoveSpeed: 5.5
   StableMovementSharpness: 25

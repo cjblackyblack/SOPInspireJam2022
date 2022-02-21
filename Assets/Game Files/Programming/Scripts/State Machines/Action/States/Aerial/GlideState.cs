@@ -64,7 +64,7 @@ public class GlideState : SmartState
         if (smartObject.Controller.Button1Buffer > 0)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
-        if (smartObject.Controller.Button3Buffer > 0)
+        if (smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold)
         {
             smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.AerialShoot);
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);

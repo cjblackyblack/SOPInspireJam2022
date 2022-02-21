@@ -5,8 +5,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : BaseController
 {
+	public SmartObject SmartObject => GetComponent<SmartObject>();
+
 	public Vector2 lookInput;
-	public SmartObject smartObject => GetComponent<SmartObject>();
+
+	public int ButtonLockBuffer;
+	public int ButtonRecenterBuffer;
+
+	public int ButtonLockReleaseBuffer;
+	public int ButtonRecenterReleaseBuffer;
+
+	public bool ButtonLockHold;
+	public bool ButtonRecenterHold;
+
 	//lol fix this
 	public InputActionReference MoveInput;
 	public InputActionReference LookInput;
@@ -19,9 +30,39 @@ public class PlayerController : BaseController
 	public InputActionReference Button3Release;
 	public InputActionReference Button4Release;
 	public InputActionReference PauseButton;
+
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
+	}
+
+	public override void BeforeObjectUpdate()
+	{
+		if (ButtonLockBuffer > 0 && (!ButtonLockHold || ButtonLockReleaseBuffer > 0))
+		{
+			ButtonLockBuffer = 0;
+			TargetingManager.Instance.ToggleLockOn();
+		}
+		else if (ButtonLockBuffer <= 1 && ButtonLockHold && ButtonLockReleaseBuffer == 0)
+		{
+			ButtonLockBuffer = 0;
+			TargetingManager.Instance.SwitchTarget(SmartObject.PossibleTargets);
+		}
+		if (ButtonRecenterBuffer > 0)
+		{
+			ButtonRecenterBuffer = 0;
+			CameraManager.Instance.ResetCamera();
+		}
+	}
+	public override void PollForTargets()
+	{
+		SmartObject.PossibleTargets = new Collider[16];
+		PhysicsExtensions.OverlapColliderNonAlloc(SmartObject.TargetingCollider, SmartObject.PossibleTargets, TargetingManager.Instance.Targetable);
+
+
+		foreach (Collider collider in SmartObject.PossibleTargets)
+			if (collider != null)
+			{ TargetingManager.Instance.AutoTarget(SmartObject.PossibleTargets); break; }
 	}
 
 	//CALLED ON PLAYERINPUT COMPONENT AS UNITYEVENT
@@ -183,7 +224,7 @@ public class PlayerController : BaseController
 
 	public void Update()
 	{
-		smartObject.SetInputDir(input);
+		SmartObject.SetInputDir(input);
 	}
 
 	private void FixedUpdate()

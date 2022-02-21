@@ -168,7 +168,7 @@ public class BoostState : SmartState
 				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 		}
 
-		if (smartObject.Controller.Button3Buffer > 0)
+		if (smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold)
 		{
 			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);

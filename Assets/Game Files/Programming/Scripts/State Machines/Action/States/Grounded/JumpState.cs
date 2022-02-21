@@ -102,7 +102,7 @@ public class JumpState : SmartState
             smartObject.Motor.SetGroundSolvingActivation(true);
         }
 
-        if (smartObject.Controller.Button3Buffer > 0)
+        if (smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold)
         {
             if (smartObject.CurrentAirTime == 0)
                 smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
