@@ -110,7 +110,7 @@ public class JumpState : SmartState
                 smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.AerialShoot);
         }
 
-       if(smartObject.Controller.Button4Buffer > 0) 
+       if(smartObject.Controller.Button4Buffer > 0 && smartObject.CurrentTime > JumpFrame + 3) 
            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
 
     }

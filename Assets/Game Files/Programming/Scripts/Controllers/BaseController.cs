@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
-	public Vector2 input;
+	public Vector2 Input;
 
 	public int Button1Buffer;
 	public int Button2Buffer;

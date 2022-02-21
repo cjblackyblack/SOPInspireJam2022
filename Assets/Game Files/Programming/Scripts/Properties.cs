@@ -143,8 +143,10 @@ public enum PersonalityType
 public enum ValueType
 {
     HP,
+    PercentHP,
     MaxHP,
     MP,
+    PercentMP,
     MaxMP
 }
 
@@ -338,8 +340,8 @@ public class MotionCurve
 
     public Vector3 GetFixedTotalCurve(SmartObject smartObject, bool UseStoreForFreeMove)
     {
-        return (smartObject.Motor.CharacterForward * ForwardCurve.Evaluate(smartObject.CurrentFrame) * smartObject.Controller.input.y)
-         + (smartObject.Motor.CharacterRight * LateralCurve.Evaluate(smartObject.CurrentFrame) * smartObject.Controller.input.x)
+        return (smartObject.Motor.CharacterForward * ForwardCurve.Evaluate(smartObject.CurrentFrame) * smartObject.Controller.Input.y)
+         + (smartObject.Motor.CharacterRight * LateralCurve.Evaluate(smartObject.CurrentFrame) * smartObject.Controller.Input.x)
          + (smartObject.Motor.CharacterUp * VerticalCurve.Evaluate(smartObject.CurrentFrame))
          + ( UseStoreForFreeMove ? (smartObject.MovementVector.normalized * FreeMoveCurve.Evaluate(smartObject.CurrentFrame)) : (smartObject.InputVector.normalized * FreeMoveCurve.Evaluate(smartObject.CurrentFrame)));
     }

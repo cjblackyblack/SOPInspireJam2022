@@ -16,7 +16,7 @@ public class JumpShootState : SmartState
 
     public override void OnEnter(SmartObject smartObject)
     {
-        if ((smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.GroundedShoot || smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.AerialShoot) && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Jump)
+        if ((smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.Grounded || smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.Aerial) && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Jump)
         {
             if (smartObject.CurrentAirTime == 0)
                 smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);

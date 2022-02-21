@@ -68,7 +68,7 @@ public class PlayerController : BaseController
 	//CALLED ON PLAYERINPUT COMPONENT AS UNITYEVENT
 	public void BufferMovement(InputAction.CallbackContext ctx)
 	{
-		input = ctx.ReadValue<Vector2>();
+		Input = ctx.ReadValue<Vector2>();
 	}
 
 	public void BufferLook(InputAction.CallbackContext ctx)
@@ -224,7 +224,7 @@ public class PlayerController : BaseController
 
 	public void Update()
 	{
-		SmartObject.SetInputDir(input);
+		SmartObject.SetInputDir(Input);
 	}
 
 	private void FixedUpdate()

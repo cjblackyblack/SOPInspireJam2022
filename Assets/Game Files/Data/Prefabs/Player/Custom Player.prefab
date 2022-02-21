@@ -408,26 +408,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da7a8d3fe0bba34b8399c61b9116037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {x: 0, y: 0}
+  Input: {x: 0, y: 0}
   Button1Buffer: 0
   Button2Buffer: 0
   Button3Buffer: 0
   Button4Buffer: 0
-  ButtonLockBuffer: 0
-  ButtonRecenterBuffer: 0
   Button1ReleaseBuffer: 0
   Button2ReleaseBuffer: 0
   Button3ReleaseBuffer: 0
   Button4ReleaseBuffer: 0
-  ButtonLockReleaseBuffer: 0
-  ButtonRecenterReleaseBuffer: 0
   Button1Hold: 0
   Button2Hold: 0
   Button3Hold: 0
   Button4Hold: 0
+  lookInput: {x: 0, y: 0}
+  ButtonLockBuffer: 0
+  ButtonRecenterBuffer: 0
+  ButtonLockReleaseBuffer: 0
+  ButtonRecenterReleaseBuffer: 0
   ButtonLockHold: 0
   ButtonRecenterHold: 0
-  lookInput: {x: 0, y: 0}
   MoveInput: {fileID: 8204663501212482210, guid: 50c87d81be04d8342b81ed871ac31e7d, type: 3}
   LookInput: {fileID: -670963555256269228, guid: 50c87d81be04d8342b81ed871ac31e7d, type: 3}
   Button1Press: {fileID: 6652093495818701604, guid: 50c87d81be04d8342b81ed871ac31e7d, type: 3}
@@ -495,7 +495,7 @@ MonoBehaviour:
   Velocity: {x: 0, y: 0, z: 0}
   Friction: 0.75
   FrictionModifier: 1
-  Gravity: {x: 0, y: -37.5, z: 0}
+  Gravity: {x: 0, y: -45.5, z: 0}
   CollisionNormal: {x: 0, y: 0, z: 0}
   BounceBuffered: 0
   CanBounce: 0
@@ -529,6 +529,8 @@ MonoBehaviour:
     ShootFX: []
     BoostFX: []
     HoverFX: []
+    LeftArmWeapon: {fileID: 0}
+    RightArmWeapon: {fileID: 0}
   Guns:
   - {fileID: 190315813}
   ActiveAirTime: 0
@@ -726,7 +728,7 @@ MonoBehaviour:
   MaxStableSlopeAngle: 55
   StableGroundLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147491767
   DiscreteCollisionEvents: 0
   StepHandling: 2
   MaxStepHeight: 0.5
