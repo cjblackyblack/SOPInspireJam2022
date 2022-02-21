@@ -18,12 +18,12 @@ public class LocomotionAerialState : LocomotionState
     public override void OnEnter(SmartObject smartObject)
 	{
         smartObject.Motor.StepHandling = KinematicCharacterController.StepHandlingMethod.None;
+        smartObject.Controller.Button3ReleaseBuffer = 0;
     }
 
 	public override void OnExit(SmartObject smartObject)
 	{
-        smartObject.ActiveAirTime = 0;
-        smartObject.CurrentAirTime = 0;
+
         smartObject.Motor.SetCapsuleDimensions(smartObject.CharacterRadius, smartObject.CharacterHeight, smartObject.CharacterCenter.y);
         smartObject.Motor.StepHandling = KinematicCharacterController.StepHandlingMethod.Extra;
     }

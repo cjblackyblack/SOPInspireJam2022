@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CharacterState/ActionState/Grounded/Boost")]
 public class BoostState : SmartState
 {
+	public int MinTime;
 	public TangibilityFrames[] TangibilityFrames;
 	public MotionCurve MotionCurve;
 	public float DirectionControl;
@@ -13,10 +14,28 @@ public class BoostState : SmartState
 
 	public override void OnEnter(SmartObject smartObject)
 	{
-		base.OnEnter(smartObject);
+		if (smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.GroundedShoot && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Boost)
+		{
+
+		}
+		else
+		{
+			smartObject.CurrentTime = -1;
+			smartObject.CurrentFrame = -1;
+		}
+		if (AnimationTransitionTime != 0)
+		{
+			smartObject.Animator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+			smartObject.ShadowAnimator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+		}
+		else
+		{
+			smartObject.Animator.Play(AnimationState, 0, 0);
+			smartObject.ShadowAnimator.Play(AnimationState, 0, 0);
+		}
 		smartObject.Controller.Button4Buffer = 0;
 
-
+		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Grounded);
 		smartObject.MovementVector = smartObject.MovementVector == Vector3.zero ? smartObject.Motor.CharacterForward : smartObject.InputVector.normalized;
 	}
 
@@ -36,9 +55,10 @@ public class BoostState : SmartState
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
 		}
 
-		smartObject.MovementVector = Vector3.SmoothDamp(smartObject.MovementVector, smartObject.InputVector == Vector3.zero ? smartObject.StoredMovementVector : smartObject.InputVector.normalized,ref smartObject.MovementVector ,DirectionControl);
+		smartObject.MovementVector = Vector3.Slerp(smartObject.MovementVector, smartObject.InputVector == Vector3.zero ? smartObject.StoredMovementVector : smartObject.InputVector.normalized, DirectionControl);
 		MotionCurve.GravityMod(smartObject);
-		CombatUtilities.CreateTangibilityFrames(smartObject, TangibilityFrames);
+		if (TangibilityFrames.Length > 0)
+			CombatUtilities.CreateTangibilityFrames(smartObject, TangibilityFrames);
 	}
 
 	public override void UpdateRotation(SmartObject smartObject, ref Quaternion currentRotation, float deltaTime)
@@ -135,11 +155,24 @@ public class BoostState : SmartState
 	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
 		base.AfterCharacterUpdate(smartObject, deltaTime);
-		if (smartObject.Controller.Button2ReleaseBuffer > 0 || smartObject.Controller.Button2Hold == false)
+
+		if (smartObject.CurrentFrame > MaxTime)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
-		if (smartObject.Controller.Button1Buffer > 0)
-			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+		if (smartObject.CurrentFrame > MinTime)
+		{
+			if (smartObject.Controller.Button2ReleaseBuffer > 0 || smartObject.Controller.Button2Hold == false)
+				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
+
+			if (smartObject.Controller.Button1Buffer > 0)
+				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+		}
+
+		if (smartObject.Controller.Button3Buffer > 0)
+		{
+			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
+		}
 
 		if (smartObject.Controller.Button4Buffer > 0 && ((smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.Grounded) || (smartObject.CurrentAirTime > CoyoteTime && smartObject.AirJumps > 0 && smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.Aerial)))
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);  

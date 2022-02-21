@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ProjectileState/Travel/Standard")]
 public class StandardTravelProjectileState : ProjectileState
 {
+	public ProjectileState ExitState;
 	public MotionCurve MotionCurve;
 	public HitboxData[] hitboxes;
 	public TangibilityFrames[] TangibilityFrames;
@@ -25,11 +26,11 @@ public class StandardTravelProjectileState : ProjectileState
 	{
 
 		//CombatUtilities.CreateTangibilityFrames(projectileObject, TangibilityFrames);
-		if (projectileObject.CurrentFrame > MaxTime)
-		{
-			projectileObject.CurrentTime = -1;
-			projectileObject.CurrentFrame = -1;
-		}
+		//if (projectileObject.CurrentFrame > MaxTime)
+		//{
+		//	projectileObject.CurrentTime = -1;
+		//	projectileObject.CurrentFrame = -1;
+		//}
 
 		if (projectileObject.BounceBuffered)
 		{
@@ -62,6 +63,9 @@ public class StandardTravelProjectileState : ProjectileState
 		else
 			CreateHitboxes(projectileObject);
 		//projectileObject.Direction = 
+
+		if (projectileObject.CurrentFrame > MaxTime)
+			projectileObject.StateMachine.ChangeState(ExitState);
 
 	}
 

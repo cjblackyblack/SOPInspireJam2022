@@ -34,6 +34,9 @@ public class TargetingManager : Singleton<TargetingManager>
 
 	private void Update()
 	{
+		if (Target == null)
+			TargetingState = TargetingState.None;
+
 		if (TargetingState != TargetingState.None)
 		{
 			TargetingRect.position = new Vector2(CameraManager.Instance.MainCamera.WorldToScreenPoint(Target.transform.position).x, CameraManager.Instance.MainCamera.WorldToScreenPoint(Target.transform.position).y);

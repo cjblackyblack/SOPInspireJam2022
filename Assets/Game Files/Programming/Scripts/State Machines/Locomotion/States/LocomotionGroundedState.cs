@@ -12,7 +12,13 @@ public class LocomotionGroundedState : LocomotionState
     public override void OnEnter(SmartObject smartObject)
 	{
         smartObject.AirJumps = smartObject.MaxAirJumps;
-	}
+        smartObject.Controller.Button3ReleaseBuffer = 0;
+        if (smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Jump)
+        {
+            smartObject.ActiveAirTime = 0;
+            smartObject.CurrentAirTime = 0;
+        }
+    }
 
 	public override void OnExit(SmartObject smartObject)
 	{

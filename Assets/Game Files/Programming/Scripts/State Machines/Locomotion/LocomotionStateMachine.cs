@@ -16,6 +16,7 @@ public class LocomotionStateMachine : SerializedMonoBehaviour
 	public LocomotionStates CurrentLocomotionEnum;
 	public LocomotionState PreviousLocomotionState;
 	public LocomotionStates PreviousLocomotionEnum;
+	public LocomotionStates NextLocomotionState;
 	public VehicleState CurrentVehicleState;
 	public SmartState LandState;
 
@@ -35,12 +36,13 @@ public class LocomotionStateMachine : SerializedMonoBehaviour
 			LocomotionDict.Add((LocomotionStates)i, states[i]);
 		}
 
-		CurrentLocomotionState = LocomotionDict[LocomotionStates.Grounded];
-		ChangeLocomotionState(LocomotionStates.Grounded);
+		CurrentLocomotionState = LocomotionDict[LocomotionStates.Aerial];
+		ChangeLocomotionState(LocomotionStates.Aerial);
 	}
 
 	public void ChangeLocomotionState(LocomotionStates locomotionState)
 	{
+		NextLocomotionState = locomotionState;
 		PreviousLocomotionState = CurrentLocomotionState;
 		PreviousLocomotionEnum = CurrentLocomotionEnum;
 		CurrentLocomotionState.OnExit(smartObject);
@@ -53,6 +55,7 @@ public class LocomotionStateMachine : SerializedMonoBehaviour
 
 	public void ChangeLocomotionState(VehicleState vehicleState)
 	{
+		NextLocomotionState = LocomotionStates.Vehicle;
 		PreviousLocomotionState = CurrentLocomotionState;
 		PreviousLocomotionEnum = CurrentLocomotionEnum;
 		CurrentLocomotionState.OnExit(smartObject);

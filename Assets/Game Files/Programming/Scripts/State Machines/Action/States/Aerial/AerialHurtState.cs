@@ -9,6 +9,7 @@ public class AerialHurtState : SmartState
 	public override void OnEnter(SmartObject smartObject)
 	{
 		base.OnEnter(smartObject);
+		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
 	}
 
 	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)

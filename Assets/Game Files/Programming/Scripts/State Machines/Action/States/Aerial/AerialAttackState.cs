@@ -19,6 +19,7 @@ public class AerialAttackState : SmartState
 
 		smartObject.MovementVector = smartObject.MovementVector == Vector3.zero ? smartObject.Motor.CharacterForward : smartObject.InputVector.normalized;
 		smartObject.Motor.BaseVelocity *= EntryFriction;
+		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
 	}
 
 	public override void OnExit(SmartObject smartObject)

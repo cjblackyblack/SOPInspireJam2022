@@ -16,10 +16,35 @@ public class JumpState : SmartState
 
 	public override void OnEnter(SmartObject smartObject)
 	{
-		base.OnEnter(smartObject);
-        if (smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Boost && smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.Grounded)
-        { smartObject.CurrentTime = JumpFrame - 1; smartObject.CurrentFrame = JumpFrame - 1; }
+        if (((smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.GroundedShoot)|| smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.AerialShoot) && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Jump)
+        {
+            if (smartObject.CurrentAirTime == 0)
+                smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
+            else
+                smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.AerialShoot);
+        }
+        else
+        {
+            smartObject.CurrentTime = -1;
+            smartObject.CurrentFrame = -1;
+            if (AnimationTransitionTime != 0)
+            {
+                smartObject.Animator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+                smartObject.ShadowAnimator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+            }
+            else
+            {
+                smartObject.Animator.Play(AnimationState, 0, 0);
+                smartObject.ShadowAnimator.Play(AnimationState, 0, 0);
+            }
             smartObject.Controller.Button4Buffer = 0;
+            if (smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Boost && (smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.Grounded || smartObject.LocomotionStateMachine.CurrentLocomotionEnum == LocomotionStates.GroundedShoot))
+            { 
+                smartObject.CurrentTime = JumpFrame - 1; 
+                smartObject.CurrentFrame = JumpFrame - 1; 
+            }
+        }
+        smartObject.Controller.Button4Buffer = 0;
         smartObject.MovementVector = Vector3.zero;
     }
 
@@ -76,9 +101,21 @@ public class JumpState : SmartState
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
             smartObject.Motor.SetGroundSolvingActivation(true);
         }
+
+        if (smartObject.Controller.Button3Buffer > 0)
+        {
+            if (smartObject.CurrentAirTime == 0)
+                smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
+            else
+                smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.AerialShoot);
+        }
+
+       if(smartObject.Controller.Button4Buffer > 0) 
+           smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
+
     }
 
-	public void Jump(SmartObject smartObject, ref Vector3 currentVelocity, float deltaTime)
+    public void Jump(SmartObject smartObject, ref Vector3 currentVelocity, float deltaTime)
     {
         smartObject.MovementVector = smartObject.InputVector;
         Vector3 jumpDirection = smartObject.Motor.CharacterUp;

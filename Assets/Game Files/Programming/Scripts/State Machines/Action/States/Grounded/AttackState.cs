@@ -18,6 +18,7 @@ public class AttackState : SmartState
 		smartObject.Controller.Button1Buffer = 0;
 
 		smartObject.MovementVector = smartObject.MovementVector == Vector3.zero ? smartObject.Motor.CharacterForward : smartObject.InputVector.normalized;
+		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Grounded);
 	}
 
 	public override void OnExit(SmartObject smartObject)

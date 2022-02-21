@@ -8,9 +8,27 @@ public class IdleState : SmartState
     public int frictionStrength;
 	public override void OnEnter(SmartObject smartObject)
 	{
-		base.OnEnter(smartObject);
-        smartObject.MovementVector *= 0;
+		if (smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.GroundedShoot && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Idle)
+		{
 
+		}
+		else
+		{
+			smartObject.CurrentTime = -1;
+			smartObject.CurrentFrame = -1;
+		}
+		if (AnimationTransitionTime != 0)
+		{
+			smartObject.Animator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+			smartObject.ShadowAnimator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+		}
+		else
+		{
+			smartObject.Animator.Play(AnimationState, 0, 0);
+			smartObject.ShadowAnimator.Play(AnimationState, 0, 0);
+		}
+		smartObject.MovementVector *= 0;
+		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Grounded);
 	}
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
@@ -19,6 +37,12 @@ public class IdleState : SmartState
 
 		if (smartObject.Controller.Button2Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
+
+		if (smartObject.Controller.Button3Buffer > 0)
+		{
+			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
+		}
 
 		if (smartObject.Controller.Button4Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);

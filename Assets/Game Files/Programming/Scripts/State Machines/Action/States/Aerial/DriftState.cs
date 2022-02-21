@@ -10,9 +10,27 @@ public class DriftState : SmartState
 
 	public override void OnEnter(SmartObject smartObject)
 	{
-		base.OnEnter(smartObject);
+        if (smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.AerialShoot && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Move)
+        {
+            smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
+        }
+        else
+        {
+            smartObject.CurrentTime = -1;
+            smartObject.CurrentFrame = -1;
+        }
+        if (AnimationTransitionTime != 0)
+        {
+            smartObject.Animator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+            smartObject.ShadowAnimator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+        }
+        else
+        {
+            smartObject.Animator.Play(AnimationState, 0, 0);
+            smartObject.ShadowAnimator.Play(AnimationState, 0, 0);
+        }
 
-	}
+    }
 
 	public override void OnExit(SmartObject smartObject)
 	{
@@ -35,8 +53,8 @@ public class DriftState : SmartState
 
 
 
-        if (smartObject.CurrentAirTime > LedgeGrabTime)
-            smartObject.ClimbingInfo.CanGrab = true;
+       // if (smartObject.CurrentAirTime > LedgeGrabTime)
+       //     smartObject.ClimbingInfo.CanGrab = true;
     }
 
     public override void UpdateVelocity(SmartObject smartObject, ref Vector3 currentVelocity, float deltaTime)
@@ -53,14 +71,20 @@ public class DriftState : SmartState
         if (smartObject.Controller.Button1Buffer > 0)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
+        if (smartObject.Controller.Button3Buffer > 0 && !smartObject.Motor.GroundingStatus.IsStableOnGround)
+        {
+            smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.AerialShoot);
+            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Move);
+        }
+
         if (smartObject.Motor.GroundingStatus.IsStableOnGround)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
         if (smartObject.Controller.Button4Buffer > 0 && smartObject.CurrentAirTime > CoyoteTime && smartObject.AirJumps > 0)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
 
-        if (smartObject.Controller.Button2Buffer > 0)
-            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
+        //if (smartObject.Controller.Button2Buffer > 0)
+        //    smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
 
     }
 }

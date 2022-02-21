@@ -48,6 +48,8 @@ public enum LocomotionStates
 { 
     Grounded, 
     Aerial,
+    GroundedShoot,
+    AerialShoot,
     Climbing,
     Flying, 
     Swimming, 
@@ -691,6 +693,15 @@ public class BaseStats //Exists on the job, of the object
     public AnimationCurve actionSpeedRangeMax;
     public AnimationCurve cost;
 }
+
+[System.Serializable]
+public class BodyReferences 
+{
+    public GameObject[] ShootFX;
+    public GameObject[] BoostFX;
+    public GameObject[] HoverFX;
+}
+
 #endregion
 
 #region Misc

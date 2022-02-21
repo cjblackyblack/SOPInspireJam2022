@@ -10,6 +10,7 @@ public class AerialBlockedState : SmartState
 	{
 		base.OnEnter(smartObject);
 		smartObject.MovementVector = -smartObject.Motor.CharacterForward;
+		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
 	}
 
 	public override void UpdateRotation(SmartObject smartObject, ref Quaternion currentRotation, float deltaTime)

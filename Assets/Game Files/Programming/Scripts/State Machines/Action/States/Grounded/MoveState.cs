@@ -9,6 +9,29 @@ public class MoveState : SmartState
     public float MaxStableMoveSpeed;
     public float StableMovementSharpness;
 
+	public override void OnEnter(SmartObject smartObject)
+	{
+		if (smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.GroundedShoot && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Move)
+		{
+
+		}
+		else
+		{
+			smartObject.CurrentTime = -1;
+			smartObject.CurrentFrame = -1;
+		}
+		if (AnimationTransitionTime != 0)
+		{
+			smartObject.Animator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+			smartObject.ShadowAnimator.CrossFadeInFixedTime(AnimationState, AnimationTransitionTime, 0, AnimationTransitionOffset);
+		}
+		else
+		{
+			smartObject.Animator.Play(AnimationState, 0, 0);
+			smartObject.ShadowAnimator.Play(AnimationState, 0, 0);
+		}
+		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Grounded);
+	}
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
 		if (smartObject.Controller.Button1Buffer > 0)
@@ -16,6 +39,12 @@ public class MoveState : SmartState
 
 		if (smartObject.Controller.Button2Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
+
+		if (smartObject.Controller.Button3Buffer > 0)
+		{
+			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Move);
+		}
 
 		if (smartObject.Controller.Button4Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);

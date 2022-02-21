@@ -15,6 +15,7 @@ public class LandState : SmartState
 		base.OnEnter(smartObject);
 		if(smartObject.InputVector == Vector3.zero)
 			smartObject.MovementVector *= 0;
+		//smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Grounded);
 	}
 
 	public override void UpdateVelocity(SmartObject smartObject, ref Vector3 currentVelocity, float deltaTime)

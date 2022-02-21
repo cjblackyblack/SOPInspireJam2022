@@ -768,6 +768,7 @@ namespace KinematicCharacterController
         /// </summary>
         public void UpdatePhase1(float deltaTime)
         {
+            deltaTime *= LocalTime;
             // NaN propagation safety stop
             if (float.IsNaN(BaseVelocity.x) || float.IsNaN(BaseVelocity.y) || float.IsNaN(BaseVelocity.z))
             {
@@ -972,8 +973,8 @@ namespace KinematicCharacterController
                 // Conserve momentum when de-stabilized from an attached rigidbody
                 if (PreserveAttachedRigidbodyMomentum && _lastAttachedRigidbody != null && _attachedRigidbody != _lastAttachedRigidbody)
                 {
-                    BaseVelocity += _attachedRigidbodyVelocity;
-                    BaseVelocity -= tmpVelocityFromCurrentAttachedRigidbody;
+                    BaseVelocity += _attachedRigidbodyVelocity / LocalTime;
+                    BaseVelocity -= tmpVelocityFromCurrentAttachedRigidbody / LocalTime;
                 }
 
                 // Process additionnal Velocity from attached rigidbody
@@ -994,7 +995,7 @@ namespace KinematicCharacterController
                     _attachedRigidbody != null &&
                     _lastAttachedRigidbody == null)
                 {
-                    BaseVelocity -= Vector3.ProjectOnPlane(_attachedRigidbodyVelocity, _characterUp);
+                    BaseVelocity -= Vector3.ProjectOnPlane(_attachedRigidbodyVelocity / LocalTime, _characterUp);
                 }
 
                 // Movement from Attached Rigidbody
@@ -1030,6 +1031,7 @@ namespace KinematicCharacterController
         /// </summary>
         public void UpdatePhase2(float deltaTime)
         {
+            deltaTime *= LocalTime;
             // Handle rotation
             CharacterController.UpdateRotation(ref _transientRotation, deltaTime);
             TransientRotation = _transientRotation;

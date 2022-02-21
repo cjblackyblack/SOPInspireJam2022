@@ -11,12 +11,13 @@ public class StandardExitProjectileState : ProjectileState
 
 	public override void OnExit(ProjectileObject projectileObject)
 	{
-	
+
 	}
 
 	public override void OnFixedUpdate(ProjectileObject projectileObject)
 	{
-		
+		if (projectileObject.CurrentFrame > MaxTime)
+			Destroy(projectileObject.gameObject);
 	}
 
 	public override void OnUpdate(ProjectileObject projectileObject)

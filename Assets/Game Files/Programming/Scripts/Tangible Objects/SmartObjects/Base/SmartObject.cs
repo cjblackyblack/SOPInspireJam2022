@@ -21,8 +21,12 @@ public class SmartObject : PhysicalObject, ICharacterController
 	[PropertyOrder(-98)]
 	public StatMods StatMods;
 
-	[TitleGroup("Properties")]
+
 	public SmartObjectProperties SmartObjectProperties;
+	[TitleGroup("Properties")]
+	public BodyReferences BodyReferences;
+	public Gun[] Guns;
+
 
 	[FoldoutGroup("Variables/Time")]
 	public float ActiveAirTime;
@@ -58,8 +62,6 @@ public class SmartObject : PhysicalObject, ICharacterController
 	public float CharacterRadius;
 
 	public bool GuardSuccess;
-
-	public Transform[] FirePoints;
 	public int MaxAirJumps;
 	public int AirJumps;
 
@@ -89,7 +91,7 @@ public class SmartObject : PhysicalObject, ICharacterController
 		}
 		Quaternion cameraPlanarRotation = Quaternion.LookRotation(cameraPlanarDirection, Motor.CharacterUp);
 
-		switch (LocomotionStateMachine.CurrentLocomotionEnum)
+		switch (LocomotionStateMachine.CurrentLocomotionEnum) //bruh put this shit in the damn locomotion state machine
 		{
 			case LocomotionStates.Grounded:
 				{
@@ -108,7 +110,40 @@ public class SmartObject : PhysicalObject, ICharacterController
 
 					break;
 				}
+			case LocomotionStates.GroundedShoot:
+				{
+					// Move and look inputs
+					InputVector = cameraPlanarRotation * moveInputVector;
+
+					switch (OrientationMethod)
+					{
+						case OrientationMethod.TowardsCamera:
+							LookInputVector = cameraPlanarDirection;
+							break;
+						case OrientationMethod.TowardsMovement:
+							LookInputVector = InputVector.normalized;
+							break;
+					}
+
+					break;
+				}
 			case LocomotionStates.Aerial:
+				{
+					// Move and look inputs
+					InputVector = cameraPlanarRotation * moveInputVector;
+
+					switch (OrientationMethod)
+					{
+						case OrientationMethod.TowardsCamera:
+							LookInputVector = cameraPlanarDirection;
+							break;
+						case OrientationMethod.TowardsMovement:
+							LookInputVector = InputVector.normalized;
+							break;
+					}
+					break;
+				}
+			case LocomotionStates.AerialShoot:
 				{
 					// Move and look inputs
 					InputVector = cameraPlanarRotation * moveInputVector;
@@ -322,5 +357,16 @@ public class SmartObject : PhysicalObject, ICharacterController
 		foreach (Collider collider in PossibleTargets)
 			if (collider != null)
 			{	TargetingManager.Instance.AutoTarget(PossibleTargets); break; }		
+	}
+
+	public void ToggleGuns(bool toggle)
+	{
+		foreach (Gun gun in Guns)
+			gun.Active = toggle;
+	}
+
+	public void ToggleGuns(bool toggle, int index)
+	{
+		Guns[index].Active = toggle;
 	}
 }
