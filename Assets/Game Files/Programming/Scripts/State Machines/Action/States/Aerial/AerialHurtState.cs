@@ -12,17 +12,23 @@ public class AerialHurtState : SmartState
 		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
 	}
 
-	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
-	{
-		base.AfterCharacterUpdate(smartObject, deltaTime);
-		if (smartObject.CurrentFrame > MaxTime)
-			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
-	}
-
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
-		base.BeforeCharacterUpdate(smartObject, deltaTime);
 		CombatUtilities.CreateTangibilityFrames(smartObject, TangibilityFrames);
 	}
 
+	public override void UpdateRotation(SmartObject smartObject, ref Quaternion currentRotation, float deltaTime)
+	{
+		Vector3 smoothedLookInputDirection = smartObject.Motor.CharacterForward;
+
+		currentRotation = Quaternion.LookRotation(smoothedLookInputDirection, smartObject.Motor.CharacterUp);
+
+		smartObject.LocomotionStateMachine.CurrentLocomotionState.CalculateCharacterUp(smartObject, ref currentRotation, deltaTime);
+	}
+
+	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
+	{
+		if (smartObject.CurrentFrame > MaxTime)
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
+	}
 }
