@@ -164,11 +164,11 @@ public class BoostState : SmartState
 			if (smartObject.Controller.Button2ReleaseBuffer > 0 || smartObject.Controller.Button2Hold == false)
 				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
-			if (smartObject.Controller.Button1Buffer > 0)
+			if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
 				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 		}
 
-		if (smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold)
+		if ((smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold == true) && smartObject.Cooldown <= 0)
 		{
 			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);

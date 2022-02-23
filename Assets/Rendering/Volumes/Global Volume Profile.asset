@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Value: 5
   targetRasterizationResolutionWidth:
     m_OverrideState: 1
-    m_Value: 320
+    m_Value: 420
     min: 1
     max: 4096
   targetRasterizationResolutionHeight:

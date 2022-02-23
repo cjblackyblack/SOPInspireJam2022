@@ -73,10 +73,10 @@ public class FallShootState : SmartState
 
     public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
     {
-        if (smartObject.Controller.Button1Buffer > 0)
-            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+        //if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
+        //    smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
-        if (smartObject.Controller.Button3ReleaseBuffer > 0 || !smartObject.Controller.Button3Hold)
+        if ((smartObject.Controller.Button3ReleaseBuffer > 0 || !smartObject.Controller.Button3Hold))
         {
             smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);

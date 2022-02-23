@@ -20,13 +20,14 @@ public class LocomotionAerialShootState : LocomotionState
         smartObject.Motor.StepHandling = KinematicCharacterController.StepHandlingMethod.None;
         smartObject.ToggleGuns(true, 0);
         smartObject.Controller.Button3Buffer = 0;
-    }
+    } 
 
     public override void OnExit(SmartObject smartObject)
     {
         smartObject.ToggleGuns(false, 0);
         smartObject.Motor.SetCapsuleDimensions(smartObject.CharacterRadius, smartObject.CharacterHeight, smartObject.CharacterCenter.y);
         smartObject.Motor.StepHandling = KinematicCharacterController.StepHandlingMethod.Extra;
+        smartObject.Cooldown = 70;
     }
 
     public override void UpdateRotation(SmartObject smartObject, ref Quaternion currentRotation, float deltaTime)

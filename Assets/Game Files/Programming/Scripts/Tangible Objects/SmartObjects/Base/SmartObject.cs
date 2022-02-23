@@ -64,6 +64,7 @@ public class SmartObject : PhysicalObject, ICharacterController
 	public bool GuardSuccess;
 	public int MaxAirJumps;
 	public int AirJumps;
+	public int Cooldown;
 
 	public override void Start()
 	{
@@ -176,7 +177,7 @@ public class SmartObject : PhysicalObject, ICharacterController
 				}
 		}
 		Animator.SetFloat("InputY", input.y);
-		Animator.SetFloat("InputX", Mathf.Abs(input.y) > 0.3 ? 0: input.x);
+		Animator.SetFloat("InputX", Mathf.Abs(input.y) > 0.4 ? 0: input.x);
 
 
 	}
@@ -223,6 +224,8 @@ public class SmartObject : PhysicalObject, ICharacterController
 		//Motor.BaseVelocity *= LocalTimeScale;
 		ActionStateMachine.BeforeCharacterUpdate(deltaTime);
 		LocomotionStateMachine.BeforeCharacterUpdate(deltaTime);
+		if (Cooldown > 0)
+			Cooldown--;
 		/*
 		if(Controller.Button1Buffer == 5)
 		{
