@@ -11,6 +11,7 @@ public class AerialAttackState : SmartState
 	public GameObject[] HitParticles = new GameObject[4];// match index to PhysicalTangibility Enum for reaction none for intangible ever
 	public float EntryFriction;
 	public SmartState FollowUpState;
+	public SmartState LandState;
 	public override void OnEnter(SmartObject smartObject)
 	{
 		base.OnEnter(smartObject);
@@ -121,12 +122,16 @@ public class AerialAttackState : SmartState
 		base.AfterCharacterUpdate(smartObject, deltaTime);
 		CreateHitboxes(smartObject);
 
+
+
 		if (smartObject.CurrentFrame > MaxTime)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
 		if (FollowUpState)
 			if (smartObject.CurrentFrame > Mathf.FloorToInt(MaxTime * 0.75f) && smartObject.Controller.Button1Buffer > 0)
 				smartObject.ActionStateMachine.ChangeActionState(FollowUpState);
+
+
 	}
 
 	protected void CreateHitboxes(SmartObject smartObject) //CHECK OVERLAPS SHOULD HAPPEN IN THE HITBOX CLASS TO SUPPORT CYLINDERS OR OTHER STRANGE MULTIOBJECT HITBOXES THIS CLASS NEEDS TO ONLY ACTIVATE THE ONES ACCORDING TO HITBOX DATA

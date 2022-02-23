@@ -175,6 +175,10 @@ public class SmartObject : PhysicalObject, ICharacterController
 					break;
 				}
 		}
+		Animator.SetFloat("InputY", input.y);
+		Animator.SetFloat("InputX", Mathf.Abs(input.y) > 0.3 ? 0: input.x);
+
+
 	}
 
 	public override void TakeDamage(ref DamageInstance damageInstance)
