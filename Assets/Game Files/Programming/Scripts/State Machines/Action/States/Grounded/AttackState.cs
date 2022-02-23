@@ -103,7 +103,7 @@ public class AttackState : SmartState
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
 		if(FollowUpState)
-			if (smartObject.CurrentFrame > Mathf.FloorToInt(MaxTime * 0.75f) && smartObject.Controller.Button1Buffer > 0)
+			if (smartObject.CurrentFrame > Mathf.FloorToInt(MaxTime * 0.75f) && smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
 				smartObject.ActionStateMachine.ChangeActionState(FollowUpState);
     }
 

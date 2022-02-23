@@ -156,19 +156,19 @@ public class BoostShootState : SmartState
 	{
 		base.AfterCharacterUpdate(smartObject, deltaTime);
 
-		if (smartObject.CurrentFrame > MaxTime)
-			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
+		//if (smartObject.CurrentFrame > MaxTime)
+		//	smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
 		if (smartObject.CurrentFrame > MinTime)
 		{
 			if (smartObject.Controller.Button2ReleaseBuffer > 0 || smartObject.Controller.Button2Hold == false)
 				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
-			if (smartObject.Controller.Button1Buffer > 0)
-				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+			//if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
+			//	smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 		}
 
-		if (smartObject.Controller.Button3ReleaseBuffer > 0 || !smartObject.Controller.Button3Hold)
+		if ((smartObject.Controller.Button3ReleaseBuffer > 0 || !smartObject.Controller.Button3Hold))
 		{
 			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Grounded);
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
