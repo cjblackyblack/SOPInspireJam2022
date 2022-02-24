@@ -8,7 +8,10 @@ public class CameraFollower : MonoBehaviour
 	public float Smoothness;
 	private void Update()
 	{
-		transform.position = Vector3.Lerp(transform.position, Target.transform.position, Smoothness);
-		transform.rotation = Quaternion.Lerp(transform.rotation, Target.transform.rotation, 1);
+		if (Target)
+		{
+			transform.position = Vector3.Lerp(transform.position, Target.transform.position, Smoothness);
+			transform.rotation = Quaternion.Lerp(transform.rotation, Target.transform.rotation, 1);
+		}
 	}
 }

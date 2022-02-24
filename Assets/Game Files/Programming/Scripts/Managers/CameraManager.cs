@@ -23,6 +23,12 @@ public class CameraManager : Singleton<CameraManager>
     CinemachineOrbitalTransposer[] orbital = new CinemachineOrbitalTransposer[3];
     CinemachineVirtualCamera[] rigs = new CinemachineVirtualCamera[3];
     public Vector2 CameraSpeed;
+    public CameraWorldUpOverride CameraWorldUpOverride;
+    public CameraLookTarget CameraLookTarget1;
+    public CameraLookTarget CameraLookTarget2;
+
+    public CameraFollower CameraFollower1;
+    public CameraFollower CameraFollower2;
 
     public override void Start()
     {
@@ -37,9 +43,21 @@ public class CameraManager : Singleton<CameraManager>
     }
 	private void Update()
     {
+        if (!PlayerManager.Instance.PlayerController)
+            return;
         BufferActivity();
         CameraUpdate();
-	}    
+    }
+
+    public void SetTarget(Transform transform)
+	{
+        CameraWorldUpOverride.Target = transform;
+        CameraFollower1.Target = transform;
+        CameraFollower2.Target = transform;
+        CameraLookTarget1.target = transform;
+        CameraLookTarget2.target = transform;
+        //StartCoroutine(TemporarilyRecenter());
+    }
 
     public void CameraUpdate()
 	{

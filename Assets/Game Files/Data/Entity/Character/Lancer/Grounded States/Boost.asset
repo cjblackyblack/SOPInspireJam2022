@@ -24,7 +24,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 10
+        value: 7.8571424
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 3.541034
-        value: 5.2040815
+        value: 4.088921
         inSlope: -1.1843426
         outSlope: -1.1843426
         tangentMode: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 10
+        value: 7.564046
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 3.541034
-        value: 5.2040815
+        value: 3.936391
         inSlope: -1.1843426
         outSlope: -1.1843426
         tangentMode: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 15
+        value: 13.5
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 5
-        value: 15
+        value: 13.5
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -306,7 +306,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 55
-        value: 15
+        value: 13.5
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 56
-        value: 15
+        value: 13.5
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -324,7 +324,7 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 60
-        value: 15
+        value: 13.5
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0

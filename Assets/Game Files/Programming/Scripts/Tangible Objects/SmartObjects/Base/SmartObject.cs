@@ -177,7 +177,9 @@ public class SmartObject : PhysicalObject, ICharacterController
 				}
 		}
 		Animator.SetFloat("InputY", input.y);
-		Animator.SetFloat("InputX", Mathf.Abs(input.y) > 0.4 ? 0: input.x);
+		Animator.SetFloat("InputX", Mathf.Abs(input.y) > 0.5f ? 0: input.x);
+		ShadowAnimator.SetFloat("InputY", input.y);
+		ShadowAnimator.SetFloat("InputX", Mathf.Abs(input.y) > 0.5f ? 0 : input.x);
 
 
 	}

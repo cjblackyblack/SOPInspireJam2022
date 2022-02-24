@@ -17,9 +17,9 @@ MonoBehaviour:
   AnimationTransitionOffset: 0
   MaxTime: 15
   JumpFrame: 6
-  JumpSquatFriction: 0.75
-  JumpPower: 14
-  JumpScalableForwardSpeed: 2
+  JumpSquatFriction: 0.25
+  JumpPower: 10
+  JumpScalableForwardSpeed: 1.25
   jumpCapsuleResume: 60
   FallVelocity: 1
   MotionCurve:

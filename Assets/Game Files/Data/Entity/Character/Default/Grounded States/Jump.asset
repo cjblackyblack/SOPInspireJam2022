@@ -19,7 +19,7 @@ MonoBehaviour:
   JumpFrame: 5
   JumpSquatFriction: 0.75
   JumpPower: 14
-  JumpScalableForwardSpeed: 2.5
+  JumpScalableForwardSpeed: 1.5
   jumpCapsuleResume: 60
   FallVelocity: 1
   MotionCurve:

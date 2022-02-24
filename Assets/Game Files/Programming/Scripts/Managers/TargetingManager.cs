@@ -34,6 +34,9 @@ public class TargetingManager : Singleton<TargetingManager>
 
 	private void Update()
 	{
+		if (!PlayerManager.Instance.PlayerController)
+			return;
+
 		if (Target == null)
 			TargetingState = TargetingState.None;
 

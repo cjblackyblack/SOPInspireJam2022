@@ -10,6 +10,7 @@ public class CameraWorldUpOverride : MonoBehaviour
 
 	private void Update()
 	{
-		transform.rotation = Quaternion.Lerp(transform.rotation, Target.rotation, LerpAmount);	
+		if(Target)
+			transform.rotation = Quaternion.Lerp(transform.rotation, Target.rotation, LerpAmount);	
 	}
 }

@@ -16,5 +16,5 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 0
-  MaxStableMoveSpeed: 10
+  MaxStableMoveSpeed: 6.5
   StableMovementSharpness: 30

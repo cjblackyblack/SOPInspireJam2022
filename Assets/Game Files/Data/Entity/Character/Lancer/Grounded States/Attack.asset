@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc1bb41ef83c0941805849d7ce97184, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  AnimationState: Thrust
+  AnimationState: Slash
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 40
