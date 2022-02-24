@@ -50,7 +50,7 @@ Material:
     - _DrawDistanceOverrideMode: 0
     - _DstBlend: 10
     - _EmissionBakedMultiplier: 1
-    - _FogWeight: 1
+    - _FogWeight: 0.577
     - _LightingBaked: 1
     - _LightingDynamic: 1
     - _LightingMode: 0
