@@ -722,11 +722,13 @@ public class LedgeData
     public Quaternion AnchorStartRot;
     public Vector2 AnchorClamp; //offset for chaining ledges together to not be forever stuck
 }
+
+public enum PlayerCharacter { Lancer, Sword }
 #endregion
 #endregion
 
 #region Gamework
 #region Managers
-public enum GameState { Start, Loading, Intro, Gameplay, Paused, Results, GameOver, Quitting }
+public enum GameState { Start, CharacterSelect, Loading, Intro, Gameplay, Paused, Results, GameOver, Quitting }
 #endregion
 #endregion

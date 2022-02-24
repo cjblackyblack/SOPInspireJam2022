@@ -32,13 +32,13 @@ public class IdleState : SmartState
 	}
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
-		if (smartObject.Controller.Button1Buffer > 0)
+		if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
 		if (smartObject.Controller.Button2Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
 
-		if (smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold)
+		if ((smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold) && smartObject.Cooldown <= 0)
 		{
 			smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);

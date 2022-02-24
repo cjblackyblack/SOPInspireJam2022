@@ -92,7 +92,7 @@ public class JumpShootState : SmartState
     public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
     {
 
-        if (smartObject.Controller.Button1Buffer > 0 && smartObject.CurrentAirTime > 0)
+        if (smartObject.Controller.Button1Buffer > 0 && smartObject.CurrentAirTime > 0 && smartObject.Cooldown <= 0)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
 
@@ -103,7 +103,7 @@ public class JumpShootState : SmartState
             smartObject.Motor.SetGroundSolvingActivation(true);
         }
 
-        if (smartObject.Controller.Button3ReleaseBuffer > 0 || !smartObject.Controller.Button3Hold)
+        if ((smartObject.Controller.Button3ReleaseBuffer > 0 || !smartObject.Controller.Button3Hold))
         {
             if(smartObject.CurrentAirTime == 0)
                 smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Grounded);

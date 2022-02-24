@@ -243,8 +243,10 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     TurnAroundTime: 6
+    TrackingResistance: 0
   hitboxes:
   - MaxTime: 65
+    ActionTarget: 0
     RefreshID: 1
     ShareID: 1
     AttackBoxesIndividually: 0
@@ -257,6 +259,7 @@ MonoBehaviour:
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
+    Unstoppable: 0
     Hitstun: 0
     HitStopTime: 0
     HitstopType: 0
@@ -266,6 +269,7 @@ MonoBehaviour:
     KnockbackDirection: {x: 0, y: 0, z: 0}
     HitboxProcesses: []
   - MaxTime: 65
+    ActionTarget: 0
     RefreshID: 0
     ShareID: 0
     AttackBoxesIndividually: 0
@@ -278,6 +282,7 @@ MonoBehaviour:
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
+    Unstoppable: 0
     Hitstun: 0
     HitStopTime: 0
     HitstopType: 0

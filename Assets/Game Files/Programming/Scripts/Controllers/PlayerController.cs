@@ -33,7 +33,8 @@ public class PlayerController : BaseController
 
 	private void Start()
 	{
-		Application.targetFrameRate = 60;
+		PlayerManager.Instance.PlayerController = this;
+		PlayerManager.Instance.PlayerObject = SmartObject;
 	}
 
 	public override void BeforeObjectUpdate()

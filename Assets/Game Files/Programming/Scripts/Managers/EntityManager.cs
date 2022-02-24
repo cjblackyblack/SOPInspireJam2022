@@ -6,4 +6,6 @@ public class EntityManager : Singleton<EntityManager>
 {
 	public LayerMask Hittable;
 	public LayerMask GeoLayers;
+
+	public SmartObject[] Entities;
 }

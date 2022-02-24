@@ -17,7 +17,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 			Destroy(gameObject); 
 			return;
 		}
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 	}
 
 	public virtual void OnApplicationQuit()
