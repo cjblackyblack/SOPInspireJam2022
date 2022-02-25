@@ -33,7 +33,13 @@ public class IdleState : SmartState
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
 		if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
-			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+			if (smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Attack && smartObject.CurrentFrame < 6) 
+			{ 
+				if ((smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState).FollowUpState)
+					smartObject.ActionStateMachine.ChangeActionState((smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState).FollowUpState); 
+			}
+			else
+				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
 		if (smartObject.Controller.Button2Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
@@ -50,7 +56,9 @@ public class IdleState : SmartState
 		if (smartObject.InputVector != Vector3.zero)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Move);
 
-		
+		smartObject.Animator.SetBool("Rotating", (Mathf.Abs(CameraManager.Instance.FreeLookCam.m_XAxis.m_InputAxisValue) > 0.1f));
+
+
 	}
 
 	public override void UpdateVelocity(SmartObject smartObject, ref Vector3 currentVelocity, float deltaTime)

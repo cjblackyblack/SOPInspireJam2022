@@ -5,11 +5,11 @@ using UnityEngine;
 public class EffectMachine : MonoBehaviour
 {
 	public SmartObject smartObject => GetComponent<SmartObject>();
-	public List<EffectContainer> statusEffects;
+	public List<StatusEffectContainer> statusEffects;
 
 	public SmartState OverrideState()
 	{
-		foreach (EffectContainer effectContainer in statusEffects)
+		foreach (StatusEffectContainer effectContainer in statusEffects)
 			if (effectContainer.effect.overrideState != null)
 				return effectContainer.effect.overrideState;
 		return null;
@@ -17,7 +17,7 @@ public class EffectMachine : MonoBehaviour
 
 	public void OnFixedUpdate()
 	{
-		foreach (EffectContainer effectContainer in statusEffects)
+		foreach (StatusEffectContainer effectContainer in statusEffects)
 			effectContainer?.OnFixedUpdate(smartObject);
 	}
 
@@ -27,26 +27,26 @@ public class EffectMachine : MonoBehaviour
 			foreach (StatusEffect statusEffect in damageInstance.statusEffects)
 				GetComponent<EffectMachine>().AddEffect(statusEffect, damageInstance.origin);
 
-		foreach (EffectContainer effectContainer in statusEffects)
+		foreach (StatusEffectContainer effectContainer in statusEffects)
 			effectContainer?.OnTakeDamage(smartObject);
 	}
 
 	public void AddEffect(StatusEffect effect, TangibleObject origin)
 	{
-		EffectContainer effectContainer = new EffectContainer();
+		StatusEffectContainer effectContainer = new StatusEffectContainer();
 		effectContainer.origin = origin;
 		effectContainer.effect = effect;
 		statusEffects.Add(effectContainer);
 		effectContainer.OnAdd(smartObject);
 	}
 
-	public void RemoveEffect(EffectContainer effectContainer)
+	public void RemoveEffect(StatusEffectContainer effectContainer)
 	{
 		if (statusEffects.Contains(effectContainer))
 			StartCoroutine(RemoveEffectWait(effectContainer));
 	}
 
-	IEnumerator RemoveEffectWait(EffectContainer effectContainer)
+	IEnumerator RemoveEffectWait(StatusEffectContainer effectContainer)
 	{
 		yield return new WaitForEndOfFrame();
 		statusEffects.Remove(effectContainer);

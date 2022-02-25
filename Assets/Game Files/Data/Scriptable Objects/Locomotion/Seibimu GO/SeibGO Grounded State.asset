@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23551a0bef202dc4bb2fcb8d98a108f9, type: 3}
+  m_Name: SeibGO Grounded State
+  m_EditorClassIdentifier: 
+  SmartStates:
+  - {fileID: 11400000, guid: 850afb098c071804db5fe069026abbe8, type: 2}
+  - {fileID: 11400000, guid: a0ac9cd09e5e9a448b60a2c800829dbd, type: 2}
+  - {fileID: 11400000, guid: d3b9429c61008b546ac7c95f377dd3af, type: 2}
+  - {fileID: 11400000, guid: 786113211a93c1c4a9d40795d606fbf1, type: 2}
+  - {fileID: 11400000, guid: 082c3f4fca991e043bc85bb2826317d8, type: 2}
+  - {fileID: 11400000, guid: e02d86fd276954f42ad7ad9392c8638f, type: 2}
+  - {fileID: 11400000, guid: ccc16f9ce0264c94d92574ee2b1ff8b6, type: 2}
+  - {fileID: 11400000, guid: f02915c5cd0dece4591c31419bd8d7ce, type: 2}
+  bonusOrientationMethod: 1
+  OrientationSharpness: 250
+  BonusOrientationSharpness: 15
+  MaxStableMoveSpeed: 6
+  StableMovementSharpness: 25
+  FinishRotationTime: 6
+  friction: 0.885
