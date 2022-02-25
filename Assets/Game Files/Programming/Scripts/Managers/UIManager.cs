@@ -97,6 +97,20 @@ public class UIManager : Singleton<UIManager>
 		GameManager.Instance.StartGame();
 	}
 
+	public void OnMainStart()
+	{
+		ChangeGameState(GameState.CharacterSelect);
+	}
+
+	public void OnCharacterSelectButton()
+	{
+		int index = (int)GameManager.Instance.SelectedCharacter;
+		index++;
+		if (index > 1)
+			index = 0;
+		GameManager.Instance.SelectedCharacter = (PlayerCharacter)index;
+	}
+
 	public void OnOptionsButton()
 	{
 
@@ -104,16 +118,11 @@ public class UIManager : Singleton<UIManager>
 
 	public void OnQuitButton()
 	{
-
-	}
-
-	public void OnCharacterSelectButton()
-	{
-
+		Application.Quit();
 	}
 
 	public void OnCharacterSelectBack()
 	{
-
+		ChangeGameState(GameState.Start);
 	}
 }

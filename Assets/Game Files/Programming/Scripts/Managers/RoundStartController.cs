@@ -29,26 +29,34 @@ public class RoundStartController : MonoBehaviour
 
 	public void StartRound()
 	{
-		PlaceEnemies();
+		PlaceEntities();
 		StartIntroduction();
 	}
 
-	public void PlaceEnemies()
+	public void PlaceEntities()
 	{
+
+		GameObject player = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancer : GameManager.Instance.PlayerSword, SpawnPoints[0].position, SpawnPoints[0].rotation);
+		PlayerManager.Instance.PlayerController = player.GetComponent<PlayerController>();
+		PlayerManager.Instance.PlayerObject = player.GetComponent<SmartObject>();
+		EntityManager.Instance.Entities.Add(PlayerManager.Instance.PlayerObject);
 		if (MirrorMatch)
 		{
-			Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AILancer : GameManager.Instance.AISword, SpawnPoints[1].position, SpawnPoints[1].rotation);
+			GameObject mirror = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AILancer : GameManager.Instance.AISword, SpawnPoints[1].position, SpawnPoints[1].rotation);
+			EntityManager.Instance.Entities.Add(mirror.GetComponent<SmartObject>());
 		}
 		else if (ReverseMatch)
 		{
-			Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AISword : GameManager.Instance.AILancer, SpawnPoints[1].position, SpawnPoints[1].rotation);
+			GameObject reverse = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AISword : GameManager.Instance.AILancer, SpawnPoints[1].position, SpawnPoints[1].rotation);
+			EntityManager.Instance.Entities.Add(reverse.GetComponent<SmartObject>());
 		}
 		else
 		{
 			if (Opponents?.Length > 0)
 				for (int i = 1; i < Opponents.Length; i++)
 				{
-					Instantiate(Opponents[i], SpawnPoints[i].position, SpawnPoints[i].rotation);
+					GameObject indexedOpponent = Instantiate(Opponents[i], SpawnPoints[i].position, SpawnPoints[i].rotation);
+					EntityManager.Instance.Entities.Add(indexedOpponent.GetComponent<SmartObject>());
 				}
 		}
 	}

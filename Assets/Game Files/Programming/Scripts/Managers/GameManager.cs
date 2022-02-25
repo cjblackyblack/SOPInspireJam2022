@@ -82,7 +82,8 @@ public class GameManager : Singleton<GameManager>
 			}
 			SceneManager.SetActiveScene(SceneManager.GetSceneAt(index));
 			CurrentRoundStartController = FindObjectOfType<RoundStartController>();
-			CurrentRoundStartController.StartRound();
+			//CurrentRoundStartController.StartRound();
+			UIManager.Instance.ChangeGameState(GameState.Gameplay);
 		}
 	}
 
@@ -98,6 +99,17 @@ public class GameManager : Singleton<GameManager>
 			{
 				yield return null;
 			}
+		}
+	}
+
+	public void GlobalHitStop(float length)
+	{
+		StartCoroutine(GlobalHitStopCoroutine(length));
+		IEnumerator GlobalHitStopCoroutine(float length)
+		{
+			Time.timeScale = 0;
+			yield return new WaitForSecondsRealtime(length);
+			Time.timeScale = 1;
 		}
 	}
 }
