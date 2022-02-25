@@ -7,6 +7,7 @@ using UnityEngine;
 public class HurtState : SmartState
 {
 	public TangibilityFrames[] TangibilityFrames;
+
 	public override void OnEnter(SmartObject smartObject)
 	{
 		base.OnEnter(smartObject);
@@ -15,8 +16,18 @@ public class HurtState : SmartState
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
 		CombatUtilities.CreateTangibilityFrames(smartObject, TangibilityFrames);
+		//if (!smartObject.Motor.GroundingStatus.IsStableOnGround)
+		//{
+		//	smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
+		//	smartObject.ActionStateMachine.ChangeActionState(ActionStates.Hurt);
+		//}
 	}
 
+	public override void UpdateVelocity(SmartObject smartObject, ref Vector3 currentVelocity, float deltaTime)
+	{
+		//base.UpdateVelocity(smartObject, ref currentVelocity, deltaTime);
+		currentVelocity = smartObject.KnockbackDir * smartObject.Friction;
+	}
 	public override void UpdateRotation(SmartObject smartObject, ref Quaternion currentRotation, float deltaTime)
 	{
 		Vector3 smoothedLookInputDirection = smartObject.Motor.CharacterForward;
@@ -28,7 +39,7 @@ public class HurtState : SmartState
 
 	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
-		if (smartObject.CurrentFrame > MaxTime)
+		if (smartObject.CurrentFrame > smartObject.HitStun)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 	}
 }

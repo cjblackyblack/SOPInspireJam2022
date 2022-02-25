@@ -43,11 +43,13 @@ public class RoundStartController : MonoBehaviour
 		if (MirrorMatch)
 		{
 			GameObject mirror = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AILancer : GameManager.Instance.AISword, SpawnPoints[1].position, SpawnPoints[1].rotation);
+			mirror.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObject.TargetPosiitions[0].GetComponent<TargetableObject>();
 			EntityManager.Instance.Entities.Add(mirror.GetComponent<SmartObject>());
 		}
 		else if (ReverseMatch)
 		{
 			GameObject reverse = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AISword : GameManager.Instance.AILancer, SpawnPoints[1].position, SpawnPoints[1].rotation);
+			reverse.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObject.TargetPosiitions[0].GetComponent<TargetableObject>();
 			EntityManager.Instance.Entities.Add(reverse.GetComponent<SmartObject>());
 		}
 		else
@@ -56,6 +58,7 @@ public class RoundStartController : MonoBehaviour
 				for (int i = 1; i < Opponents.Length; i++)
 				{
 					GameObject indexedOpponent = Instantiate(Opponents[i], SpawnPoints[i].position, SpawnPoints[i].rotation);
+					indexedOpponent.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObject.TargetPosiitions[0].GetComponent<TargetableObject>();
 					EntityManager.Instance.Entities.Add(indexedOpponent.GetComponent<SmartObject>());
 				}
 		}
