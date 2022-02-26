@@ -79,7 +79,7 @@ public class UIManager : Singleton<UIManager>
 				{
 					TogglePlayerUI(true);
 					ToggleAdditionalUI(true);
-					FindObjectOfType<RoundStartController>().StartRound(); //yes i see the spaghetti here no i will not be fixing it
+					FindObjectOfType<RoundController>().StartRound(); //yes i see the spaghetti here no i will not be fixing it
 					CameraManager.Instance.SetTarget(PlayerManager.Instance.PlayerObject.TargetPosiitions[0].transform);
 
 					break;
@@ -87,6 +87,11 @@ public class UIManager : Singleton<UIManager>
 			case GameState.Paused:
 				{
 					TogglePauseUI(true);
+					break;
+				}
+			case GameState.GameOver:
+				{
+					//TOGGLE 10S Countdown to restart level
 					break;
 				}
 		}
@@ -97,6 +102,20 @@ public class UIManager : Singleton<UIManager>
 		GameManager.Instance.StartGame();
 	}
 
+	public void OnMainStart()
+	{
+		ChangeGameState(GameState.CharacterSelect);
+	}
+
+	public void OnCharacterSelectButton()
+	{
+		int index = (int)GameManager.Instance.SelectedCharacter;
+		index++;
+		if (index > 1)
+			index = 0;
+		GameManager.Instance.SelectedCharacter = (PlayerCharacter)index;
+	}
+
 	public void OnOptionsButton()
 	{
 
@@ -104,16 +123,11 @@ public class UIManager : Singleton<UIManager>
 
 	public void OnQuitButton()
 	{
-
-	}
-
-	public void OnCharacterSelectButton()
-	{
-
+		Application.Quit();
 	}
 
 	public void OnCharacterSelectBack()
 	{
-
+		ChangeGameState(GameState.Start);
 	}
 }

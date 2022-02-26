@@ -1610,8 +1610,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4126918399818143105}
-  m_LocalRotation: {x: -0.08895252, y: 0.9082021, z: -0.24902691, w: -0.3244102}
-  m_LocalPosition: {x: 2.7937956, y: 3.6148293, z: 3.4117112}
+  m_LocalRotation: {x: 0.17650689, y: 0.12826847, z: -0.023205789, w: 0.9756301}
+  m_LocalPosition: {x: -1.8733337, y: 3.7111402, z: -7.0012894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8364890138121107144}
@@ -2564,7 +2564,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364890136568417174}
-  m_LocalRotation: {x: 0.00009011105, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.031700168, y: -0, z: -0.0000000037252907, w: 0.9994975}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2738,7 +2738,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364890136671177510}
-  m_LocalRotation: {x: 0.00009011105, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.031700168, y: -0, z: -0.0000000037252907, w: 0.9994975}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2813,7 +2813,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364890136726115264}
-  m_LocalRotation: {x: 0.020528546, y: 0.9574244, z: 0.07039162, w: -0.27921695}
+  m_LocalRotation: {x: 0.020528544, y: 0.9574244, z: 0.07039162, w: -0.27921692}
   m_LocalPosition: {x: 1.2910494, y: 0.08100522, z: 2.0252235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3229,8 +3229,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364890137056504281}
-  m_LocalRotation: {x: -0.08892328, y: 0.9082246, z: -0.24894506, w: -0.32441822}
-  m_LocalPosition: {x: 2.7937956, y: 3.6148295, z: 3.411711}
+  m_LocalRotation: {x: 0.23893097, y: 0.12650906, z: -0.031412836, w: 0.9622477}
+  m_LocalPosition: {x: -1.1776212, y: 3.052943, z: -4.4011736}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8364890136671177508}
@@ -3275,7 +3275,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.7526214
+    Value: 0.6503498
     m_SpeedMode: 0
     m_MaxSpeed: 1.5
     m_AccelTime: 0.2
@@ -3771,7 +3771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.6148295, z: -4.409656}
+  m_FollowOffset: {x: 0, y: 3.052943, z: -4.5559983}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3983,7 +3983,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364890137462826936}
-  m_LocalRotation: {x: 0.00009011105, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.031700168, y: -0, z: -0.0000000037252907, w: 0.9994975}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4267,7 +4267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.6148295, z: -4.409656}
+  m_FollowOffset: {x: 0, y: 3.052943, z: -4.5559983}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -5218,7 +5218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.6148295, z: -4.409656}
+  m_FollowOffset: {x: 0, y: 3.052943, z: -4.5559983}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -5479,10 +5479,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedCharacter: 0
-  PlayerLancer: {fileID: 0}
-  PlayerSword: {fileID: 0}
-  AILancer: {fileID: 0}
-  AISword: {fileID: 0}
+  PlayerLancer: {fileID: 7755709749970833468, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
+  PlayerSword: {fileID: 1998179302587226156, guid: 26578ade0da09284881c1165a7f4855e, type: 3}
+  AILancer: {fileID: 5449250425595732530, guid: a1dadc400f0211043a01d933e1ca34b9, type: 3}
+  AISword: {fileID: 1854781372933380549, guid: 40d6b6776eaadee498562c9c1af190fb, type: 3}
   AIBoss: {fileID: 0}
   BattleScene: 1
   CurrentRoundStartController: {fileID: 0}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23551a0bef202dc4bb2fcb8d98a108f9, type: 3}
+  m_Name: Butters Grounded State
+  m_EditorClassIdentifier: 
+  SmartStates:
+  - {fileID: 11400000, guid: 7290262807ca24a448e0e9db1729f087, type: 2}
+  - {fileID: 11400000, guid: 39514ae16078fd14e8fea95ae895ad1a, type: 2}
+  - {fileID: 11400000, guid: c202b3de51a35cb48a6be8f760ad4f5a, type: 2}
+  - {fileID: 11400000, guid: cad03117369599e40aa6ed345e418b8e, type: 2}
+  - {fileID: 11400000, guid: 0ba2600ad4c31ce40af7b92394f1ade9, type: 2}
+  - {fileID: 11400000, guid: 47a9fea2422536f4ea7580a81140711a, type: 2}
+  - {fileID: 11400000, guid: 1c5053fd65a0bf147ae22676858445b9, type: 2}
+  - {fileID: 11400000, guid: 7e6f7ac15b894234f948db84dd554aba, type: 2}
+  bonusOrientationMethod: 1
+  OrientationSharpness: 250
+  BonusOrientationSharpness: 15
+  MaxStableMoveSpeed: 5.5
+  StableMovementSharpness: 25
+  FinishRotationTime: 6
+  friction: 0.85

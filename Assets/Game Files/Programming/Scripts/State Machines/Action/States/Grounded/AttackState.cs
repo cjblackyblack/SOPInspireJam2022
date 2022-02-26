@@ -6,11 +6,18 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CharacterState/ActionState/Grounded/Attack")]
 public class AttackState : SmartState
 {
+	public int IASA;
+	public SmartState FollowUpState;
+
+	public VFXContainer[] VFX;
+	public BodyVFXContainer[] BodyVFX;
+	public SFXContainer[] SFX;
+
 	public MotionCurve MotionCurve;
 	public HitboxData[] hitboxes;
 	public TangibilityFrames[] TangibilityFrames;
 	public GameObject[] HitParticles = new GameObject[4];// match index to PhysicalTangibility Enum for reaction none for intangible ever
-	public SmartState FollowUpState;
+
 	public override void OnEnter(SmartObject smartObject)
 	{
 		base.OnEnter(smartObject);
@@ -98,12 +105,15 @@ public class AttackState : SmartState
 	{
 		base.AfterCharacterUpdate(smartObject, deltaTime);
         CreateHitboxes(smartObject);
+		CreateVFX(smartObject);
+		CreateBodyVFX(smartObject);
+		CreateSFX(smartObject);
 
         if (smartObject.CurrentFrame > MaxTime)
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
 		if(FollowUpState)
-			if (smartObject.CurrentFrame > Mathf.FloorToInt(MaxTime * 0.75f) && smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
+			if (smartObject.CurrentFrame > IASA && smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
 				smartObject.ActionStateMachine.ChangeActionState(FollowUpState);
     }
 
@@ -188,6 +198,37 @@ public class AttackState : SmartState
 		}
 		//Instantiate(HitParticles[(int)hitBox.CurrentBoxTangibility], hitBox.transform.position, Quaternion.identity);
 	}
+
+	void CreateVFX(SmartObject smartObject)
+	{
+		if (VFX == null || VFX.Length == 0)
+			return;
+
+		for (int i = 0; i < VFX.Length; i++)
+			if (VFX[i].Time == smartObject.CurrentFrame)
+				Instantiate(VFX[i].VFX, VFX[i].Position, Quaternion.Euler(VFX[i].Rotation));
+	}
+
+	void CreateBodyVFX(SmartObject smartObject)
+	{
+		if (BodyVFX == null || BodyVFX.Length == 0)
+			return;
+
+		for (int i = 0; i < BodyVFX.Length; i++)
+			if (BodyVFX[i].Time == smartObject.CurrentFrame)
+				smartObject.ToggleBodyVFX(BodyVFX[i].BodyVFX, BodyVFX[i].Toggle);
+	}
+
+	void CreateSFX(SmartObject smartObject)
+	{
+		if (SFX == null || SFX.Length == 0)
+			return;
+
+		for (int i = 0; i < SFX.Length; i++)
+			if (SFX[i].Time == smartObject.CurrentFrame)
+				SFX[i].SFX.PlaySFX(smartObject);
+	}
+
 
 	void CreateHitFX(int index, CombatBox hitbox)
 	{

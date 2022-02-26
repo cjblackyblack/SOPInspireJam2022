@@ -53,8 +53,32 @@ public class FallState : SmartState
             smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
         }
 
-       // if(smartObject.CurrentFrame > LedgeGrabTime)
-       //     smartObject.ClimbingInfo.CanGrab = true;
+        if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
+            if (smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Attack && smartObject.CurrentFrame < 6)
+            {
+                if ((smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState).FollowUpState)
+                    smartObject.ActionStateMachine.ChangeActionState((smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState).FollowUpState);
+            }
+            else
+                smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+
+        if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
+            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+
+        if ((smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold) && !smartObject.Motor.GroundingStatus.IsStableOnGround && smartObject.Cooldown <= 0)
+        {
+            smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.AerialShoot);
+            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
+        }
+
+        if (smartObject.Motor.GroundingStatus.IsStableOnGround)
+            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
+
+        if (smartObject.Controller.Button4Buffer > 0 && smartObject.CurrentAirTime > CoyoteTime && smartObject.AirJumps > 0)
+            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
+
+        // if(smartObject.CurrentFrame > LedgeGrabTime)
+        //     smartObject.ClimbingInfo.CanGrab = true;
 
 
 
@@ -73,20 +97,8 @@ public class FallState : SmartState
 
 	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
     {
-        if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
-            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
-        if ((smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold) && !smartObject.Motor.GroundingStatus.IsStableOnGround && smartObject.Cooldown <= 0)
-        {
-            smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.AerialShoot);
-            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
-        }
 
-        if (smartObject.Motor.GroundingStatus.IsStableOnGround)
-            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
-
-        if (smartObject.Controller.Button4Buffer > 0 && smartObject.CurrentAirTime > CoyoteTime && smartObject.AirJumps > 0)
-            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
 
         //if (smartObject.Controller.Button2Buffer > 0)
         //    smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);

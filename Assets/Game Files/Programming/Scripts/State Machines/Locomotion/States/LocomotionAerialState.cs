@@ -112,7 +112,7 @@ public class LocomotionAerialState : LocomotionState
                     smartObject.ActionStateMachine.ChangeActionState((smartObject.ActionStateMachine.CurrentActionState as AerialAttackState).LandState);
 
                 }
-                else
+                else if(smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Hurt)
                 smartObject.ActionStateMachine.ChangeActionState(smartObject.LocomotionStateMachine.LandState);
 
             if (smartObject.CurrentAirTime > 6 && (smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Jump ))
