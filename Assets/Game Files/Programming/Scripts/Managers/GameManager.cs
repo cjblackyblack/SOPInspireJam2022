@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
 	public GameObject AIBoss;
 
 	public int BattleScene = 1;
-	public RoundStartController CurrentRoundStartController;
+	public RoundController CurrentRoundStartController;
 
 	public override void Start()
 	{
@@ -64,8 +64,18 @@ public class GameManager : Singleton<GameManager>
 		SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
 		BattleScene++;
 		LoadBattleSceneAsync(BattleScene);
-		UIManager.Instance.ChangeGameState(GameState.Gameplay);
+		//UIManager.Instance.ChangeGameState(GameState.Gameplay);
 
+	}
+
+	public void GameWin()
+	{
+		UIManager.Instance.ChangeGameState(GameState.GameOver);
+	}
+
+	public void GameOver()
+	{
+		UIManager.Instance.ChangeGameState(GameState.GameOver);
 	}
 
 	void LoadBattleSceneAsync(int index)
@@ -80,8 +90,8 @@ public class GameManager : Singleton<GameManager>
 			{
 				yield return null;
 			}
-			SceneManager.SetActiveScene(SceneManager.GetSceneAt(index));
-			CurrentRoundStartController = FindObjectOfType<RoundStartController>();
+			SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
+			CurrentRoundStartController = FindObjectOfType<RoundController>();
 			//CurrentRoundStartController.StartRound();
 			UIManager.Instance.ChangeGameState(GameState.Gameplay);
 		}

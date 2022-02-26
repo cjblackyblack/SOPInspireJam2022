@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e563d139761a84e811d89c251f5866, type: 3}
   m_Name: Auto Rifle
   m_EditorClassIdentifier: 
-  MaxTime: 10
+  MaxTime: 8
   Bullets:
   - Frame: 1
     Bullet: {fileID: 821879739248318661, guid: ad8780859a4a43f4c9ebb23b61947327, type: 3}

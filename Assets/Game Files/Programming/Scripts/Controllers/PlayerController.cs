@@ -39,21 +39,21 @@ public class PlayerController : BaseController
 
 	public override void BeforeObjectUpdate()
 	{
-		if (ButtonLockBuffer > 0 && (!ButtonLockHold || ButtonLockReleaseBuffer > 0))
-		{
-			ButtonLockBuffer = 0;
-			TargetingManager.Instance.ToggleLockOn();
-		}
-		else if (ButtonLockBuffer <= 1 && ButtonLockHold && ButtonLockReleaseBuffer == 0)
-		{
-			ButtonLockBuffer = 0;
-			TargetingManager.Instance.SwitchTarget(SmartObject.PossibleTargets);
-		}
-		if (ButtonRecenterBuffer > 0)
-		{
-			ButtonRecenterBuffer = 0;
-			CameraManager.Instance.ResetCamera();
-		}
+		//if (ButtonLockBuffer > 0 && (!ButtonLockHold || ButtonLockReleaseBuffer > 0))
+		//{
+		//	ButtonLockBuffer = 0;
+		//	TargetingManager.Instance.ToggleLockOn();
+		//}
+		//else if (ButtonLockBuffer <= 1 && ButtonLockHold && ButtonLockReleaseBuffer == 0)
+		//{
+		//	ButtonLockBuffer = 0;
+		//	TargetingManager.Instance.SwitchTarget(SmartObject.PossibleTargets);
+		//}
+		//if (ButtonRecenterBuffer > 0)
+		//{
+		//	ButtonRecenterBuffer = 0;
+		//	CameraManager.Instance.ResetCamera();
+		//}
 	}
 	public override void PollForTargets()
 	{

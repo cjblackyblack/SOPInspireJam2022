@@ -629,8 +629,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 1998179303185139816}
   Stats:
-    HP: 0
-    MaxHP: 0
+    HP: 85
+    MaxHP: 85
     MP: 0
     MaxMP: 0
     Strength: 0
@@ -779,6 +779,8 @@ MonoBehaviour:
   MaxAirJumps: 1
   AirJumps: 1
   Cooldown: 0
+  HitStun: 0
+  KnockbackDir: {x: 0, y: 0, z: 0}
 --- !u!114 &1998179302587226150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -888,7 +890,7 @@ MonoBehaviour:
   PreviousLocomotionEnum: 0
   NextLocomotionState: 0
   CurrentVehicleState: {fileID: 0}
-  LandState: {fileID: 11400000, guid: 2b9f364cc0f84d54c9959d4694d516fc, type: 2}
+  LandState: {fileID: 11400000, guid: d715ac695a533d34ca57febe419eb0d1, type: 2}
 --- !u!114 &1998179302587226144
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using UnityEngine;
 public class HurtState : SmartState
 {
 	public TangibilityFrames[] TangibilityFrames;
+	public AnimationCurve HurtFriction;
 
 	public override void OnEnter(SmartObject smartObject)
 	{
@@ -26,7 +27,7 @@ public class HurtState : SmartState
 	public override void UpdateVelocity(SmartObject smartObject, ref Vector3 currentVelocity, float deltaTime)
 	{
 		//base.UpdateVelocity(smartObject, ref currentVelocity, deltaTime);
-		currentVelocity = smartObject.KnockbackDir * smartObject.Friction;
+		currentVelocity = smartObject.KnockbackDir * HurtFriction.Evaluate(smartObject.CurrentFrame);
 	}
 	public override void UpdateRotation(SmartObject smartObject, ref Quaternion currentRotation, float deltaTime)
 	{
