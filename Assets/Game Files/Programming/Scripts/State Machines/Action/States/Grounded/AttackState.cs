@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CharacterState/ActionState/Grounded/Attack")]
 public class AttackState : SmartState
 {
+	public int JASA;
 	public int IASA;
 	public SmartState FollowUpState;
 
@@ -115,7 +116,11 @@ public class AttackState : SmartState
 		if(FollowUpState)
 			if (smartObject.CurrentFrame > IASA && smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
 				smartObject.ActionStateMachine.ChangeActionState(FollowUpState);
-    }
+
+		if (smartObject.CurrentFrame > JASA && smartObject.Controller.Button4Buffer > 0)
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Jump);
+
+	}
 
     protected void CreateHitboxes(SmartObject smartObject) 
     {
@@ -162,18 +167,18 @@ public class AttackState : SmartState
 		{
 			case PhysicalObjectTangibility.Normal:
 				{
-					CreateHitFX(0, hurtBox);
+					CreateHitFX(0, hitbox);
 				}
 				break;
 			case PhysicalObjectTangibility.Armor:
 				{
 					if (FlagsExtensions.HasFlag(hitbox.DamageInstance.breakthroughType, BreakthroughType.ArmorPierce))
 					{
-						CreateHitFX(0, hurtBox);
+						CreateHitFX(0, hitbox);
 					}
 					else
 					{
-
+						CreateHitFX(1, hitbox);
 					}
 				}
 				break;
@@ -181,7 +186,7 @@ public class AttackState : SmartState
 				{
 					if(FlagsExtensions.HasFlag(hitbox.DamageInstance.breakthroughType, BreakthroughType.GuardPierce) || hitbox.DamageInstance.unstoppable)
 					{
-						CreateHitFX(0, hurtBox);
+						CreateHitFX(0, hitbox);
 					}
 					else
 					{

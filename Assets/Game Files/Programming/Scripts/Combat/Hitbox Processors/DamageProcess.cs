@@ -14,8 +14,10 @@ public class DamageProcess : HitboxProcess
 
 		Hitbox hitBox = hurtBox as Hitbox;
 
-		if (hitBox != null)
+		if (hitBox != null && hitBox.Active)
+		{
 			return ProcessHitbox(sourceBox, hitBox);
+		}
 		else
 			return ProcessHurtbox(sourceBox, hurtBox);
 	}

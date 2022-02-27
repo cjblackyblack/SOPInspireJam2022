@@ -243,7 +243,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 362a6030a4cf94047aea778b2ee3f1ea, type: 2}
+  - {fileID: 2100000, guid: b2741a1cd6e468f44b7d6494dee261a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -646,7 +646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6944850328722335000, guid: fd9e4e5c304a7fb4fafec5be5620139c, type: 3}
       propertyPath: priority
-      value: -3.03
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 6944850328722335000, guid: fd9e4e5c304a7fb4fafec5be5620139c, type: 3}
       propertyPath: sharedProfile
@@ -771,3 +771,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd9e4e5c304a7fb4fafec5be5620139c, type: 3}
+--- !u!1001 &5743041893240239132
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5743041894035771952, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_Name
+      value: FX_SwordStab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.1261704
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743041894035771955, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}

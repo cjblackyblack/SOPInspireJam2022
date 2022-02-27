@@ -15,8 +15,9 @@ MonoBehaviour:
   AnimationState: Thrust
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
-  MaxTime: 60
-  IASA: 30
+  MaxTime: 50
+  JASA: 25
+  IASA: 38
   FollowUpState: {fileID: 11400000, guid: 3c32493d6419f8949ba45daa65262f78, type: 2}
   VFX: []
   BodyVFX: []
@@ -45,7 +46,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 20
-        value: 0
+        value: 1.7857143
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -53,8 +54,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 26.290426
-        value: 1
+        time: 26.691977
+        value: 0.97448945
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -266,8 +267,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10
-        value: 0
+        time: 16.279968
+        value: 0.9183655
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -275,8 +276,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 18.37782
-        value: 0
+        time: 25.80244
+        value: 0.28060913
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -318,9 +319,9 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 3
-        inSlope: 0
-        outSlope: 0
+        value: 0
+        inSlope: 3
+        outSlope: 3
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
@@ -328,8 +329,8 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 1
         value: 3
-        inSlope: 0
-        outSlope: 0
+        inSlope: 3
+        outSlope: 3
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -340,7 +341,7 @@ MonoBehaviour:
     TurnAroundTime: 10
     TrackingResistance: 0
   hitboxes:
-  - MaxTime: 60
+  - MaxTime: 50
     ActionTarget: 2
     RefreshID: 1
     ShareID: 1
@@ -348,23 +349,23 @@ MonoBehaviour:
     ShareIncomingHitboxes: 1
     Hitbox: 0
     HitboxGroup: 1
-    ActiveFrames: {x: 9, y: 40}
+    ActiveFrames: {x: 19, y: 30}
     StatusEffects: []
-    Damage: 1
+    Damage: 3
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
     Unstoppable: 0
-    Hitstun: 30
-    HitStopTime: 0
+    Hitstun: 25
+    HitStopTime: 0.04
     HitstopType: 0
     BreakthroughType: 0
     KnockbackType: 0
-    KnockbackStrength: 5
-    KnockbackDirection: {x: 0, y: 1, z: 0}
+    KnockbackStrength: 7
+    KnockbackDirection: {x: 0, y: 0, z: 1}
     HitboxProcesses:
     - {fileID: 11400000, guid: c5f583890bd62744aaaa6cccd8409ef4, type: 2}
-  - MaxTime: 60
+  - MaxTime: 50
     ActionTarget: 2
     RefreshID: 1
     ShareID: 1
@@ -372,22 +373,25 @@ MonoBehaviour:
     ShareIncomingHitboxes: 0
     Hitbox: 2
     HitboxGroup: 1
-    ActiveFrames: {x: 30, y: 40}
+    ActiveFrames: {x: 19, y: 30}
     StatusEffects: []
-    Damage: 0
+    Damage: 6
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
     Unstoppable: 0
-    Hitstun: 30
-    HitStopTime: 0
+    Hitstun: 25
+    HitStopTime: 0.04
     HitstopType: 0
     BreakthroughType: 0
     KnockbackType: 0
-    KnockbackStrength: 0
-    KnockbackDirection: {x: 0, y: 1, z: 0}
+    KnockbackStrength: 7
+    KnockbackDirection: {x: 0, y: 0, z: 1}
     HitboxProcesses:
     - {fileID: 11400000, guid: c5f583890bd62744aaaa6cccd8409ef4, type: 2}
   TangibilityFrames: []
   HitParticles:
+  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
+  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
+  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
   - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}

@@ -640,8 +640,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 1854781371334527361}
   Stats:
-    HP: 85
-    MaxHP: 85
+    HP: 170
+    MaxHP: 170
     MP: 0
     MaxMP: 0
     Strength: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
     EXPMod: 1
     PrizeMod: 1
   SmartObjectProperties:
-    Alliance: 1
+    Alliance: 2
     CurrentTangibility: 0
     IFrames: 0
     ArmorFrames: 0

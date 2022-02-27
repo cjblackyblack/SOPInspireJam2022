@@ -6,6 +6,7 @@ using UnityEngine;
 public class IdleState : SmartState
 {
     public int frictionStrength;
+	public bool ignorePreviousAttack; //spaghet fix for final boss
 	public override void OnEnter(SmartObject smartObject)
 	{
 		if (smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.GroundedShoot && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Idle)
@@ -32,7 +33,7 @@ public class IdleState : SmartState
 	}
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
-		if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
+		if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0 && !ignorePreviousAttack)
 			if (smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Attack && smartObject.CurrentFrame < 6) 
 			{ 
 				if ((smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState).FollowUpState)
@@ -56,7 +57,8 @@ public class IdleState : SmartState
 		if (smartObject.InputVector != Vector3.zero)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Move);
 
-		smartObject.Animator.SetBool("Rotating", (Mathf.Abs(CameraManager.Instance.FreeLookCam.m_XAxis.m_InputAxisValue) > 0.1f));
+		if(smartObject.GetComponent<PlayerController>())
+			smartObject.Animator.SetBool("Rotating", (Mathf.Abs(CameraManager.Instance.FreeLookCam.m_XAxis.m_InputAxisValue) > 0.1f));
 
 
 	}

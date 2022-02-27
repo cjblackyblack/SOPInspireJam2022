@@ -94,6 +94,11 @@ public class UIManager : Singleton<UIManager>
 					//TOGGLE 10S Countdown to restart level
 					break;
 				}
+			case GameState.Credits:
+				{
+					GameManager.Instance.LoadCreditsScene();
+					break;
+				}
 		}
 	}
 

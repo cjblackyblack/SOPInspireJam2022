@@ -17,6 +17,7 @@ public class RoundController : MonoBehaviour
 	public bool MirrorMatch;
 	public bool ReverseMatch;
 	public List<SmartObject> ActiveOpponents;
+	public bool FinalRound;
 	bool started;
 
 	private void Start()
@@ -64,7 +65,7 @@ public class RoundController : MonoBehaviour
 		Director.Play();
 		if (win)
 		{
-			GameManager.Instance.GameWin();
+			//GameManager.Instance.GameWin();
 			Debug.Log("gamewin");
 		}
 		else
@@ -75,9 +76,12 @@ public class RoundController : MonoBehaviour
 		started = false;
 	}
 
-	public void NextRound()
+	public void NextRound() //called by timeline started in Finish Round
 	{
-		GameManager.Instance.NextLevel();
+		if (!FinalRound)
+			GameManager.Instance.NextLevel();
+		else
+			GameManager.Instance.GameWin();
 	}
 
 	public void PlaceEntities()
@@ -109,9 +113,9 @@ public class RoundController : MonoBehaviour
 		else
 		{
 			if (Opponents?.Length > 0)
-				for (int i = 1; i < Opponents.Length; i++)
+				for (int i = 0; i < Opponents.Length; i++)
 				{
-					GameObject indexedOpponent = Instantiate(Opponents[i], SpawnPoints[i].position, SpawnPoints[i].rotation);
+					GameObject indexedOpponent = Instantiate(Opponents[i], SpawnPoints[i+1].position, SpawnPoints[i+1].rotation);
 					indexedOpponent.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObject.TargetPosiitions[0].GetComponent<TargetableObject>();
 					EntityManager.Instance.Entities.Add(indexedOpponent.GetComponent<SmartObject>());
 					ActiveOpponents.Add(indexedOpponent.GetComponent<SmartObject>());
@@ -126,10 +130,10 @@ public class RoundController : MonoBehaviour
 		Director.extrapolationMode = DirectorWrapMode.None;
 		Director.SetGenericBinding(StartTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
 		Director.SetGenericBinding(StartTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
-		Director.SetGenericBinding(StartTimeline.GetRootTrack(3), EntityManager.Instance.Entities[1]);
+		Director.SetGenericBinding(StartTimeline.GetRootTrack(3), EntityManager.Instance.Entities[1].Animator);
 		if(Opponents.Length > 1)
 			for(int i = 0; i < Opponents.Length; i++)
-			Director.SetGenericBinding(StartTimeline.GetRootTrack(3), EntityManager.Instance.Entities[i+1]);
+			Director.SetGenericBinding(StartTimeline.GetRootTrack(i+3), EntityManager.Instance.Entities[i+1].Animator);
 		Director.Play();
 	}
 

@@ -16,6 +16,7 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 40
+  JASA: 10
   IASA: 30
   FollowUpState: {fileID: 11400000, guid: a4dab5750c5e9f740b425c6234727e54, type: 2}
   VFX: []
@@ -318,7 +319,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 3
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -327,7 +328,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 3
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -350,18 +351,18 @@ MonoBehaviour:
     HitboxGroup: 1
     ActiveFrames: {x: 5, y: 25}
     StatusEffects: []
-    Damage: 1
+    Damage: 2
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
     Unstoppable: 0
-    Hitstun: 60
-    HitStopTime: 0
+    Hitstun: 15
+    HitStopTime: 0.04
     HitstopType: 0
     BreakthroughType: 0
     KnockbackType: 0
-    KnockbackStrength: 5
-    KnockbackDirection: {x: 0, y: 1, z: 0}
+    KnockbackStrength: 1.5
+    KnockbackDirection: {x: 0, y: 1, z: 1}
     HitboxProcesses:
     - {fileID: 11400000, guid: c5f583890bd62744aaaa6cccd8409ef4, type: 2}
   - MaxTime: 40
@@ -374,20 +375,23 @@ MonoBehaviour:
     HitboxGroup: 1
     ActiveFrames: {x: 5, y: 25}
     StatusEffects: []
-    Damage: 1
+    Damage: 4
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
     Unstoppable: 0
-    Hitstun: 60
-    HitStopTime: 0
+    Hitstun: 15
+    HitStopTime: 0.04
     HitstopType: 0
-    BreakthroughType: 2
+    BreakthroughType: 0
     KnockbackType: 0
-    KnockbackStrength: 10
-    KnockbackDirection: {x: 0, y: 1, z: 0}
+    KnockbackStrength: 1.5
+    KnockbackDirection: {x: 0, y: 1, z: 1}
     HitboxProcesses:
     - {fileID: 11400000, guid: c5f583890bd62744aaaa6cccd8409ef4, type: 2}
   TangibilityFrames: []
   HitParticles:
+  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
+  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
+  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
   - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
