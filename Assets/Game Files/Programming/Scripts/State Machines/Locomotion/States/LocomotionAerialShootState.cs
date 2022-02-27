@@ -27,7 +27,7 @@ public class LocomotionAerialShootState : LocomotionState
         smartObject.ToggleGuns(false, 0);
         smartObject.Motor.SetCapsuleDimensions(smartObject.CharacterRadius, smartObject.CharacterHeight, smartObject.CharacterCenter.y);
         smartObject.Motor.StepHandling = KinematicCharacterController.StepHandlingMethod.Extra;
-        smartObject.Cooldown = 70;
+        //smartObject.Cooldown = 70;
     }
 
     public override void UpdateRotation(SmartObject smartObject, ref Quaternion currentRotation, float deltaTime)

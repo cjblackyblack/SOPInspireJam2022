@@ -58,6 +58,7 @@ public class RoundController : MonoBehaviour
 
 	public void FinishRound(bool win)
 	{
+
 		Director.playableAsset = FinishTimeline;
 		Director.extrapolationMode = DirectorWrapMode.Hold;
 		Director.SetGenericBinding(FinishTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
@@ -140,13 +141,37 @@ public class RoundController : MonoBehaviour
 	public void ToggleControls(bool enabled)
 	{
 		foreach (SmartObject smartObject in EntityManager.Instance.Entities)
+		{
+			smartObject.InputVector = Vector3.zero;
+			smartObject.MovementVector = Vector3.zero;
+			smartObject.StoredMovementVector = Vector3.zero;
+			smartObject.Motor.BaseVelocity *= 0;
+			smartObject.Controller.Button1Buffer = 0;
+			smartObject.Controller.Button1Hold = false;
+			smartObject.Controller.Button1ReleaseBuffer = 0;
+
+			smartObject.Controller.Button2Buffer = 0;
+			smartObject.Controller.Button2Hold = false;
+			smartObject.Controller.Button2ReleaseBuffer = 0;
+
+			smartObject.Controller.Button3Buffer = 0;
+			smartObject.Controller.Button3Hold = false;
+			smartObject.Controller.Button3ReleaseBuffer = 0;
+
+			smartObject.Controller.Button4Buffer = 0;
+			smartObject.Controller.Button4Hold = false;
+			smartObject.Controller.Button4ReleaseBuffer = 0;
+
 			smartObject.Controller.enabled = enabled;
+		}
+
 
 		PlayerManager.Instance.PlayerObject.GetComponent<PlayerInput>().enabled = enabled;
 
+
 		CameraManager.Instance.FreeLookCam.Priority = enabled ? 10 : 0;
-		if (enabled)
-			CameraManager.Instance.ResetCamera();
+		//if (enabled)
+		//	CameraManager.Instance.ResetCamera();
 		started = enabled;
 	}
 }

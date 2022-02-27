@@ -23,7 +23,7 @@ public class LocomotionGroundedShootState : LocomotionState
     public override void OnExit(SmartObject smartObject)
     {
         smartObject.ToggleGuns(false, 0);
-        smartObject.Cooldown = 70;
+        //smartObject.Cooldown = 70;
     }
 
     public override void UpdateRotation(SmartObject smartObject, ref Quaternion currentRotation, float deltaTime)

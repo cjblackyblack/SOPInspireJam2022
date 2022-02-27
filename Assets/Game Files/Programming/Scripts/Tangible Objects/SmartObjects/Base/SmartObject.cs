@@ -68,6 +68,7 @@ public class SmartObject : PhysicalObject, ICharacterController
 
 	public int HitStun;
 	public Vector3 KnockbackDir;
+	public bool FinalBoss;
 	public override void Start()
 	{
 		base.Start();
@@ -203,7 +204,10 @@ public class SmartObject : PhysicalObject, ICharacterController
 		HitStun = damageInstance.hitStun;
 		Stats.HP -= Mathf.RoundToInt(damageInstance.damage);
 		GameManager.Instance.GlobalHitStop(damageInstance.hitStopTime);
-		ActionStateMachine.ChangeActionState(ActionStates.Hurt);
+		if(!FinalBoss)
+			ActionStateMachine.ChangeActionState(ActionStates.Hurt);
+		if (Stats.HP <= 0)
+			ActionStateMachine.ChangeActionState(LocomotionStateMachine.DeadState);
 	}
 
 	public override bool HitConfirmReaction(PhysicalObjectTangibility hitTangibility, DamageInstance damageInstance)

@@ -19,6 +19,7 @@ public class LocomotionStateMachine : SerializedMonoBehaviour
 	public LocomotionStates NextLocomotionState;
 	public VehicleState CurrentVehicleState;
 	public SmartState LandState;
+	public SmartState DeadState;
 
 	public void Start()
 	{

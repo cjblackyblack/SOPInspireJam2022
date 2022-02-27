@@ -42,6 +42,9 @@ public class IdleState : SmartState
 			else
 				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
+		if (smartObject.Controller.Button1Buffer > 0 && smartObject.FinalBoss)
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+
 		if (smartObject.Controller.Button2Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
 
