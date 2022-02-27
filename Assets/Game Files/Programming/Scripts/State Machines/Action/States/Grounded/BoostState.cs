@@ -11,6 +11,7 @@ public class BoostState : SmartState
 	public MotionCurve MotionCurve;
 	public float DirectionControl;
 	public int CoyoteTime;
+	public SmartState BoostAttack;
 
 	public override void OnEnter(SmartObject smartObject)
 	{
@@ -165,7 +166,10 @@ public class BoostState : SmartState
 				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Idle);
 
 			if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
-				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+				if(BoostAttack)
+					smartObject.ActionStateMachine.ChangeActionState(BoostAttack);
+			else
+					smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 		}
 
 		if ((smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold == true) && smartObject.Cooldown <= 0)

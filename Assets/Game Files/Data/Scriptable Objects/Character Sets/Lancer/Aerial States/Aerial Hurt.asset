@@ -17,3 +17,36 @@ MonoBehaviour:
   AnimationTransitionOffset: 0
   MaxTime: 30
   TangibilityFrames: []
+  HurtFriction:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.001452037
+      outSlope: -0.001452037
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.1780597
+    - serializedVersion: 3
+      time: 19.80618
+      value: 0.19971359
+      inSlope: -0.10585117
+      outSlope: -0.00062327186
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.08861551
+      outWeight: 0.2090344
+    - serializedVersion: 3
+      time: 60
+      value: 0
+      inSlope: -0.0053896257
+      outSlope: -0.0053896257
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.117758825
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

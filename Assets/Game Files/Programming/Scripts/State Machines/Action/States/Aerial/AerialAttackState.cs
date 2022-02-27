@@ -192,7 +192,7 @@ public class AerialAttackState : SmartState
 					}
 					else
 					{
-
+						CreateHitFX(1, hurtBox);
 					}
 				}
 				break;
