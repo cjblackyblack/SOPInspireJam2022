@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Game Files/Data/Scenes/Sandboxes/Arena Template.unity
     guid: 0614c91ae93469d44a8faa446d0a64a4
   - enabled: 1
-    path: Assets/Game Files/Data/Scenes/Greyboxes/Forest GreyBox.unity
-    guid: 241878d310cb1eb45ae9025cbbfa4f7a
+    path: Assets/Game Files/Data/Scenes/Sandboxes/Arena Template 1.unity
+    guid: b58ecd0c9e8049b4181481169ef07d23
+  - enabled: 1
+    path: Assets/Game Files/Data/Scenes/Sandboxes/Arena Template 2.unity
+    guid: 48571529457224a4ab6db34524f55839
+  - enabled: 1
+    path: Assets/Game Files/Data/Scenes/Sandboxes/Arena Template 3.unity
+    guid: 17af7722fd9988641bbfe062d47e5adf
+  - enabled: 1
+    path: Assets/Game Files/Data/Scenes/Sandboxes/Credits Template.unity
+    guid: 33942b953533ffe4c81989b1831a4d79
   m_configObjects: {}

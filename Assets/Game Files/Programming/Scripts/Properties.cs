@@ -724,11 +724,36 @@ public class LedgeData
 }
 
 public enum PlayerCharacter { Lancer, Sword }
+public enum BodyVFX {Weapon1, Weapon2, Boost, Jump, Hover }
+[System.Serializable]
+public class BodyVFXContainer
+{
+    public int Time;
+    public bool Toggle;
+    public BodyVFX BodyVFX;
+}
+
+[System.Serializable]
+public class VFXContainer 
+{
+    public int Time;
+    public GameObject VFX;
+    public Vector3 Position;
+    public Vector3 Rotation;
+}
+
+[System.Serializable]
+public class SFXContainer 
+{
+    public int Time;
+    public SFX SFX;
+}
+
 #endregion
 #endregion
 
 #region Gamework
 #region Managers
-public enum GameState { Start, CharacterSelect, Loading, Intro, Gameplay, Paused, Results, GameOver, Quitting }
+public enum GameState { Start, CharacterSelect, Loading, Intro, Gameplay, Paused, Credits, GameOver, Quitting }
 #endregion
 #endregion

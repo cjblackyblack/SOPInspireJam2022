@@ -43,7 +43,13 @@ public class Gun : MonoBehaviour
 			{
 				if (CurrentFrame == bulletData.Frame)
 				{ 
-					GameObject bullet = Instantiate(bulletData.Bullet, transform.position, transform.rotation * Quaternion.Euler(bulletData.Direction));
+					GameObject bullet = Instantiate(bulletData.Bullet, transform.position,Quaternion.identity);
+					if (SourceObject.GetComponent<PlayerController>())
+					{
+						bullet.transform.rotation = CameraManager.Instance.MainCamera.transform.rotation * Quaternion.Euler(bulletData.Direction);
+						if (SourceObject.Motor.GroundingStatus.IsStableOnGround && CameraManager.Instance.FreeLookCam.m_YAxis.Value > 0.5f)
+							bullet.transform.rotation = SourceObject.transform.rotation;
+					}
 				}
 			}
 		}

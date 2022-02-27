@@ -582,7 +582,7 @@ ModelImporter:
       takeName: Armature|Hurt 1
       internalID: 0
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -611,7 +611,7 @@ ModelImporter:
       takeName: Armature|Hurt 2
       internalID: 0
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -66,6 +66,8 @@ public class SmartObject : PhysicalObject, ICharacterController
 	public int AirJumps;
 	public int Cooldown;
 
+	public int HitStun;
+	public Vector3 KnockbackDir;
 	public override void Start()
 	{
 		base.Start();
@@ -186,6 +188,21 @@ public class SmartObject : PhysicalObject, ICharacterController
 
 	public override void TakeDamage(ref DamageInstance damageInstance)
 	{
+		transform.rotation = Quaternion.LookRotation((Vector3.ProjectOnPlane(damageInstance.origin.transform.position - transform.position, Motor.CharacterUp)), Motor.CharacterUp);
+
+		KnockbackDir = (((-Motor.CharacterForward * damageInstance.knockbackDirection.z)
+		 + (Motor.CharacterRight * damageInstance.knockbackDirection.x)
+		 + (Motor.CharacterUp * damageInstance.knockbackDirection.y)) * damageInstance.knockbackStrength)
+		 + (InputVector.normalized * 0.5f);
+		if (damageInstance.knockbackDirection.y > 0)
+		{
+			LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Aerial);
+			Motor.ForceUnground(0.02f);
+		}
+		Motor.BaseVelocity *= 0;
+		HitStun = damageInstance.hitStun;
+		Stats.HP -= Mathf.RoundToInt(damageInstance.damage);
+		GameManager.Instance.GlobalHitStop(damageInstance.hitStopTime);
 		ActionStateMachine.ChangeActionState(ActionStates.Hurt);
 	}
 
@@ -352,5 +369,32 @@ public class SmartObject : PhysicalObject, ICharacterController
 	public void ToggleGuns(bool toggle, int index)
 	{
 		Guns[index].Active = toggle;
+	}
+
+	public virtual void ToggleBodyVFX(BodyVFX bodyVFX, bool toggle)
+	{
+		switch (bodyVFX)
+		{
+			case BodyVFX.Weapon1:
+				{
+					break;
+				}
+			case BodyVFX.Weapon2:
+				{
+					break;
+				}
+			case BodyVFX.Boost:
+				{
+					break;
+				}
+			case BodyVFX.Jump:
+				{
+					break;
+				}
+			case BodyVFX.Hover:
+				{
+					break;
+				}
+		}
 	}
 }
