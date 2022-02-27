@@ -596,6 +596,10 @@ MonoBehaviour:
   GuardSuccess: 0
   MaxAirJumps: 1
   AirJumps: 1
+  Cooldown: 0
+  HitStun: 0
+  KnockbackDir: {x: 0, y: 0, z: 0}
+  FinalBoss: 0
 --- !u!114 &1393955275497466871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +710,7 @@ MonoBehaviour:
   NextLocomotionState: 0
   CurrentVehicleState: {fileID: 0}
   LandState: {fileID: 11400000, guid: 2b9f364cc0f84d54c9959d4694d516fc, type: 2}
+  DeadState: {fileID: 0}
 --- !u!114 &1393955275497466865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,7 +793,7 @@ AudioSource:
   m_GameObject: {fileID: 1393955275497466876}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 935521695c6c5d24584b88a7a1dd4e54, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
