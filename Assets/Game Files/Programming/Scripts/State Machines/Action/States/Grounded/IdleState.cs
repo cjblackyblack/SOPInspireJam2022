@@ -57,7 +57,8 @@ public class IdleState : SmartState
 		if (smartObject.InputVector != Vector3.zero)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Move);
 
-		smartObject.Animator.SetBool("Rotating", (Mathf.Abs(CameraManager.Instance.FreeLookCam.m_XAxis.m_InputAxisValue) > 0.1f));
+		if(smartObject.GetComponent<PlayerController>())
+			smartObject.Animator.SetBool("Rotating", (Mathf.Abs(CameraManager.Instance.FreeLookCam.m_XAxis.m_InputAxisValue) > 0.1f));
 
 
 	}

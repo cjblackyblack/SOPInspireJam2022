@@ -383,7 +383,7 @@ MonoBehaviour:
     Hitstun: 30
     HitStopTime: 0.06
     HitstopType: 0
-    BreakthroughType: 2
+    BreakthroughType: 0
     KnockbackType: 0
     KnockbackStrength: 10
     KnockbackDirection: {x: 0, y: 0.1, z: 1}

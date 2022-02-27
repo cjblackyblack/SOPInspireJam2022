@@ -181,18 +181,18 @@ public class AerialAttackState : SmartState
 		{
 			case PhysicalObjectTangibility.Normal:
 				{
-					CreateHitFX(0, hurtBox);
+					CreateHitFX(0, hitbox);
 				}
 				break;
 			case PhysicalObjectTangibility.Armor:
 				{
 					if (FlagsExtensions.HasFlag(hitbox.DamageInstance.breakthroughType, BreakthroughType.ArmorPierce))
 					{
-						CreateHitFX(0, hurtBox);
+						CreateHitFX(0, hitbox);
 					}
 					else
 					{
-						CreateHitFX(1, hurtBox);
+						CreateHitFX(1, hitbox);
 					}
 				}
 				break;
@@ -200,7 +200,7 @@ public class AerialAttackState : SmartState
 				{
 					if (FlagsExtensions.HasFlag(hitbox.DamageInstance.breakthroughType, BreakthroughType.GuardPierce) || hitbox.DamageInstance.unstoppable)
 					{
-						CreateHitFX(0, hurtBox);
+						CreateHitFX(0, hitbox);
 					}
 					else
 					{
