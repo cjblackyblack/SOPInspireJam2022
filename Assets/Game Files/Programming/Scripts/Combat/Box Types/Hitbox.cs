@@ -87,17 +87,20 @@ public abstract class Hitbox : CombatBox
 			{
 				if (HitColliders[j].TryGetComponent(out CombatBox possibleBox))//this could be a new best box
 				{
-					if(sortedBoxes.Count == 0)
-						sortedBoxes.Add(possibleBox);
-
-					else if (possibleBox as Hitbox != null || !sortedBoxes[0].GetComponent<Hitbox>())
+					if (possibleBox.Active)
 					{
-						sortedBoxes.Insert(0, possibleBox);
+						if (sortedBoxes.Count == 0)
+							sortedBoxes.Add(possibleBox);
 
-					}
-					else
-					{
-						sortedBoxes.Add(possibleBox);
+						else if (possibleBox as Hitbox != null || !sortedBoxes[0].GetComponent<Hitbox>())
+						{
+							sortedBoxes.Insert(0, possibleBox);
+
+						}
+						else
+						{
+							sortedBoxes.Add(possibleBox);
+						}
 					}
 				}
 			}

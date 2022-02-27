@@ -244,13 +244,13 @@ MonoBehaviour:
     HitboxGroup: 1
     ActiveFrames: {x: 0, y: 60}
     StatusEffects: []
-    Damage: 0
+    Damage: 1
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
     Unstoppable: 0
     Hitstun: 0
-    HitStopTime: 0
+    HitStopTime: 0.04
     HitstopType: 0
     BreakthroughType: 0
     KnockbackType: 0

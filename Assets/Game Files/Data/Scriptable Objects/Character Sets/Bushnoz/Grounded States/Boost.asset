@@ -356,3 +356,4 @@ MonoBehaviour:
     TrackingResistance: 0
   DirectionControl: 0.1
   CoyoteTime: 4
+  BoostAttack: {fileID: 0}

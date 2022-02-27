@@ -754,6 +754,6 @@ public class SFXContainer
 
 #region Gamework
 #region Managers
-public enum GameState { Start, CharacterSelect, Loading, Intro, Gameplay, Paused, Results, GameOver, Quitting }
+public enum GameState { Start, CharacterSelect, Loading, Intro, Gameplay, Paused, Credits, GameOver, Quitting }
 #endregion
 #endregion

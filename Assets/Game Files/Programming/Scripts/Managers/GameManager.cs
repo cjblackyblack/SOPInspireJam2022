@@ -70,12 +70,32 @@ public class GameManager : Singleton<GameManager>
 
 	public void GameWin()
 	{
-		UIManager.Instance.ChangeGameState(GameState.GameOver);
+		UIManager.Instance.ChangeGameState(GameState.Credits);
 	}
 
 	public void GameOver()
 	{
 		UIManager.Instance.ChangeGameState(GameState.GameOver);
+	}
+
+	public void LoadCreditsScene()
+	{
+		UIManager.Instance.ChangeGameState(GameState.Loading);
+		UnLoadSceneAsync(BattleScene);
+		SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
+		BattleScene++;
+		StartCoroutine(LoadSceneAsyncCoroutine(BattleScene));
+
+		IEnumerator LoadSceneAsyncCoroutine(int index)
+		{
+			AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+
+			while (!asyncLoad.isDone)
+			{
+				yield return null;
+			}
+			SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
+		}
 	}
 
 	void LoadBattleSceneAsync(int index)
@@ -92,7 +112,6 @@ public class GameManager : Singleton<GameManager>
 			}
 			SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
 			CurrentRoundStartController = FindObjectOfType<RoundController>();
-			//CurrentRoundStartController.StartRound();
 			UIManager.Instance.ChangeGameState(GameState.Gameplay);
 		}
 	}

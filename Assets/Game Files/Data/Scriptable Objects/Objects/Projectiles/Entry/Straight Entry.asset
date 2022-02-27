@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81dbce8593b92a40973acbd0783481e, type: 3}
   m_Name: Straight Entry
   m_EditorClassIdentifier: 
-  MaxTime: 2
+  MaxTime: 0
   TravelState: {fileID: 11400000, guid: 6eee5081c66db1b488e224f04abda44b, type: 2}

@@ -371,7 +371,7 @@ public class SmartObject : PhysicalObject, ICharacterController
 		Guns[index].Active = toggle;
 	}
 
-	public void ToggleBodyVFX(BodyVFX bodyVFX, bool toggle)
+	public virtual void ToggleBodyVFX(BodyVFX bodyVFX, bool toggle)
 	{
 		switch (bodyVFX)
 		{

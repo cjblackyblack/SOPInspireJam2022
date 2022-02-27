@@ -7,6 +7,7 @@ public class GlideState : SmartState
 {
     public float GravityMod;
     public int MinTime;
+    public SmartState AttackState;
     public override void OnEnter(SmartObject smartObject)
     {
         if (smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.AerialShoot && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Jump)
@@ -62,7 +63,10 @@ public class GlideState : SmartState
     {
 
         if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
-            smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+            if(AttackState != null)
+                smartObject.ActionStateMachine.ChangeActionState(AttackState);
+            else
+                smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
         if ((smartObject.Controller.Button3Buffer > 0 || smartObject.Controller.Button3Hold) && smartObject.Cooldown <= 0)
         {
