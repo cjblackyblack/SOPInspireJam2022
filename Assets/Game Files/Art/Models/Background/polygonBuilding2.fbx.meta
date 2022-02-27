@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: c17365f94a34fb149b78307e546f0727
+guid: 1df68622c27fffd4ea69e31de7661a77
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: polygonBuilding2
-    second: {fileID: 2100000, guid: bf1dec70fdfcc4c43803219ee850c3bd, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

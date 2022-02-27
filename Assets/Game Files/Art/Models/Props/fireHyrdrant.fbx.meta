@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: cb83e346f6f9fab4985d568bb8f1a4dc
+guid: 3a39817cd2fc06f438a2e93325dd8457
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: fireHydrant_MAT
-    second: {fileID: 2100000, guid: b8d37d35f7607bb47918d30c53564c88, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -68,7 +63,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

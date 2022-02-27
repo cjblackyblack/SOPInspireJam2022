@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: a4f41a8615a3e4648bf67a145c92d847
+guid: e917db26d3b376846bc613f36192c027
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: treePlane2_MAT
-    second: {fileID: 2100000, guid: 0939006fad251134c8a80f4dcaa828c6, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -68,7 +63,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 813bbb57a49fb4640bef2c5bbf9b81df
+guid: fe74b5c497a63ff429e4b22465631412
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: truck_MAT
-    second: {fileID: 2100000, guid: 1733c19a90e594b43bc1dbeacb7cb413, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -68,7 +63,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

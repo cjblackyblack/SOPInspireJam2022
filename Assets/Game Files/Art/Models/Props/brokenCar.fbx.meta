@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 6047b7cd2b4a80f409ec3837bbdbd542
+guid: e322769fe1ba23d43bb85678c7765537
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: brokenCar_MAT
-    second: {fileID: 2100000, guid: e81246225aa97a240ad6b0999232b450, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -68,7 +63,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

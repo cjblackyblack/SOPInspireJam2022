@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 95d0b29763a5e184a82d556c487e2667
+guid: 35b063084b1123f4292f692676be344c
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: largeBox_MAT
-    second: {fileID: 2100000, guid: c84b35d87b7f4bc45a6b1b26c3d8112b, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -68,7 +63,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
