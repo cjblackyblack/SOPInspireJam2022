@@ -42,6 +42,9 @@ public class IdleState : SmartState
 			else
 				smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
 
+		if (smartObject.Controller.Button1Buffer > 0 && smartObject.FinalBoss)
+			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);
+
 		if (smartObject.Controller.Button2Buffer > 0)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Boost);
 
@@ -57,7 +60,8 @@ public class IdleState : SmartState
 		if (smartObject.InputVector != Vector3.zero)
 			smartObject.ActionStateMachine.ChangeActionState(ActionStates.Move);
 
-		smartObject.Animator.SetBool("Rotating", (Mathf.Abs(CameraManager.Instance.FreeLookCam.m_XAxis.m_InputAxisValue) > 0.1f));
+		if(smartObject.GetComponent<PlayerController>())
+			smartObject.Animator.SetBool("Rotating", (Mathf.Abs(CameraManager.Instance.FreeLookCam.m_XAxis.m_InputAxisValue) > 0.1f));
 
 
 	}

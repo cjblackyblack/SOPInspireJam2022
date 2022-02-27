@@ -15,9 +15,9 @@ MonoBehaviour:
   AnimationState: Missile Launch
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
-  MaxTime: 60
+  MaxTime: 120
   JASA: 722
-  IASA: 30
+  IASA: 60
   FollowUpState: {fileID: 0}
   VFX: []
   BodyVFX: []

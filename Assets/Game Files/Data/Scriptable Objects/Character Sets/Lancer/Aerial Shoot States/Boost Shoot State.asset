@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5222ffb69f1556347b1f13bdb067e87e, type: 3}
   m_Name: Boost Shoot State
   m_EditorClassIdentifier: 
-  AnimationState: HangJump
+  AnimationState: Boost Shoot
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 150

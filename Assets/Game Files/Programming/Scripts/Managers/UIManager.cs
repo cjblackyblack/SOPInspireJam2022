@@ -79,6 +79,7 @@ public class UIManager : Singleton<UIManager>
 				{
 					TogglePlayerUI(true);
 					ToggleAdditionalUI(true);
+					if(FindObjectOfType<RoundController>())
 					FindObjectOfType<RoundController>().StartRound(); //yes i see the spaghetti here no i will not be fixing it
 					CameraManager.Instance.SetTarget(PlayerManager.Instance.PlayerObject.TargetPosiitions[0].transform);
 

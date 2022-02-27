@@ -795,6 +795,7 @@ MonoBehaviour:
   Cooldown: 0
   HitStun: 0
   KnockbackDir: {x: 0, y: 0, z: 0}
+  FinalBoss: 0
 --- !u!114 &7755709749970833461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,6 +906,7 @@ MonoBehaviour:
   NextLocomotionState: 0
   CurrentVehicleState: {fileID: 0}
   LandState: {fileID: 11400000, guid: e2e164d5f6aeb8844928717c6499afbd, type: 2}
+  DeadState: {fileID: 11400000, guid: 54f8cd51f09b7614f9ed32ff3a97f975, type: 2}
 --- !u!114 &7755709749970833459
 MonoBehaviour:
   m_ObjectHideFlags: 0
