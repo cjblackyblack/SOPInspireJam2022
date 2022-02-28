@@ -8,8 +8,8 @@ using System;
 public class PlayerHUDManager : MonoBehaviour {
 
     [Header("Main UI")]
-    [SerializeField] private GameObject playerHealthBar;
-    [SerializeField] private GameObject targetHealthBar;
+    [SerializeField] private HealthBar playerHealthBar;
+    [SerializeField] private HealthBar targetHealthBar;
     [SerializeField] private TextMeshProUGUI roundTimerText;
     [SerializeField] private TextMeshProUGUI distanceText;
     [SerializeField] private LineRenderer lineRenderer;
@@ -96,7 +96,7 @@ public class PlayerHUDManager : MonoBehaviour {
     }
 
     /*private void Update() {
-        if(Input.GetKeyDown(KeyCode.Space)) {
+        if(Input.GetKeyDown(KeyCode.Space) && !roundActive) {
             StartRoundTimer(99);
         }
     }*/
@@ -108,25 +108,27 @@ public class PlayerHUDManager : MonoBehaviour {
         roundActive = true;
 
         _player = PlayerManager.Instance.PlayerController.gameObject;
+        playerHealthBar.SetSmartObject(PlayerManager.Instance.PlayerObject);
     }
 
     private void OnTargetAcquired() {
         if(!roundActive)
             return;
 
-        targetHealthBar.SetActive(true);
-        targetNameText.gameObject.SetActive(displayTargetName);
-        // TODO - set name
         _target = TargetingManager.Instance.Target.gameObject;
+        targetHealthBar.gameObject.SetActive(true);
+        targetHealthBar.SetSmartObject(_target.GetComponentInParent<SmartObject>());
+        targetNameText.gameObject.SetActive(displayTargetName);
+        targetNameText.text = _target.transform.root.name;
 
         distanceText.gameObject.SetActive(true);
         lineRenderer.gameObject.SetActive(true);
     }
 
     private void OnTargetLost() {
-        targetHealthBar.SetActive(false);
-        targetNameText.gameObject.SetActive(false);
         _target = null;
+        targetHealthBar.gameObject.SetActive(false);
+        targetNameText.gameObject.SetActive(false);
 
         distanceText.gameObject.SetActive(false);
         lineRenderer.gameObject.SetActive(false);

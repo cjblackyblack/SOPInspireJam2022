@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour {
 
     [Header("Object References")]
-    [SerializeField] private PlayerController player;
+    [SerializeField] private SmartObject smartObject;
     [SerializeField] private RectTransform mainBar, secondaryBar;
     [SerializeField] private RectTransform rectMask;
 
@@ -15,15 +15,11 @@ public class HealthBar : MonoBehaviour {
     [SerializeField] private float delayTime;
     [SerializeField] [Tooltip("Speed in percent/second")] private float lerpSpeed;
 
-    [Header("Health")]
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int currentHealth;
     private float currentPercent;
 
     // -----------------------------------------------------------------------------------------------------------
 
     private void Awake() {
-        currentPercent = currentHealth / (float)maxHealth;
         currentPercent = 1;
 
         if(fillLeftToRight) {
@@ -45,16 +41,22 @@ public class HealthBar : MonoBehaviour {
         PositionBar(secondaryBar, currentPercent);
     }
 
-    private void Update() {
+    /*private void Update() {
         if(Input.GetKeyDown(KeyCode.Space)) {
             OnTakeDamage();
         }
+    }*/
+
+    public void SetSmartObject(SmartObject obj) {
+        smartObject = obj;
+        currentPercent = smartObject.Stats.HP / (float)smartObject.Stats.MaxHP;
+        PositionBar(mainBar, currentPercent);
+        PositionBar(secondaryBar, currentPercent);
     }
 
     public void OnTakeDamage() {
-        // TODO - get health from player
         float oldPercent = currentPercent;
-        currentPercent = currentHealth / (float)maxHealth;
+        currentPercent = smartObject.Stats.HP / (float)smartObject.Stats.MaxHP;
         PositionBar(mainBar, currentPercent);
         StopAllCoroutines();
         StartCoroutine(LerpSecondaryBar());
