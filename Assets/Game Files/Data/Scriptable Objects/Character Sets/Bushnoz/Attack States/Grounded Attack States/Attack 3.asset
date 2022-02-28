@@ -244,4 +244,4 @@ MonoBehaviour:
   hitboxes: []
   TangibilityFrames: []
   HitParticles:
-  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}

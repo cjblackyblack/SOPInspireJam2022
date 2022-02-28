@@ -13,6 +13,8 @@ public class BoostState : SmartState
 	public int CoyoteTime;
 	public SmartState BoostAttack;
 
+
+
 	public override void OnEnter(SmartObject smartObject)
 	{
 		if (smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.GroundedShoot && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Boost)
@@ -45,6 +47,8 @@ public class BoostState : SmartState
 
 		smartObject.GravityModifier = 1;
 		//CombatUtilities.ResetTangibilityFrames(smartObject, TangibilityFrames);
+		for (int i = 0; i < BodyVFX.Length; i++)
+			smartObject.ToggleBodyVFX(BodyVFX[i].BodyVFX, false);
 	}
 
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
@@ -155,6 +159,10 @@ public class BoostState : SmartState
 	}
 	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
+		CreateVFX(smartObject);
+		CreateBodyVFX(smartObject);
+		CreateSFX(smartObject);
+
 		base.AfterCharacterUpdate(smartObject, deltaTime);
 
 		if (smartObject.CurrentFrame > MaxTime)

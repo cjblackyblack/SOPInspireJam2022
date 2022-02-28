@@ -20,7 +20,13 @@ MonoBehaviour:
   IASA: 30
   FollowUpState: {fileID: 11400000, guid: dd276b9f8073cc7419d49ec615dbf79a, type: 2}
   VFX: []
-  BodyVFX: []
+  BodyVFX:
+  - Time: 5
+    Toggle: 1
+    BodyVFX: 0
+  - Time: 25
+    Toggle: 0
+    BodyVFX: 0
   SFX: []
   MotionCurve:
     ForwardCurve:
@@ -367,7 +373,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c5f583890bd62744aaaa6cccd8409ef4, type: 2}
   TangibilityFrames: []
   HitParticles:
-  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
-  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}

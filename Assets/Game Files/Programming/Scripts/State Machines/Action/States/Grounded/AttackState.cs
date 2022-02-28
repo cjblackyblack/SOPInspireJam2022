@@ -10,9 +10,6 @@ public class AttackState : SmartState
 	public int IASA;
 	public SmartState FollowUpState;
 
-	public VFXContainer[] VFX;
-	public BodyVFXContainer[] BodyVFX;
-	public SFXContainer[] SFX;
 
 	public MotionCurve MotionCurve;
 	public HitboxData[] hitboxes;
@@ -33,6 +30,8 @@ public class AttackState : SmartState
 	{
 		smartObject.GravityModifier = 1;
 		CombatUtilities.ResetTangibilityFrames(smartObject, TangibilityFrames);
+		for (int i = 0; i < BodyVFX.Length; i++)
+				smartObject.ToggleBodyVFX(BodyVFX[i].BodyVFX, false);
 	}
 
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
@@ -204,35 +203,7 @@ public class AttackState : SmartState
 		//Instantiate(HitParticles[(int)hitBox.CurrentBoxTangibility], hitBox.transform.position, Quaternion.identity);
 	}
 
-	void CreateVFX(SmartObject smartObject)
-	{
-		if (VFX == null || VFX.Length == 0)
-			return;
 
-		for (int i = 0; i < VFX.Length; i++)
-			if (VFX[i].Time == smartObject.CurrentFrame)
-				Instantiate(VFX[i].VFX, VFX[i].Position, Quaternion.Euler(VFX[i].Rotation));
-	}
-
-	void CreateBodyVFX(SmartObject smartObject)
-	{
-		if (BodyVFX == null || BodyVFX.Length == 0)
-			return;
-
-		for (int i = 0; i < BodyVFX.Length; i++)
-			if (BodyVFX[i].Time == smartObject.CurrentFrame)
-				smartObject.ToggleBodyVFX(BodyVFX[i].BodyVFX, BodyVFX[i].Toggle);
-	}
-
-	void CreateSFX(SmartObject smartObject)
-	{
-		if (SFX == null || SFX.Length == 0)
-			return;
-
-		for (int i = 0; i < SFX.Length; i++)
-			if (SFX[i].Time == smartObject.CurrentFrame)
-				SFX[i].SFX.PlaySFX(smartObject);
-	}
 
 
 	void CreateHitFX(int index, CombatBox hitbox)
