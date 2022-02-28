@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class PlayerHUDManager : MonoBehaviour {
+public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 
     [Header("Main UI")]
     [SerializeField] private HealthBar playerHealthBar;
@@ -51,7 +51,8 @@ public class PlayerHUDManager : MonoBehaviour {
 
     // -----------------------------------------------------------------------------------------------------------
 
-    private void Awake() {
+    public override void Awake() {
+        base.Awake();
         OnTargetLost();
     }
 
@@ -95,15 +96,12 @@ public class PlayerHUDManager : MonoBehaviour {
             distanceText.text = $"{(int)Vector3.Distance(_player.transform.position, _target.transform.position)} m";
     }
 
-    /*private void Update() {
-        if(Input.GetKeyDown(KeyCode.Space) && !roundActive) {
-            StartRoundTimer(99);
-        }
-    }*/
-
     // -----------------------------------------------------------------------------------------------------------
 
     public void StartRoundTimer(float time) {
+        if(roundActive)
+            return;
+
         roundTimer = time;
         roundActive = true;
 
@@ -128,6 +126,7 @@ public class PlayerHUDManager : MonoBehaviour {
     private void OnTargetLost() {
         _target = null;
         targetHealthBar.gameObject.SetActive(false);
+        targetHealthBar.SetSmartObject(null);
         targetNameText.gameObject.SetActive(false);
 
         distanceText.gameObject.SetActive(false);

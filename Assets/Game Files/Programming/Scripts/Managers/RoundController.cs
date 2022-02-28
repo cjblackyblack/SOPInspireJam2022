@@ -179,5 +179,9 @@ public class RoundController : MonoBehaviour
 		GameManager.Instance.MusicSource.Stop();
 		GameManager.Instance.MusicSource.clip = GameManager.Instance.FightTrack;
 		GameManager.Instance.MusicSource.Play();
+
+		if(enabled) {
+			PlayerHUDManager.Instance.StartRoundTimer(120);
+        }
 	}
 }
