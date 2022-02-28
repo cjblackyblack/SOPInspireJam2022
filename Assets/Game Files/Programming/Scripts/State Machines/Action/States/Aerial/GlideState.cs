@@ -34,6 +34,7 @@ public class GlideState : SmartState
 
         smartObject.AirJumps--;
         smartObject.GravityModifier = GravityMod;
+        smartObject.ToggleBodyVFX(BodyVFX[0].BodyVFX, true);
     }
 
     public override void OnExit(SmartObject smartObject)

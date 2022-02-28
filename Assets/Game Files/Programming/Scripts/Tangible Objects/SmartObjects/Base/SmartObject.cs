@@ -373,6 +373,8 @@ public class SmartObject : PhysicalObject, ICharacterController
 	public void ToggleGuns(bool toggle, int index)
 	{
 		Guns[index].Active = toggle;
+		if (!toggle)
+			Guns[index].GunFX.SetActive(false);
 	}
 
 	public virtual void ToggleBodyVFX(BodyVFX bodyVFX, bool toggle)
@@ -381,14 +383,20 @@ public class SmartObject : PhysicalObject, ICharacterController
 		{
 			case BodyVFX.Weapon1:
 				{
+					BodyReferences.LeftArmWeapon.SetActive(toggle);
 					break;
 				}
 			case BodyVFX.Weapon2:
 				{
+					BodyReferences.RightArmWeapon.SetActive(toggle);
 					break;
 				}
 			case BodyVFX.Boost:
 				{
+					for (int i = 0; i < BodyReferences.BoostFX.Length; i++)
+					{
+						BodyReferences.BoostFX[i].SetActive(toggle);
+					}
 					break;
 				}
 			case BodyVFX.Jump:
@@ -397,6 +405,10 @@ public class SmartObject : PhysicalObject, ICharacterController
 				}
 			case BodyVFX.Hover:
 				{
+					for (int i = 0; i < BodyReferences.HoverFX.Length; i++)
+					{
+						BodyReferences.HoverFX[i].SetActive(toggle);
+					}
 					break;
 				}
 		}

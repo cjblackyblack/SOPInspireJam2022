@@ -37,7 +37,15 @@ public class SmartState : ScriptableObject
 
 		for (int i = 0; i < VFX.Length; i++)
 			if (VFX[i].Time == smartObject.CurrentFrame)
-				Instantiate(VFX[i].VFX, VFX[i].Position, Quaternion.Euler(VFX[i].Rotation));
+			{
+				GameObject obj = Instantiate(VFX[i].VFX, smartObject.transform.position, smartObject.transform.rotation, smartObject.transform);
+				
+					obj.transform.localPosition = VFX[i].Position;
+					obj.transform.localEulerAngles = VFX[i].Rotation;
+				if (!VFX[i].Local)
+					obj.transform.parent = null;
+
+			}
 	}
 
 	public void CreateBodyVFX(SmartObject smartObject)

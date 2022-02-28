@@ -16,15 +16,18 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 36
+  VFX: []
+  BodyVFX:
+  - BodyVFX: 0
+    Time: 8
+    Toggle: 1
+  - BodyVFX: 0
+    Time: 20
+    Toggle: 0
+  SFX: []
   IASA: 24
   FollowUpState: {fileID: 11400000, guid: b0b97737c837e2743ac2e81e5b5bf9d6, type: 2}
   LandState: {fileID: 11400000, guid: d715ac695a533d34ca57febe419eb0d1, type: 2}
-  VFX: []
-  BodyVFX:
-  - Time: 0
-    Toggle: 0
-    BodyVFX: 0
-  SFX: []
   MotionCurve:
     ForwardCurve:
       serializedVersion: 2

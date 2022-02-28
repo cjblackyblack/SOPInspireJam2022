@@ -16,18 +16,23 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 40
+  VFX:
+  - Time: 5
+    VFX: {fileID: 5743041894035771952, guid: 858ff82549ca3f74a93347471fa4dfc8, type: 3}
+    Position: {x: -0.7, y: 0.75, z: 1.5}
+    Rotation: {x: 0, y: 0, z: 0}
+    Local: 0
+  BodyVFX:
+  - BodyVFX: 0
+    Time: 10
+    Toggle: 1
+  - BodyVFX: 0
+    Time: 25
+    Toggle: 0
+  SFX: []
   JASA: 20
   IASA: 30
   FollowUpState: {fileID: 11400000, guid: dd276b9f8073cc7419d49ec615dbf79a, type: 2}
-  VFX: []
-  BodyVFX:
-  - Time: 5
-    Toggle: 1
-    BodyVFX: 0
-  - Time: 25
-    Toggle: 0
-    BodyVFX: 0
-  SFX: []
   MotionCurve:
     ForwardCurve:
       serializedVersion: 2

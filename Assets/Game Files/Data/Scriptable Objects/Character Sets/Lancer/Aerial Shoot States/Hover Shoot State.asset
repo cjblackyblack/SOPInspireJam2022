@@ -16,5 +16,11 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 150
+  VFX: []
+  BodyVFX:
+  - BodyVFX: 4
+    Time: 0
+    Toggle: 1
+  SFX: []
   GravityMod: 0
   MinTime: 10

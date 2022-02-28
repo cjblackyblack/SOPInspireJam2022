@@ -39,6 +39,7 @@ public class BoostShootState : SmartState
 
 		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
 		smartObject.MovementVector = smartObject.MovementVector == Vector3.zero ? smartObject.Motor.CharacterForward : smartObject.InputVector.normalized;
+		smartObject.ToggleBodyVFX(BodyVFX[0].BodyVFX, true);
 	}
 
 	public override void OnExit(SmartObject smartObject)

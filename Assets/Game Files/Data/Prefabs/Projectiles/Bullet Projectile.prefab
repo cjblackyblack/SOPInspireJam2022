@@ -744,6 +744,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1140952649559723455, guid: c6d8f9173d2988f44999334d8f03f242, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140952649559723455, guid: c6d8f9173d2988f44999334d8f03f242, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -786,6 +790,14 @@ PrefabInstance:
     - target: {fileID: 2610967999853599337, guid: c6d8f9173d2988f44999334d8f03f242, type: 3}
       propertyPath: m_Name
       value: FX_Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675430757745099758, guid: c6d8f9173d2988f44999334d8f03f242, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675430757745099758, guid: c6d8f9173d2988f44999334d8f03f242, type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6d8f9173d2988f44999334d8f03f242, type: 3}

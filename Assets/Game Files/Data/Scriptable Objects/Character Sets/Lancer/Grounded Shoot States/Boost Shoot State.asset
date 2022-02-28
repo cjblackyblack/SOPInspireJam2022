@@ -16,6 +16,12 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 150
+  VFX: []
+  BodyVFX:
+  - BodyVFX: 2
+    Time: 0
+    Toggle: 1
+  SFX: []
   MinTime: 15
   TangibilityFrames: []
   MotionCurve:

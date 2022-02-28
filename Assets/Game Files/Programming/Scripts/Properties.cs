@@ -741,6 +741,7 @@ public class VFXContainer
     public GameObject VFX;
     public Vector3 Position;
     public Vector3 Rotation;
+    public bool Local;
 }
 
 [System.Serializable]

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ToggleGunVisibility : MonoBehaviour
 {
-    LocomotionStateMachine ParentMachine => GetComponentInParent<LocomotionStateMachine>();
-    MeshRenderer mesh => GetComponent<MeshRenderer>();
+    public LocomotionStateMachine ParentMachine;// => GetComponentInParent<LocomotionStateMachine>();
+    public MeshRenderer mesh;// => GetComponent<MeshRenderer>();
     public bool reverse;
     // Update is called once per frame
     void Update()
@@ -13,17 +13,9 @@ public class ToggleGunVisibility : MonoBehaviour
 
         if (ParentMachine.CurrentLocomotionEnum == LocomotionStates.AerialShoot || ParentMachine.CurrentLocomotionEnum == LocomotionStates.GroundedShoot)
         {
-            if (reverse)
-            {
-
-                mesh.gameObject.SetActive(false);
-
-            }
-            else
-            {
-
-                mesh.gameObject.SetActive(true);
-            }
+            mesh.enabled = reverse;
         }
+        else
+            mesh.enabled = !reverse;
     }
 }
