@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
 
 	public GunData GunData;
 	float inactiveTimer;
+	public GameObject GunFX;
 	private void Update()
 	{
 		if (!Active)
@@ -44,6 +45,9 @@ public class Gun : MonoBehaviour
 				if (CurrentFrame == bulletData.Frame)
 				{ 
 					GameObject bullet = Instantiate(bulletData.Bullet, transform.position,Quaternion.identity);
+					GunFX.SetActive(false);
+					GunFX.SetActive(true);
+
 					if (SourceObject.GetComponent<PlayerController>())
 					{
 						bullet.transform.rotation = CameraManager.Instance.MainCamera.transform.rotation * Quaternion.Euler(bulletData.Direction);

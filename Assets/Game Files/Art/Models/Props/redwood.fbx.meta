@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 58a05324990c9254c98a277c030b650f
+guid: 5c944d09bd6a521428d5fc1e5e8139f2
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: redwood_MAT
+    second: {fileID: 2100000, guid: 43ea04b95560d9542a640263ff12cc2b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -63,7 +68,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

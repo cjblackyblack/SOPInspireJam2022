@@ -9,6 +9,11 @@ public class SmartState : ScriptableObject
 	public float AnimationTransitionTime;
 	public float AnimationTransitionOffset;
 	public int MaxTime;
+
+	public VFXContainer[] VFX;
+	public BodyVFXContainer[] BodyVFX;
+	public SFXContainer[] SFX;
+
 	public virtual void OnEnter(SmartObject smartObject)
 	{
 		smartObject.CurrentTime = -1;
@@ -23,6 +28,36 @@ public class SmartState : ScriptableObject
 			smartObject.Animator.Play(AnimationState, 0, 0);
 			smartObject.ShadowAnimator.Play(AnimationState, 0, 0);
 		}
+	}
+
+	public void CreateVFX(SmartObject smartObject)
+	{
+		if (VFX == null || VFX.Length == 0)
+			return;
+
+		for (int i = 0; i < VFX.Length; i++)
+			if (VFX[i].Time == smartObject.CurrentFrame)
+				Instantiate(VFX[i].VFX, VFX[i].Position, Quaternion.Euler(VFX[i].Rotation));
+	}
+
+	public void CreateBodyVFX(SmartObject smartObject)
+	{
+		if (BodyVFX == null || BodyVFX.Length == 0)
+			return;
+
+		for (int i = 0; i < BodyVFX.Length; i++)
+			if (BodyVFX[i].Time == smartObject.CurrentFrame)
+				smartObject.ToggleBodyVFX(BodyVFX[i].BodyVFX, BodyVFX[i].Toggle);
+	}
+
+	public void CreateSFX(SmartObject smartObject)
+	{
+		if (SFX == null || SFX.Length == 0)
+			return;
+
+		for (int i = 0; i < SFX.Length; i++)
+			if (SFX[i].Time == smartObject.CurrentFrame)
+				SFX[i].SFX.PlaySFX(smartObject);
 	}
 
 	public virtual void OnExit(SmartObject smartObject)

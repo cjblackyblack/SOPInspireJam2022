@@ -728,9 +728,10 @@ public enum BodyVFX {Weapon1, Weapon2, Boost, Jump, Hover }
 [System.Serializable]
 public class BodyVFXContainer
 {
+    public BodyVFX BodyVFX;
     public int Time;
     public bool Toggle;
-    public BodyVFX BodyVFX;
+
 }
 
 [System.Serializable]

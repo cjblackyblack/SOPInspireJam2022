@@ -9,9 +9,6 @@ public class AerialAttackState : SmartState
 	public SmartState FollowUpState;
 	public SmartState LandState;
 
-	public VFXContainer[] VFX;
-	public BodyVFXContainer[] BodyVFX;
-	public SFXContainer[] SFX;
 
 	public MotionCurve MotionCurve;
 	public HitboxData[] hitboxes;
@@ -35,7 +32,8 @@ public class AerialAttackState : SmartState
 	{
 		smartObject.GravityModifier = 1;
 		CombatUtilities.ResetTangibilityFrames(smartObject, TangibilityFrames);
-
+		for (int i = 0; i < BodyVFX.Length; i++)
+			smartObject.ToggleBodyVFX(BodyVFX[i].BodyVFX, false);
 	}
 
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
