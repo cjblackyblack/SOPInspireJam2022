@@ -58,7 +58,6 @@ public class RoundController : MonoBehaviour
 
 	public void FinishRound(bool win)
 	{
-
 		Director.playableAsset = FinishTimeline;
 		Director.extrapolationMode = DirectorWrapMode.Hold;
 		Director.SetGenericBinding(FinishTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
@@ -66,6 +65,9 @@ public class RoundController : MonoBehaviour
 		Director.Play();
 		if (win)
 		{
+			GameManager.Instance.MusicSource.Stop();
+			GameManager.Instance.MusicSource.clip = GameManager.Instance.WinTrack;
+			GameManager.Instance.MusicSource.Play();
 			//GameManager.Instance.GameWin();
 			Debug.Log("gamewin");
 		}
@@ -173,5 +175,9 @@ public class RoundController : MonoBehaviour
 		//if (enabled)
 		//	CameraManager.Instance.ResetCamera();
 		started = enabled;
+
+		GameManager.Instance.MusicSource.Stop();
+		GameManager.Instance.MusicSource.clip = GameManager.Instance.FightTrack;
+		GameManager.Instance.MusicSource.Play();
 	}
 }

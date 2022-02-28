@@ -15,6 +15,12 @@ public class GameManager : Singleton<GameManager>
 
 	public int BattleScene = 1;
 	public RoundController CurrentRoundStartController;
+	public AudioSource MusicSource;
+	public AudioSource SFXSource;
+	public AudioClip MainTrack;
+	public AudioClip FightTrack;
+	public AudioClip WinTrack;
+	public AudioClip LoseTrack;
 
 	public override void Start()
 	{
@@ -70,11 +76,15 @@ public class GameManager : Singleton<GameManager>
 
 	public void GameWin()
 	{
+
 		UIManager.Instance.ChangeGameState(GameState.Credits);
 	}
 
 	public void GameOver()
 	{
+		MusicSource.Stop();
+		MusicSource.clip = LoseTrack;
+		MusicSource.Play();
 		UIManager.Instance.ChangeGameState(GameState.GameOver);
 	}
 
@@ -113,6 +123,7 @@ public class GameManager : Singleton<GameManager>
 			SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
 			CurrentRoundStartController = FindObjectOfType<RoundController>();
 			UIManager.Instance.ChangeGameState(GameState.Gameplay);
+
 		}
 	}
 
@@ -141,4 +152,5 @@ public class GameManager : Singleton<GameManager>
 			Time.timeScale = 1;
 		}
 	}
+
 }
