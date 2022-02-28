@@ -48,10 +48,18 @@ public class HealthBar : MonoBehaviour {
     }*/
 
     public void SetSmartObject(SmartObject obj) {
-        smartObject = obj;
-        currentPercent = smartObject.Stats.HP / (float)smartObject.Stats.MaxHP;
-        PositionBar(mainBar, currentPercent);
-        PositionBar(secondaryBar, currentPercent);
+        if(obj != smartObject) {
+            if(smartObject)
+                smartObject.OnTakeDamage -= OnTakeDamage;
+
+            smartObject = obj;
+            if(smartObject) {
+                obj.OnTakeDamage += OnTakeDamage;
+                currentPercent = smartObject.Stats.HP / (float)smartObject.Stats.MaxHP;
+                PositionBar(mainBar, currentPercent);
+                PositionBar(secondaryBar, currentPercent);
+            }
+        }
     }
 
     public void OnTakeDamage() {
@@ -59,7 +67,8 @@ public class HealthBar : MonoBehaviour {
         currentPercent = smartObject.Stats.HP / (float)smartObject.Stats.MaxHP;
         PositionBar(mainBar, currentPercent);
         StopAllCoroutines();
-        StartCoroutine(LerpSecondaryBar());
+        if(gameObject.activeInHierarchy)
+            StartCoroutine(LerpSecondaryBar());
 
         IEnumerator LerpSecondaryBar() {
             yield return new WaitForSeconds(delayTime);

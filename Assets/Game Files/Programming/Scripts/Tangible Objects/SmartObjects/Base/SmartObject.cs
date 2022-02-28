@@ -17,6 +17,7 @@ public class SmartObject : PhysicalObject, ICharacterController
 
 	public Action<ActionStates> OnActionChange;
 	public Action<LocomotionStates> OnLocomotionChange;
+	public Action OnTakeDamage;
 
 	[PropertyOrder(-98)]
 	public StatMods StatMods;
@@ -208,6 +209,8 @@ public class SmartObject : PhysicalObject, ICharacterController
 			ActionStateMachine.ChangeActionState(ActionStates.Hurt);
 		if (Stats.HP <= 0)
 			ActionStateMachine.ChangeActionState(LocomotionStateMachine.DeadState);
+
+		OnTakeDamage?.Invoke();
 	}
 
 	public override bool HitConfirmReaction(PhysicalObjectTangibility hitTangibility, DamageInstance damageInstance)
