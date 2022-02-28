@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class PlayerHUDManager : MonoBehaviour {
 
@@ -28,6 +29,9 @@ public class PlayerHUDManager : MonoBehaviour {
     [SerializeField] private RectTransform[] lineAnchors;
     private bool hasTarget = false;
 
+    private float roundTimer;
+    private bool roundActive;
+
     // ---
 
     public GameObject Target {
@@ -43,6 +47,8 @@ public class PlayerHUDManager : MonoBehaviour {
         }
     }
 
+    public Action OnRoundTimerEnd;
+
     // -----------------------------------------------------------------------------------------------------------
 
     private void Awake() {
@@ -51,6 +57,7 @@ public class PlayerHUDManager : MonoBehaviour {
 
     private void OnEnable() {
         Application.onBeforeRender += SetLineRenderer;
+        roundTimerText.text = "";
     }
 
     private void OnDisable() {
@@ -58,10 +65,25 @@ public class PlayerHUDManager : MonoBehaviour {
     }
 
     private void LateUpdate() {
+        // Round timer
+        if(roundActive) {
+            if(roundTimer > 0) {
+                roundTimerText.text = $"{(int)roundTimer:00}";
+                roundTimer -= Time.deltaTime;
+            } else {
+                roundTimer = 0;
+                roundTimerText.text = "00";
+                roundActive = false;
+                OnRoundTimerEnd?.Invoke();
+            }
+        }
+
+        // Total time
         totalTimeText.gameObject.SetActive(displayTotalTime);
         if(displayTotalTime)
-            totalTimeText.text = ((int)Time.time).ToString();
+            totalTimeText.text = FormatTime(Time.time);
 
+        // Distance line
         if(reticle.activeInHierarchy != hasTarget) {
             hasTarget = reticle.activeInHierarchy;
             if(hasTarget)
@@ -69,25 +91,42 @@ public class PlayerHUDManager : MonoBehaviour {
             else
                 OnTargetLost();
         }
-        //distanceText.text = $"{(int)Vector3.Distance(_player.transform.position, _target.transform.position)} m";
+        if(_player && _target)
+            distanceText.text = $"{(int)Vector3.Distance(_player.transform.position, _target.transform.position)} m";
     }
+
+    /*private void Update() {
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            StartRoundTimer(99);
+        }
+    }*/
 
     // -----------------------------------------------------------------------------------------------------------
 
+    public void StartRoundTimer(float time) {
+        roundTimer = time;
+        roundActive = true;
+
+        _player = PlayerManager.Instance.PlayerController.gameObject;
+    }
+
     private void OnTargetAcquired() {
-        Debug.Log("Gained target");
+        if(!roundActive)
+            return;
+
         targetHealthBar.SetActive(true);
         targetNameText.gameObject.SetActive(displayTargetName);
         // TODO - set name
+        _target = TargetingManager.Instance.Target.gameObject;
 
         distanceText.gameObject.SetActive(true);
         lineRenderer.gameObject.SetActive(true);
     }
 
     private void OnTargetLost() {
-        Debug.Log("Lost target");
         targetHealthBar.SetActive(false);
         targetNameText.gameObject.SetActive(false);
+        _target = null;
 
         distanceText.gameObject.SetActive(false);
         lineRenderer.gameObject.SetActive(false);
@@ -99,6 +138,13 @@ public class PlayerHUDManager : MonoBehaviour {
             lineRenderer.SetPosition(1, lineAnchors[1].position);
             lineRenderer.SetPosition(2, lineAnchors[2].position);
         }
+    }
+
+    private string FormatTime(float time) {
+        int hr = (int)time / 3600;
+        int min = (int)(time / 60) % 60;
+        float sec = time - (hr * 3600) - (min * 60);
+        return $"{(hr > 0 ? $"{hr}:" : "")}{min:00}:{sec:00.00}";
     }
 
 }
