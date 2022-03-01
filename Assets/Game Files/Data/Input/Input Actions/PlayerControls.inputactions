@@ -254,19 +254,8 @@
                 },
                 {
                     "name": "",
-                    "id": "8c94ab71-1c0a-4411-a7a7-fc71783b4b7f",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Button1Press",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "507bb435-f04c-4e88-86f8-b139740990a3",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -287,19 +276,8 @@
                 },
                 {
                     "name": "",
-                    "id": "df71ed6d-c4a0-403e-b650-568d1bf4c8f4",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Button1Release",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8b64e3e1-3a5a-4858-82cb-9c39f6d3ee8d",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -321,19 +299,8 @@
                 {
                     "name": "",
                     "id": "f236eff2-f1bc-4408-b06a-ca5e7bc406b7",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/shift",
                     "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Button2Release",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "57040d8b-b7c9-4502-a6b3-e04d803dbf68",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Button2Release",
@@ -354,18 +321,7 @@
                 {
                     "name": "",
                     "id": "e30b74eb-06a7-4d37-992d-68fa2a115748",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Button2Press",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dce79e07-1739-437a-8ff1-07264ce6f4c7",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -387,18 +343,7 @@
                 {
                     "name": "",
                     "id": "523b97cf-182f-4bcf-bb23-0b98b4d78a08",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Button3Release",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bc6a12f2-5a1d-48c0-8d19-6f9454ff07df",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -420,18 +365,7 @@
                 {
                     "name": "",
                     "id": "54cee84e-98b8-4d5e-b3ae-633827f40e71",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Button3Press",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1d1242de-df31-4edb-aaa8-e757f775a432",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

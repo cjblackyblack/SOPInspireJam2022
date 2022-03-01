@@ -22,6 +22,9 @@ public class UIManager : Singleton<UIManager>
 	public TextMeshProUGUI StartCountdownText;
 	public TextMeshProUGUI GameOverCountdownText;
 
+	public GameObject Region;
+	public GameObject Opponent;
+
 	public override void Start()
 	{
 		base.Start();
@@ -41,6 +44,50 @@ public class UIManager : Singleton<UIManager>
 	public void ToggleLoadingUI(bool enabled)
 	{
 		LoadingUI.gameObject.SetActive(enabled);
+		for (int i = 1; i < 5; i++)
+		{
+			Opponent.transform.GetChild(i - 1).gameObject.SetActive(false);
+			Region.transform.GetChild(i - 1).gameObject.SetActive(false);
+		}
+		Region.transform.GetChild(GameManager.Instance.BattleScene - 1).gameObject.SetActive(true);
+
+		switch (GameManager.Instance.BattleScene)
+		{
+			case 1:
+				{
+					if(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer)
+					{
+						Opponent.transform.GetChild(0).gameObject.SetActive(true);
+					}
+					else
+					{
+						Opponent.transform.GetChild(1).gameObject.SetActive(true);
+					}
+					break;
+				}
+			case 2:
+				{
+					if (GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer)
+					{
+						Opponent.transform.GetChild(1).gameObject.SetActive(true);
+					}
+					else
+					{
+						Opponent.transform.GetChild(0).gameObject.SetActive(true);
+					}
+					break;
+				}
+			case 3:
+				{
+					Opponent.transform.GetChild(2).gameObject.SetActive(true);
+					break;
+				}
+			case 4:
+				{
+					Opponent.transform.GetChild(3).gameObject.SetActive(true);
+					break;
+				}
+		}
 	}
 
 	public void TogglePlayerUI(bool enabled)
@@ -98,11 +145,15 @@ public class UIManager : Singleton<UIManager>
 		{
 			case GameState.Start:
 				{
+					Cursor.lockState = CursorLockMode.None;
+					Cursor.visible = true;
 					ToggleMainMenuUI(true);
 					break;
 				}
 			case GameState.CharacterSelect:
 				{
+					Cursor.lockState = CursorLockMode.None;
+					Cursor.visible = true;
 					ToggleCharacterSelectUI(true);
 					break;
 				}
@@ -113,6 +164,8 @@ public class UIManager : Singleton<UIManager>
 				}
 			case GameState.Gameplay:
 				{
+					Cursor.lockState = CursorLockMode.Locked;
+					Cursor.visible = false;
 					TogglePlayerUI(true);
 					ToggleAdditionalUI(true);
 					if (FindObjectOfType<RoundController>())
@@ -123,6 +176,8 @@ public class UIManager : Singleton<UIManager>
 				}
 			case GameState.Paused:
 				{
+					Cursor.lockState = CursorLockMode.None;
+					Cursor.visible = true;
 					TogglePauseUI(true);
 					break;
 				}
