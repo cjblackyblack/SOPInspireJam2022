@@ -10,6 +10,7 @@ public class UIManager : Singleton<UIManager>
 	public GameObject MainMenuUI;
 	public GameObject CharacterSelectUI;
 	public GameObject LoadingUI;
+	public GameObject StaticUI;
 	public GameObject PlayerUI;
 	public GameObject AdditionalUI;
 	public GameObject PausedUI;
@@ -90,6 +91,7 @@ public class UIManager : Singleton<UIManager>
 		ToggleGameOverUI(false);
 		ToggleCreditsUI(false);
 		ToggleControlsUI(false);
+		FlashStatic();
 
 		CurrentGameState = newGameState;
 		switch (CurrentGameState)
@@ -113,8 +115,8 @@ public class UIManager : Singleton<UIManager>
 				{
 					TogglePlayerUI(true);
 					ToggleAdditionalUI(true);
-					if(FindObjectOfType<RoundController>())
-					FindObjectOfType<RoundController>().StartRound(); //yes i see the spaghetti here no i will not be fixing it
+					if (FindObjectOfType<RoundController>())
+						FindObjectOfType<RoundController>().StartRound(); //yes i see the spaghetti here no i will not be fixing it
 					CameraManager.Instance.SetTarget(PlayerManager.Instance.PlayerObject.TargetPosiitions[0].transform);
 
 					break;
@@ -243,9 +245,23 @@ public class UIManager : Singleton<UIManager>
 			GameOverCountdownText.text = "1";
 			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[1]);
 			yield return new WaitForSecondsRealtime(1f);
+			GameOverCountdownText.text = "0";
 			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[0]);
 			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.gameObject.SetActive(false);
+		}
+	}
+
+	public void FlashStatic()
+	{
+		StartCoroutine(FlashStaticCoroutine());
+		IEnumerator FlashStaticCoroutine()
+		{
+			StaticUI.gameObject.SetActive(true);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.Static);
+			yield return new WaitForSecondsRealtime(0.15f);
+			GameManager.Instance.SFXSource.Stop();
+			StaticUI.gameObject.SetActive(false);
 		}
 	}
 }

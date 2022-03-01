@@ -23,6 +23,8 @@ public class GameManager : Singleton<GameManager>
 	public AudioClip LoseTrack;
 	public AudioClip[] CountdownClips;
 	public AudioClip[] Pogs;
+	public AudioClip Static;
+	public AudioClip[] Beeps;
 	public override void Start()
 	{
 		base.Start();
@@ -127,6 +129,9 @@ public class GameManager : Singleton<GameManager>
 			yield return new WaitForSecondsRealtime(3f);
 			SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
 		}
+		UIManager.Instance.ToggleLoadingUI(false);
+		UIManager.Instance.ToggleCreditsUI(true);
+		//StartCoroutine(UIManager.Instance.S)
 	}
 
 	void LoadBattleSceneAsync(int index)

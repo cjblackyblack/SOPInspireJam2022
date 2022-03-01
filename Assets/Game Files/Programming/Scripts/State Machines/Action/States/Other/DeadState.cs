@@ -13,7 +13,7 @@ public class DeadState : SmartState
 		base.OnEnter(smartObject);
 
 		smartObject.OrientationMethod = OrientationMethod.TowardsMovement;
-
+		smartObject.Target = null;
 		smartObject.InputVector = Vector3.zero;
 		smartObject.MovementVector = Vector3.zero;
 		smartObject.StoredMovementVector = Vector3.zero;

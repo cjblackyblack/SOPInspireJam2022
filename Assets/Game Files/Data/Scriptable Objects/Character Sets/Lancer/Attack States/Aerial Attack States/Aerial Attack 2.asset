@@ -31,8 +31,8 @@ MonoBehaviour:
     Time: 120
     Toggle: 0
   SFX:
-  - Time: 12
-    SFX: {fileID: 11400000, guid: 56be89a7018ac3644be8a5abc485ae54, type: 2}
+  - SFX: {fileID: 11400000, guid: 56be89a7018ac3644be8a5abc485ae54, type: 2}
+    Time: 12
   IASA: 120
   FollowUpState: {fileID: 11400000, guid: daf3c690ec08a5642a76efbdb70ac82c, type: 2}
   LandState: {fileID: 11400000, guid: cfb0fd961008b2245925cc0ff36be91f, type: 2}
@@ -335,7 +335,7 @@ MonoBehaviour:
     HitboxGroup: 1
     ActiveFrames: {x: 12, y: 120}
     StatusEffects: []
-    Damage: 0
+    Damage: 12
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
