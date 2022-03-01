@@ -24,6 +24,7 @@ public class UIManager : Singleton<UIManager>
 	public override void Start()
 	{
 		base.Start();
+		//ChangeGameState(GameState.Start);
 	}
 
 	public void ToggleMainMenuUI(bool enabled)

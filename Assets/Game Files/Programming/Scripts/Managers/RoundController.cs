@@ -27,6 +27,7 @@ public class RoundController : MonoBehaviour
 		//GameEventManager.Instance.playRoundStartTimeline += StartIntroduction;\
 		//StartRound();
 		GameManager.Instance.CurrentRoundStartController = this;
+		
 
 	}
 
@@ -62,6 +63,8 @@ public class RoundController : MonoBehaviour
 		if (win)
 		{
 			Director.playableAsset = WinTimeline;
+			Director.SetGenericBinding(WinTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
+			Director.SetGenericBinding(WinTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
 			GameManager.Instance.MusicSource.Stop();
 			GameManager.Instance.MusicSource.clip = GameManager.Instance.WinTrack;
 			GameManager.Instance.MusicSource.Play();
@@ -70,11 +73,12 @@ public class RoundController : MonoBehaviour
 		else
 		{
 			Director.playableAsset = LoseTimeline;
+			Director.SetGenericBinding(LoseTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
+			Director.SetGenericBinding(LoseTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
 			GameManager.Instance.GameOver();
 		}
+		PlayerHUDManager.Instance.EndRound();
 		Director.extrapolationMode = DirectorWrapMode.Hold;
-		Director.SetGenericBinding(WinTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
-		Director.SetGenericBinding(WinTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
 		Director.Play();
 		started = false;
 	}
