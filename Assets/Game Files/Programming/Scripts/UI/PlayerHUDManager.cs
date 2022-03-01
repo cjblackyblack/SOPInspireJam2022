@@ -60,11 +60,13 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 
     private void OnEnable() {
         Application.onBeforeRender += SetLineRenderer;
+        TargetingManager.Instance.OnSwitchTarget += UpdateTarget;
         roundTimerText.text = "";
     }
 
     private void OnDisable() {
         Application.onBeforeRender -= SetLineRenderer;
+        TargetingManager.Instance.OnSwitchTarget -= UpdateTarget;
     }
 
     private void LateUpdate() {
@@ -123,6 +125,14 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
         displayUI = active;
         playerHealthBar.gameObject.SetActive(active);
         roundTimerText.gameObject.SetActive(active);
+    }
+
+    private void UpdateTarget() {
+        hasTarget = TargetingManager.Instance.Target != null;
+        if(hasTarget)
+            OnTargetAcquired();
+        else
+            OnTargetLost();
     }
 
     private void OnTargetAcquired() {

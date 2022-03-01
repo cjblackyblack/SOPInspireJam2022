@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using System;
 
 public class TargetingManager : Singleton<TargetingManager>
 {
@@ -33,6 +34,8 @@ public class TargetingManager : Singleton<TargetingManager>
 	public Sprite AutoSprite;
 	public Sprite LockSprite;
 	public CameraLookTarget TargetGroup;
+
+	public Action OnSwitchTarget;
 
 	private void Update()
 	{
@@ -212,5 +215,6 @@ public class TargetingManager : Singleton<TargetingManager>
 		Target = targetableObject;
 		TargetGroup.target = targetableObject.transform;
 		PlayerManager.Instance.PlayerObject.Target = Target;
+		OnSwitchTarget?.Invoke();
 	}
 }
