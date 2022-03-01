@@ -997,7 +997,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 7755709750318473878}
   Stats:
-    HP: 1
+    HP: 220
     MaxHP: 220
     MP: 0
     MaxMP: 0
