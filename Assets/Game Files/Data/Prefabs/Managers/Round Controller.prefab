@@ -282,7 +282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121178479701359204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.42, z: -5}
+  m_LocalPosition: {x: 0, y: 0.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1121178479416757607}
@@ -723,7 +723,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartTimeline: {fileID: 11400000, guid: 992cdd517ca1fb741bc82f97f2984fe8, type: 2}
-  FinishTimeline: {fileID: 11400000, guid: 5abe4ce7eb4f5624ba265975381d30ce, type: 2}
+  WinTimeline: {fileID: 11400000, guid: 5abe4ce7eb4f5624ba265975381d30ce, type: 2}
+  LoseTimeline: {fileID: 11400000, guid: 4ca25f1d22e4fbd43bc02fa67138dd8f, type: 2}
   RoundEndCamera: {fileID: 1121178481050824537}
   SpawnPoints:
   - {fileID: 1121178479701359205}
@@ -760,6 +761,10 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -9165592797782472236, guid: 5abe4ce7eb4f5624ba265975381d30ce, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 6483755621435624103, guid: 4ca25f1d22e4fbd43bc02fa67138dd8f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -9165592797782472236, guid: 4ca25f1d22e4fbd43bc02fa67138dd8f, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - b54e9b776c201f449bcbb6439818382d: {fileID: 1121178480017061850}
@@ -787,6 +792,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3264afaaefc5272499333bd7802c943c, type: 2}
     - {fileID: 11400000, guid: f790e8eca7e431b4bb556b0b533e1a77, type: 2}
     - {fileID: 11400000, guid: a4a1df4142fbe7445bd47a98882a5f18, type: 2}
+    - {fileID: 11400000, guid: 1480d403f7ad44a4d96797cb0b71badf, type: 2}
+    - {fileID: 11400000, guid: 7d1434ced83202742a716775e43db697, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -821,6 +828,34 @@ MonoBehaviour:
         - m_Target: {fileID: 1121178480303638736}
           m_TargetAssemblyTypeName: RoundController, Assembly-CSharp
           m_MethodName: NextRound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1121178480303638736}
+          m_TargetAssemblyTypeName: RoundController, Assembly-CSharp
+          m_MethodName: LeaveRound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1121178480303638736}
+          m_TargetAssemblyTypeName: RoundController, Assembly-CSharp
+          m_MethodName: StartCountdown
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1171,7 +1206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121178480971622567}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000035762784}
-  m_LocalPosition: {x: 0, y: 1.42, z: 5}
+  m_LocalPosition: {x: 0, y: 0.5, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1121178479416757607}

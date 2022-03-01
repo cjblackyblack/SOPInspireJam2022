@@ -8,6 +8,8 @@ public class StandardExitProjectileState : ProjectileState
 	{
 		projectileObject.CurrentFrame = -1;
 		projectileObject.CurrentTime = -1;
+		if (projectileObject.HurtFX != null)
+			Instantiate(projectileObject.HurtFX, projectileObject.transform.position, Quaternion.identity);
 	}
 
 	public override void OnExit(ProjectileObject projectileObject)

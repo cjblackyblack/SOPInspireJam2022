@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-588524
+  m_Name: pb_Mesh-4888860
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -608,10 +608,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1121178479701359205, guid: a460d9d5a9b0bee4585b09c23dc71bdd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1121178479835037179, guid: a460d9d5a9b0bee4585b09c23dc71bdd, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.6737748
@@ -675,10 +671,6 @@ PrefabInstance:
     - target: {fileID: 1121178480303638741, guid: a460d9d5a9b0bee4585b09c23dc71bdd, type: 3}
       propertyPath: m_Name
       value: Round Controller
-      objectReference: {fileID: 0}
-    - target: {fileID: 1121178480971622560, guid: a460d9d5a9b0bee4585b09c23dc71bdd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a460d9d5a9b0bee4585b09c23dc71bdd, type: 3}

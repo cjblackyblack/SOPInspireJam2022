@@ -205,7 +205,7 @@ public class StandardTravelProjectileState : ProjectileState
 
 	void CreateHitFX(int index, CombatBox hitbox)
 	{
-		Instantiate(HitParticles[index], hitbox.transform.position, Quaternion.identity);
+		//Instantiate(HitParticles[index], hitbox.transform.position, Quaternion.identity);
 		HitSFX.PlaySFX(hitbox.SourceObject);
 	}
 

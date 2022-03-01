@@ -74,6 +74,15 @@ public class GameManager : Singleton<GameManager>
 
 	}
 
+	public void ResetLevel()
+	{
+		UIManager.Instance.ChangeGameState(GameState.Loading);
+		UnLoadSceneAsync(BattleScene);
+		SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
+		BattleScene++;
+		UIManager.Instance.ChangeGameState(GameState.Start);
+	}
+
 	public void GameWin()
 	{
 

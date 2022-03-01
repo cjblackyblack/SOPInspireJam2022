@@ -10,7 +10,8 @@ public class RoundController : MonoBehaviour
 {
 	public PlayableDirector Director => GetComponent<PlayableDirector>();
 	public TimelineAsset StartTimeline;
-	public TimelineAsset FinishTimeline;
+	public TimelineAsset WinTimeline;
+	public TimelineAsset LoseTimeline;
 	public CinemachineVirtualCamera RoundEndCamera;
 	public Transform[] SpawnPoints;
 	public GameObject[] Opponents;
@@ -58,25 +59,23 @@ public class RoundController : MonoBehaviour
 
 	public void FinishRound(bool win)
 	{
-		Director.playableAsset = FinishTimeline;
-		Director.extrapolationMode = DirectorWrapMode.Hold;
-		Director.SetGenericBinding(FinishTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
-		Director.SetGenericBinding(FinishTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
-		Director.Play();
-		PlayerHUDManager.Instance.EndRound();
 		if (win)
 		{
+			Director.playableAsset = WinTimeline;
 			GameManager.Instance.MusicSource.Stop();
 			GameManager.Instance.MusicSource.clip = GameManager.Instance.WinTrack;
 			GameManager.Instance.MusicSource.Play();
-			//GameManager.Instance.GameWin();
-			Debug.Log("gamewin");
+
 		}
 		else
 		{
+			Director.playableAsset = LoseTimeline;
 			GameManager.Instance.GameOver();
-			Debug.Log("gameover");
 		}
+		Director.extrapolationMode = DirectorWrapMode.Hold;
+		Director.SetGenericBinding(WinTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
+		Director.SetGenericBinding(WinTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
+		Director.Play();
 		started = false;
 	}
 
@@ -88,9 +87,18 @@ public class RoundController : MonoBehaviour
 			GameManager.Instance.GameWin();
 	}
 
-	public void PlaceEntities()
+	public void LeaveRound()
 	{
+		GameManager.Instance.ResetLevel();
+	}
 
+	public void StartCountdown()
+	{
+		UIManager.Instance.RoundStartCountdown();
+	}
+
+	public void PlaceEntities()
+	{ 
 		GameObject player = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancer : GameManager.Instance.PlayerSword, SpawnPoints[0].position, SpawnPoints[0].rotation);
 		PlayerManager.Instance.PlayerController = player.GetComponent<PlayerController>();
 		PlayerManager.Instance.PlayerObject = player.GetComponent<SmartObject>();
