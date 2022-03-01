@@ -16,6 +16,14 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 15
+  VFX:
+  - Time: 5
+    VFX: {fileID: 5523107475336352439, guid: 02d3124f9a741184b97b0fdd4a679881, type: 3}
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Local: 0
+  BodyVFX: []
+  SFX: []
   JumpFrame: 5
   JumpSquatFriction: 0.75
   JumpPower: 12

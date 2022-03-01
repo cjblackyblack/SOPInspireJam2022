@@ -10,6 +10,7 @@ public class StandardTravelProjectileState : ProjectileState
 	public HitboxData[] hitboxes;
 	public TangibilityFrames[] TangibilityFrames;
 	public GameObject[] HitParticles = new GameObject[4];// match index to PhysicalTangibility Enum for reaction none for intangible ever
+	public SFX HitSFX;
 	public bool Speculative;
 	public override void OnEnter(ProjectileObject projectileObject)
 	{
@@ -197,12 +198,15 @@ public class StandardTravelProjectileState : ProjectileState
 				}
 				break;
 		}
+		projectileObject.CurrentTime = MaxTime + 100;
+		projectileObject.CurrentFrame = MaxTime + 100;
 		//Instantiate(HitParticles[(int)hitBox.CurrentBoxTangibility], hitBox.transform.position, Quaternion.identity);
 	}
 
 	void CreateHitFX(int index, CombatBox hitbox)
 	{
 		Instantiate(HitParticles[index], hitbox.transform.position, Quaternion.identity);
+		HitSFX.PlaySFX(hitbox.SourceObject);
 	}
 
 	private void OnValidate()

@@ -6,7 +6,8 @@ public class StandardExitProjectileState : ProjectileState
 {
 	public override void OnEnter(ProjectileObject projectileObject)
 	{
-		
+		projectileObject.CurrentFrame = -1;
+		projectileObject.CurrentTime = -1;
 	}
 
 	public override void OnExit(ProjectileObject projectileObject)

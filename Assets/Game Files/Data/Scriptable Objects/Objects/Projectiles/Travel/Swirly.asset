@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427c29b21afc3354681ad5c10644cbdb, type: 3}
   m_Name: Swirly
   m_EditorClassIdentifier: 
-  MaxTime: 120
+  MaxTime: 360
   ExitState: {fileID: 11400000, guid: f3d83dba00fad6840b80dc13714d3f03, type: 2}
   MotionCurve:
     ForwardCurve:
@@ -20,7 +20,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 5
+        value: 8
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -29,7 +29,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 5
+        value: 8
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -164,7 +164,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -172,13 +172,31 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
+        time: 9.930395
+        value: 0
+        inSlope: -0.00046066672
+        outSlope: 0.021720568
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.7850467
+        outWeight: 0.033726808
+      - serializedVersion: 3
+        time: 90
         value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
+        inSlope: 0.00048515957
+        outSlope: 0.00048515957
+        tangentMode: 1
         weightedMode: 0
         inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 120
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -234,7 +252,7 @@ MonoBehaviour:
     TurnAroundTime: 0
     TrackingResistance: 0
   hitboxes:
-  - MaxTime: 120
+  - MaxTime: 360
     ActionTarget: 2
     RefreshID: 1
     ShareID: 0
@@ -242,14 +260,14 @@ MonoBehaviour:
     ShareIncomingHitboxes: 0
     Hitbox: 0
     HitboxGroup: 1
-    ActiveFrames: {x: 0, y: 100}
+    ActiveFrames: {x: 0, y: 360}
     StatusEffects: []
-    Damage: 0
+    Damage: 5
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
     Unstoppable: 0
-    Hitstun: 0
+    Hitstun: 10
     HitStopTime: 0
     HitstopType: 0
     BreakthroughType: 0
@@ -260,8 +278,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c5f583890bd62744aaaa6cccd8409ef4, type: 2}
   TangibilityFrames: []
   HitParticles:
-  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7605637703026390954, guid: 0757e2ba64a1f6a4aaa500ee04c6aea3, type: 3}
+  - {fileID: 7605637703026390954, guid: 0757e2ba64a1f6a4aaa500ee04c6aea3, type: 3}
+  - {fileID: 7605637703026390954, guid: 0757e2ba64a1f6a4aaa500ee04c6aea3, type: 3}
+  - {fileID: 7605637703026390954, guid: 0757e2ba64a1f6a4aaa500ee04c6aea3, type: 3}
+  HitSFX: {fileID: 11400000, guid: 5653521878809c94586e771693560e6f, type: 2}
   Speculative: 0

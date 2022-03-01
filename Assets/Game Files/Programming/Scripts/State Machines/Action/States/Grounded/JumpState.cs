@@ -15,7 +15,6 @@ public class JumpState : SmartState
     public MotionCurve MotionCurve;
 
 
-
     public override void OnEnter(SmartObject smartObject)
 	{
         if (((smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.GroundedShoot)|| smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.AerialShoot) && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Jump)

@@ -14,7 +14,7 @@ public class AerialAttackState : SmartState
 	public HitboxData[] hitboxes;
 	public TangibilityFrames[] TangibilityFrames;
 	public GameObject[] HitParticles = new GameObject[4];// match index to PhysicalTangibility Enum for reaction none for intangible ever
-
+	public SFX HitFX;
 	public float EntryFriction;
 
 	public override void OnEnter(SmartObject smartObject)
@@ -219,6 +219,7 @@ public class AerialAttackState : SmartState
 	void CreateHitFX(int index, CombatBox hitbox)
 	{
 		Instantiate(HitParticles[index], hitbox.transform.position, Quaternion.identity);
+		HitFX.PlaySFX(hitbox.SourceObject);
 	}
 
 	private void OnValidate()

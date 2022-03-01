@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6e22f96f2be07429176dfa1a361d67, type: 3}
-  m_Name: SFX - Test
+  m_Name: SFX - Melee Swing
   m_EditorClassIdentifier: 
-  PossibleClips: []
-  PitchRange: {x: 0, y: 0}
+  PossibleClips:
+  - {fileID: 8300000, guid: e07b5f4df45400c4fb6980749192a3f9, type: 3}
+  PitchRange: {x: 0.8, y: 1.1}

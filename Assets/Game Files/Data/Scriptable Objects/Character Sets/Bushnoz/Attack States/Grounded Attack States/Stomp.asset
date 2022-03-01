@@ -15,13 +15,18 @@ MonoBehaviour:
   AnimationState: Stomp
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
-  MaxTime: 70
+  MaxTime: 80
+  VFX:
+  - VFX: {fileID: 5523107475336352439, guid: fe689328e78660149a72dffebd8f851b, type: 3}
+    Position: {x: 3, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Time: 62
+    Local: 0
+  BodyVFX: []
+  SFX: []
   JASA: 2259
   IASA: 70
   FollowUpState: {fileID: 0}
-  VFX: []
-  BodyVFX: []
-  SFX: []
   MotionCurve:
     ForwardCurve:
       serializedVersion: 2
@@ -242,7 +247,7 @@ MonoBehaviour:
     TurnAroundTime: 10
     TrackingResistance: 0
   hitboxes:
-  - MaxTime: 70
+  - MaxTime: 80
     ActionTarget: 2
     RefreshID: 1
     ShareID: 1
@@ -250,9 +255,9 @@ MonoBehaviour:
     ShareIncomingHitboxes: 1
     Hitbox: 0
     HitboxGroup: 1
-    ActiveFrames: {x: 55, y: 60}
+    ActiveFrames: {x: 62, y: 65}
     StatusEffects: []
-    Damage: 1
+    Damage: 15
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
@@ -269,3 +274,5 @@ MonoBehaviour:
   TangibilityFrames: []
   HitParticles:
   - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  HitFX: {fileID: 11400000, guid: 8143ff93377cd8b459947b83fe436c3f, type: 2}
+  Projectiles: []

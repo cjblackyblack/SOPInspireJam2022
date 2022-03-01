@@ -16,18 +16,20 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 40
+  VFX: []
+  BodyVFX:
+  - BodyVFX: 0
+    Time: 8
+    Toggle: 1
+  - BodyVFX: 0
+    Time: 25
+    Toggle: 0
+  SFX:
+  - Time: 8
+    SFX: {fileID: 11400000, guid: 56be89a7018ac3644be8a5abc485ae54, type: 2}
   JASA: 10
   IASA: 30
   FollowUpState: {fileID: 11400000, guid: 559d63d46bdbb9f479c040a736bd5df0, type: 2}
-  VFX: []
-  BodyVFX:
-  - Time: 8
-    Toggle: 1
-    BodyVFX: 0
-  - Time: 25
-    Toggle: 0
-    BodyVFX: 0
-  SFX: []
   MotionCurve:
     ForwardCurve:
       serializedVersion: 2
@@ -357,7 +359,7 @@ MonoBehaviour:
     HitboxGroup: 1
     ActiveFrames: {x: 8, y: 23}
     StatusEffects: []
-    Damage: 2
+    Damage: 3
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
@@ -377,3 +379,4 @@ MonoBehaviour:
   - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
   - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
   - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  HitFX: {fileID: 11400000, guid: 8143ff93377cd8b459947b83fe436c3f, type: 2}

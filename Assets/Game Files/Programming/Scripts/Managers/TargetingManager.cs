@@ -28,6 +28,8 @@ public class TargetingManager : Singleton<TargetingManager>
 
 	public RectTransform TargetingRect;
 	public RectTransform RenderingRect;
+	public RectTransform RenderingRectImage;
+	public float RotateSpeed;
 	public Sprite AutoSprite;
 	public Sprite LockSprite;
 	public CameraLookTarget TargetGroup;
@@ -44,6 +46,7 @@ public class TargetingManager : Singleton<TargetingManager>
 		{
 			TargetingRect.position = new Vector2(CameraManager.Instance.MainCamera.WorldToScreenPoint(Target.transform.position).x, CameraManager.Instance.MainCamera.WorldToScreenPoint(Target.transform.position).y);
 			RenderingRect.transform.localPosition = Vector3.Lerp(RenderingRect.transform.localPosition, TargetingRect.transform.localPosition, LerpSpeed);
+			RenderingRectImage.transform.localEulerAngles += (Vector3.forward * RotateSpeed * Time.deltaTime);
 			if (!RenderingRect.gameObject.activeSelf)
 			{
 				RenderingRect.gameObject.SetActive(true);
@@ -52,6 +55,7 @@ public class TargetingManager : Singleton<TargetingManager>
 		}
 		else
 		{
+			RenderingRectImage.transform.localRotation = Quaternion.Euler(Vector3.zero);
 			if (RenderingRect.gameObject.activeSelf)
 				RenderingRect.gameObject.SetActive(false);
 		}

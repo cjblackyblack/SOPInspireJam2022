@@ -13,10 +13,13 @@ public class ProjectileObject : PhysicalObject
     public int MaxHitConfirms;
 
     public bool AlignToGravity;
+    public bool DestroyOnDamage;
+    public GameObject HurtFX;
     public override void Start()
     {
         //base.Start();
         Initialize();
+        gameObject.name = BaseObjectProperties.Name;
     }
 
     // Update is called once per frame
@@ -65,6 +68,9 @@ public class ProjectileObject : PhysicalObject
         CanTrack = false;
         CanBounce = false;
         trackingTimer = CurrentFrame + (damageInstance.hitStun * 2);
+        Instantiate(HurtFX, transform.position, Quaternion.identity);
+        if (DestroyOnDamage)
+            Destroy(this.gameObject);
     }
 
     private void Initialize()

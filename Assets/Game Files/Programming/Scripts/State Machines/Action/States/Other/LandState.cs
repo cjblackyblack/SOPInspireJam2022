@@ -28,7 +28,9 @@ public class LandState : SmartState
 
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
-		//smartObject.StoredMovementVector = smartObject.Motor.CharacterForward;
+		CreateVFX(smartObject);
+		CreateBodyVFX(smartObject);
+		CreateSFX(smartObject);
 	}
 
 	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)

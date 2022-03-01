@@ -13,6 +13,8 @@ public class Gun : MonoBehaviour
 	public GunData GunData;
 	float inactiveTimer;
 	public GameObject GunFX;
+	public SFX ShootFX;
+	public bool OneShot;
 	private void Update()
 	{
 		if (!Active)
@@ -35,6 +37,14 @@ public class Gun : MonoBehaviour
 		if (!GunData || !Active)
 			return;
 
+		if (Active && OneShot && CurrentTime > 0)
+		{
+			Active = false;
+			CurrentTime = 0;
+			CurrentFrame = 0;
+			return;
+		}
+
 		CurrentTime += SourceObject.LocalTimeScale;
 		if (CurrentTime - CurrentFrame >= 1)
 		{
@@ -45,15 +55,30 @@ public class Gun : MonoBehaviour
 				if (CurrentFrame == bulletData.Frame)
 				{ 
 					GameObject bullet = Instantiate(bulletData.Bullet, transform.position,Quaternion.identity);
-					GunFX.SetActive(false);
-					GunFX.SetActive(true);
-
+					if (GunFX)
+					{
+						GunFX.SetActive(false);
+						GunFX.SetActive(true);
+					}
+					ShootFX.PlaySFX(SourceObject);
+					bullet.GetComponent<TangibleObject>().BaseObjectProperties.BaseAlliance = SourceObject.SmartObjectProperties.Alliance;
 					if (SourceObject.GetComponent<PlayerController>())
 					{
 						bullet.transform.rotation = CameraManager.Instance.MainCamera.transform.rotation * Quaternion.Euler(bulletData.Direction);
 						if (SourceObject.Motor.GroundingStatus.IsStableOnGround && CameraManager.Instance.FreeLookCam.m_YAxis.Value > 0.5f)
 							bullet.transform.rotation = SourceObject.transform.rotation;
 					}
+					else
+					{
+						if (SourceObject.Target)
+						{
+							bullet.GetComponent<ProjectileObject>().Target = SourceObject.Target;
+							bullet.transform.rotation = SourceObject.transform.rotation * Quaternion.Euler(bullet.transform.position - SourceObject.Target.transform.position) * Quaternion.Euler(bulletData.Direction);
+						}
+						else
+							bullet.transform.rotation = Quaternion.Euler(SourceObject.Motor.CharacterForward) * Quaternion.Euler(bulletData.Direction);
+					}
+
 				}
 			}
 		}

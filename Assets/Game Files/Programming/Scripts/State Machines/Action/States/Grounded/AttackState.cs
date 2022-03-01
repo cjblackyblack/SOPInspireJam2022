@@ -15,7 +15,8 @@ public class AttackState : SmartState
 	public HitboxData[] hitboxes;
 	public TangibilityFrames[] TangibilityFrames;
 	public GameObject[] HitParticles = new GameObject[4];// match index to PhysicalTangibility Enum for reaction none for intangible ever
-
+	public SFX HitFX;
+	public ProjectileContainer[] Projectiles;
 	public override void OnEnter(SmartObject smartObject)
 	{
 		base.OnEnter(smartObject);
@@ -32,6 +33,10 @@ public class AttackState : SmartState
 		CombatUtilities.ResetTangibilityFrames(smartObject, TangibilityFrames);
 		for (int i = 0; i < BodyVFX.Length; i++)
 				smartObject.ToggleBodyVFX(BodyVFX[i].BodyVFX, false);
+
+		for (int i = 0; i < Projectiles.Length; i++)
+				smartObject.Guns[Projectiles[i].Transform].Active = false;
+		
 	}
 
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
@@ -39,6 +44,7 @@ public class AttackState : SmartState
 		//smartObject.MovementVector = smartObject.InputVector;
 		MotionCurve.GravityMod(smartObject);
 		CombatUtilities.CreateTangibilityFrames(smartObject, TangibilityFrames);
+		CreateProjectiles(smartObject);
 	}
 
 	public override void UpdateRotation(SmartObject smartObject, ref Quaternion currentRotation, float deltaTime)
@@ -204,11 +210,24 @@ public class AttackState : SmartState
 	}
 
 
+	public void CreateProjectiles(SmartObject smartObject)
+	{
+		if (Projectiles == null || Projectiles.Length == 0)
+			return;
 
+		for(int i = 0; i < Projectiles.Length; i++)
+		{
+			if (smartObject.CurrentFrame == Projectiles[i].Time)
+			{
+				smartObject.Guns[Projectiles[i].Transform].Active = Projectiles[i].Toggle;
+			}
+		}
+	}
 
 	void CreateHitFX(int index, CombatBox hitbox)
 	{
 		Instantiate(HitParticles[index], hitbox.transform.position, Quaternion.identity);
+		HitFX.PlaySFX(hitbox.SourceObject);
 	}
 
 	private void OnValidate()
@@ -221,6 +240,4 @@ public class AttackState : SmartState
 			hitboxes[0].RefreshID = true;
 		}
 	}
-
-
 }

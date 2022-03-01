@@ -184,7 +184,8 @@ public class RoundController : MonoBehaviour
 		}
 		GameManager.Instance.MusicSource.Play();
 
-		if(enabled) {
+		if(enabled) 
+		{
 			PlayerHUDManager.Instance.StartRoundTimer(120);
         }
 	}

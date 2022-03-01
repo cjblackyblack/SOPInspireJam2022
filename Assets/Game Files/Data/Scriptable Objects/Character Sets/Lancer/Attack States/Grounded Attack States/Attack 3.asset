@@ -29,7 +29,9 @@ MonoBehaviour:
   - BodyVFX: 0
     Time: 30
     Toggle: 0
-  SFX: []
+  SFX:
+  - Time: 19
+    SFX: {fileID: 11400000, guid: 2a9e58d8fe4612142be5e65cca2fbbb4, type: 2}
   JASA: 25
   IASA: 38
   FollowUpState: {fileID: 11400000, guid: 3c32493d6419f8949ba45daa65262f78, type: 2}
@@ -362,7 +364,7 @@ MonoBehaviour:
     HitboxGroup: 1
     ActiveFrames: {x: 19, y: 30}
     StatusEffects: []
-    Damage: 3
+    Damage: 6
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
@@ -406,3 +408,4 @@ MonoBehaviour:
   - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
   - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
   - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  HitFX: {fileID: 11400000, guid: 8143ff93377cd8b459947b83fe436c3f, type: 2}
