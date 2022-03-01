@@ -28,10 +28,11 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
     [Header("Other")]
     [SerializeField] private RectTransform[] lineAnchors;
     private bool hasTarget = false;
-
-    private float roundTimer;
+    public float RoundTime;
+    public float RoundTimer;
     private bool roundActive;
     private bool displayUI = true;
+    public float SpeedrunTime;
 
     // ---
 
@@ -69,9 +70,9 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
     private void LateUpdate() {
         // Round timer
         if(roundActive) {
-            if(roundTimer > 0) {
-                roundTimerText.text = $"{(int)roundTimer:00}";
-                roundTimer -= Time.deltaTime;
+            if(RoundTimer > 0) {
+                roundTimerText.text = $"{(RoundTimer/RoundTime)*100:00.00}";
+                RoundTimer -= (RoundTimer/ RoundTime > 0.1f ? Time.deltaTime : (RoundTimer / RoundTime < 0.01f ? Time.deltaTime * 0.25f : Time.deltaTime * 0.65f));
             } else {
                 EndRound();
             }
@@ -80,7 +81,7 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
         // Total time
         totalTimeText.gameObject.SetActive(displayTotalTime && displayUI);
         if(displayTotalTime)
-            totalTimeText.text = FormatTime(Time.time);
+            totalTimeText.text = FormatTime(SpeedrunTime);
 
         // Distance line
         if(reticle.activeInHierarchy != hasTarget) {
@@ -91,7 +92,7 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
                 OnTargetLost();
         }
         if(_player && _target)
-            distanceText.text = $"{(int)Vector3.Distance(_player.transform.position, _target.transform.position)} m";
+            distanceText.text = $"{Mathf.Round((Vector3.Distance(_player.transform.position, _target.transform.position)) * 100f) / 100f} m";
     }
 
     // -----------------------------------------------------------------------------------------------------------
@@ -99,8 +100,8 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
     public void StartRoundTimer(float time) {
         if(roundActive)
             return;
-
-        roundTimer = time;
+        RoundTime = time;
+        RoundTimer = time;
         roundActive = true;
 
         _player = PlayerManager.Instance.PlayerController.gameObject;
@@ -108,8 +109,8 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
     }
 
     public void EndRound(bool invokeTimerEnd = false) {
-        roundTimer = 0;
-        roundTimerText.text = "00";
+        RoundTimer = 0;
+        //roundTimerText.text = "00";
         roundActive = false;
         //reticle.SetActive(false);
         OnTargetLost();

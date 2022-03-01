@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427c29b21afc3354681ad5c10644cbdb, type: 3}
   m_Name: Swirly
   m_EditorClassIdentifier: 
-  MaxTime: 360
+  MaxTime: 540
   ExitState: {fileID: 11400000, guid: f3d83dba00fad6840b80dc13714d3f03, type: 2}
   MotionCurve:
     ForwardCurve:
@@ -92,7 +92,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 6
+        value: 3
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -101,7 +101,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 6
+        value: 3
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -252,7 +252,7 @@ MonoBehaviour:
     TurnAroundTime: 0
     TrackingResistance: 0
   hitboxes:
-  - MaxTime: 360
+  - MaxTime: 540
     ActionTarget: 2
     RefreshID: 1
     ShareID: 0

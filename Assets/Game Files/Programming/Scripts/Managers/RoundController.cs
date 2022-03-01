@@ -19,7 +19,7 @@ public class RoundController : MonoBehaviour
 	public bool ReverseMatch;
 	public List<SmartObject> ActiveOpponents;
 	public bool FinalRound;
-	bool started;
+	bool started = false;
 
 	private void Start()
 	{
@@ -27,19 +27,23 @@ public class RoundController : MonoBehaviour
 		//GameEventManager.Instance.playRoundStartTimeline += StartIntroduction;\
 		//StartRound();
 		GameManager.Instance.CurrentRoundStartController = this;
-		
+
+		//PlayerHUDManager.Instance.OnRoundTimerEnd += EndTimerTrigger;
 
 	}
 
 	private void OnDestroy()
 	{
 		//GameEventManager.Instance.playRoundStartTimeline -= StartIntroduction;
+		//PlayerHUDManager.Instance.OnRoundTimerEnd -= EndTimerTrigger;
 	}
 
 	private void Update()
 	{
 		if (!started)
 			return;
+
+		PlayerHUDManager.Instance.SpeedrunTime += Time.deltaTime;
 
 			for (int i = ActiveOpponents.Count -1; i >= 0 ; i--)
 				if (ActiveOpponents[i].Stats.HP <= 0)
@@ -48,7 +52,7 @@ public class RoundController : MonoBehaviour
 		if (ActiveOpponents.Count == 0)
 			FinishRound(true);
 
-		if (PlayerManager.Instance.PlayerObject.Stats.HP <= 0)
+		if (PlayerManager.Instance.PlayerObject.Stats.HP <= 0 || (PlayerHUDManager.Instance.RoundTimer < 0f && started))
 			FinishRound(false);
 	}
 
@@ -58,6 +62,11 @@ public class RoundController : MonoBehaviour
 		StartIntroduction();
 	}
 
+	public void EndTimerTrigger()
+	{
+		
+		PlayerManager.Instance.PlayerObject.ActionStateMachine.ChangeActionState(PlayerManager.Instance.PlayerObject.LocomotionStateMachine.DeadState);
+	}
 	public void FinishRound(bool win)
 	{
 		if (win)
@@ -76,6 +85,8 @@ public class RoundController : MonoBehaviour
 			Director.SetGenericBinding(LoseTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
 			Director.SetGenericBinding(LoseTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
 			GameManager.Instance.GameOver();
+			if (PlayerHUDManager.Instance.RoundTimer <= 0)
+				EndTimerTrigger();
 		}
 		PlayerHUDManager.Instance.EndRound();
 		Director.extrapolationMode = DirectorWrapMode.Hold;
@@ -155,6 +166,8 @@ public class RoundController : MonoBehaviour
 
 	public void ToggleControls(bool enabled)
 	{
+
+		TargetingManager.Instance.RenderingRectImage.gameObject.SetActive(false);
 		foreach (SmartObject smartObject in EntityManager.Instance.Entities)
 		{
 			smartObject.InputVector = Vector3.zero;
@@ -188,18 +201,21 @@ public class RoundController : MonoBehaviour
 		//if (enabled)
 		//	CameraManager.Instance.ResetCamera();
 		started = enabled;
-		GameManager.Instance.MusicSource.loop = false;
-		GameManager.Instance.MusicSource.Stop();
+		//GameManager.Instance.MusicSource.loop = false;
+		
 		if (enabled)
 		{
+			GameManager.Instance.MusicSource.Stop();
 			GameManager.Instance.MusicSource.clip = GameManager.Instance.FightTrack;
 			GameManager.Instance.MusicSource.loop = true;
+			GameManager.Instance.MusicSource.Play();
 		}
-		GameManager.Instance.MusicSource.Play();
+
 
 		if(enabled) 
 		{
-			PlayerHUDManager.Instance.StartRoundTimer(120);
-        }
+			PlayerHUDManager.Instance.StartRoundTimer(180);
+			TargetingManager.Instance.RenderingRectImage.gameObject.SetActive(true);
+		}
 	}
 }

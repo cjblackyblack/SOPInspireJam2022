@@ -43,6 +43,9 @@ public class DeadState : SmartState
 		CreateSFX(smartObject);
 
 		if (smartObject.CurrentFrame >= MaxTime)
-			smartObject.CurrentFrame = 0;
+		{
+			smartObject.CurrentFrame = -1;
+			smartObject.CurrentFrame = -1;
+		}
 	}
 }

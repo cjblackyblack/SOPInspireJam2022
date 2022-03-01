@@ -464,7 +464,7 @@ MonoBehaviour:
     AirMoveSpeed: 0
     Luck: 0
   BaseObjectProperties:
-    Name: 
+    Name: Bushnoz
     Priority: 0
     BaseAlliance: 2
     chemistryMaterial: 0

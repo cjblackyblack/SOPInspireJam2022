@@ -21,7 +21,8 @@ public class GameManager : Singleton<GameManager>
 	public AudioClip FightTrack;
 	public AudioClip WinTrack;
 	public AudioClip LoseTrack;
-
+	public AudioClip[] CountdownClips;
+	public AudioClip[] Pogs;
 	public override void Start()
 	{
 		base.Start();
@@ -65,6 +66,7 @@ public class GameManager : Singleton<GameManager>
 
 	public void NextLevel()
 	{
+		MusicSource.Stop();
 		UIManager.Instance.ChangeGameState(GameState.Loading);
 		UnLoadSceneAsync(BattleScene);
 		SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
@@ -76,11 +78,18 @@ public class GameManager : Singleton<GameManager>
 
 	public void ResetLevel()
 	{
+		MusicSource.Stop();
 		UIManager.Instance.ChangeGameState(GameState.Loading);
 		UnLoadSceneAsync(BattleScene);
 		SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
-		BattleScene++;
-		UIManager.Instance.ChangeGameState(GameState.Start);
+		BattleScene = 1;
+		StartCoroutine(LoadMainMenuCoroutine());
+
+		IEnumerator LoadMainMenuCoroutine()
+		{
+			yield return new WaitForSecondsRealtime(3f);
+			UIManager.Instance.ChangeGameState(GameState.Start);
+		}
 	}
 
 	public void GameWin()
@@ -95,10 +104,12 @@ public class GameManager : Singleton<GameManager>
 		MusicSource.clip = LoseTrack;
 		MusicSource.Play();
 		UIManager.Instance.ChangeGameState(GameState.GameOver);
+		PlayerHUDManager.Instance.SpeedrunTime = 0;
 	}
 
 	public void LoadCreditsScene()
 	{
+		MusicSource.Stop();
 		UIManager.Instance.ChangeGameState(GameState.Loading);
 		UnLoadSceneAsync(BattleScene);
 		SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
@@ -113,12 +124,15 @@ public class GameManager : Singleton<GameManager>
 			{
 				yield return null;
 			}
+			yield return new WaitForSecondsRealtime(3f);
 			SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
 		}
 	}
 
 	void LoadBattleSceneAsync(int index)
 	{
+		MusicSource.Stop();
+		UIManager.Instance.ChangeGameState(GameState.Loading);
 		StartCoroutine(LoadSceneAsyncCoroutine(index));
 
 		IEnumerator LoadSceneAsyncCoroutine(int index)
@@ -129,8 +143,10 @@ public class GameManager : Singleton<GameManager>
 			{
 				yield return null;
 			}
+			yield return new WaitForSecondsRealtime(2f);
 			SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(index));
 			CurrentRoundStartController = FindObjectOfType<RoundController>();
+			yield return new WaitForSecondsRealtime(1f);
 			UIManager.Instance.ChangeGameState(GameState.Gameplay);
 
 		}

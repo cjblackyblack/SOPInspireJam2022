@@ -181,20 +181,29 @@ public class UIManager : Singleton<UIManager>
 	public void RoundStartCountdown()
 	{
 		StartCoroutine(Countdown());
+
 		IEnumerator Countdown()
 		{
+			ToggleStartCountdownUI(true);
 			StartCountdownText.gameObject.SetActive(true);
-			StartCountdownText.text = "Ready";
-			yield return new WaitForSecondsRealtime(1);
+			StartCountdownText.text = "READY";
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.Pogs[0]);
+			yield return new WaitForSecondsRealtime(1.5f);
 			StartCountdownText.text = "3";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[3]);
+			yield return new WaitForSecondsRealtime(1f);
 			StartCountdownText.text = "2";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[2]);
+			yield return new WaitForSecondsRealtime(1f);
 			StartCountdownText.text = "1";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[1]);
+			yield return new WaitForSecondsRealtime(1f);
 			StartCountdownText.text = "GO";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[0]);
+			yield return new WaitForSecondsRealtime(1f);
 			StartCountdownText.gameObject.SetActive(false);
+			StartCountdownUI.SetActive(false);
+			ToggleStartCountdownUI(false);
 		}
 	}
 
@@ -205,27 +214,37 @@ public class UIManager : Singleton<UIManager>
 		{
 			GameOverCountdownText.gameObject.SetActive(true);
 			GameOverCountdownText.text = "10";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[10]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.text = "9";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[9]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.text = "8";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[8]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.text = "7";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[7]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.text = "6";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[6]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.text = "5";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[5]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.text = "4";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[4]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.text = "3";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[3]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.text = "2";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[2]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.text = "1";
-			yield return new WaitForSecondsRealtime(1);
-			GameOverCountdownText.text = "0";
-			yield return new WaitForSecondsRealtime(1);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[1]);
+			yield return new WaitForSecondsRealtime(1f);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[0]);
+			yield return new WaitForSecondsRealtime(1f);
 			GameOverCountdownText.gameObject.SetActive(false);
 		}
 	}
