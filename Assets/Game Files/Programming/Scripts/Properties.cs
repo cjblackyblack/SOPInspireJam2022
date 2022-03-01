@@ -763,6 +763,6 @@ public class ProjectileContainer
 
 #region Gamework
 #region Managers
-public enum GameState { Start, CharacterSelect, Loading, Intro, Gameplay, Paused, Credits, GameOver, Quitting }
+public enum GameState { Start, CharacterSelect, Loading, Intro, Gameplay, Paused, Credits, GameOver, Quitting, Controls }
 #endregion
 #endregion

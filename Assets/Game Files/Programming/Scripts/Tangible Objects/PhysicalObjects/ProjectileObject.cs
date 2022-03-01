@@ -68,7 +68,8 @@ public class ProjectileObject : PhysicalObject
         CanTrack = false;
         CanBounce = false;
         trackingTimer = CurrentFrame + (damageInstance.hitStun * 2);
-        Instantiate(HurtFX, transform.position, Quaternion.identity);
+        if(HurtFX != null)
+            Instantiate(HurtFX, transform.position, Quaternion.identity);
         if (DestroyOnDamage)
             Destroy(this.gameObject);
     }
