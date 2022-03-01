@@ -12,6 +12,8 @@ public class BoostShootState : SmartState
 	public float DirectionControl;
 	public int CoyoteTime;
 
+
+
 	public override void OnEnter(SmartObject smartObject)
 	{
 		if (smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.Grounded && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Boost)
@@ -37,6 +39,7 @@ public class BoostShootState : SmartState
 
 		smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.GroundedShoot);
 		smartObject.MovementVector = smartObject.MovementVector == Vector3.zero ? smartObject.Motor.CharacterForward : smartObject.InputVector.normalized;
+		smartObject.ToggleBodyVFX(BodyVFX[0].BodyVFX, true);
 	}
 
 	public override void OnExit(SmartObject smartObject)
@@ -44,6 +47,8 @@ public class BoostShootState : SmartState
 
 		smartObject.GravityModifier = 1;
 		//CombatUtilities.ResetTangibilityFrames(smartObject, TangibilityFrames);
+		for (int i = 0; i < BodyVFX.Length; i++)
+			smartObject.ToggleBodyVFX(BodyVFX[i].BodyVFX, false);
 	}
 
 	public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
@@ -154,6 +159,10 @@ public class BoostShootState : SmartState
 	}
 	public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
 	{
+		CreateVFX(smartObject);
+		CreateBodyVFX(smartObject);
+		CreateSFX(smartObject);
+
 		base.AfterCharacterUpdate(smartObject, deltaTime);
 
 		//if (smartObject.CurrentFrame > MaxTime)

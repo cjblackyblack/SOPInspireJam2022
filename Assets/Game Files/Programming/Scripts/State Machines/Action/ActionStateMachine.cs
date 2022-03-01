@@ -32,6 +32,8 @@ public class ActionStateMachine : SerializedMonoBehaviour
 
 	public void ChangeActionState(ActionStates actionState)
 	{
+		if (CurrentActionState == smartObject.LocomotionStateMachine.DeadState)
+			return;
 		PreviousActionState = CurrentActionState;
 		PreviousActionEnum = CurrentActionEnum;
 		CurrentActionState.OnExit(smartObject);

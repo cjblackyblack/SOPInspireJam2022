@@ -16,12 +16,25 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 50
+  VFX:
+  - Time: 19
+    VFX: {fileID: 5743041894035771952, guid: ee62fd4574c7aac43bcc27fe822371ad, type: 3}
+    Position: {x: -0.6, y: 0.95, z: 1}
+    Rotation: {x: 0, y: 0, z: 0}
+    Local: 0
+  BodyVFX:
+  - BodyVFX: 0
+    Time: 19
+    Toggle: 1
+  - BodyVFX: 0
+    Time: 30
+    Toggle: 0
+  SFX:
+  - Time: 19
+    SFX: {fileID: 11400000, guid: 2a9e58d8fe4612142be5e65cca2fbbb4, type: 2}
   JASA: 25
   IASA: 38
   FollowUpState: {fileID: 11400000, guid: 3c32493d6419f8949ba45daa65262f78, type: 2}
-  VFX: []
-  BodyVFX: []
-  SFX: []
   MotionCurve:
     ForwardCurve:
       serializedVersion: 2
@@ -351,7 +364,7 @@ MonoBehaviour:
     HitboxGroup: 1
     ActiveFrames: {x: 19, y: 30}
     StatusEffects: []
-    Damage: 3
+    Damage: 6
     FlatDamage: 0
     IgnoreProtections: 0
     UseMagic: 0
@@ -391,7 +404,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c5f583890bd62744aaaa6cccd8409ef4, type: 2}
   TangibilityFrames: []
   HitParticles:
-  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
-  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
-  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
-  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  HitFX: {fileID: 11400000, guid: 8143ff93377cd8b459947b83fe436c3f, type: 2}

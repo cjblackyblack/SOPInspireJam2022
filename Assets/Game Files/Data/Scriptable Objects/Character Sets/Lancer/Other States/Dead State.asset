@@ -15,4 +15,18 @@ MonoBehaviour:
   AnimationState: Hurt 1
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
-  MaxTime: 10972
+  MaxTime: 60
+  VFX:
+  - Time: 0
+    VFX: {fileID: 6251439444875887205, guid: 73eaaa2b602b82f4588eb12a46607bb2, type: 3}
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Local: 0
+  BodyVFX: []
+  SFX:
+  - Time: 0
+    SFX: {fileID: 11400000, guid: 873c235a44c98aa41911c924c892fd06, type: 2}
+  - Time: 25
+    SFX: {fileID: 11400000, guid: 5653521878809c94586e771693560e6f, type: 2}
+  - Time: 50
+    SFX: {fileID: 11400000, guid: 5653521878809c94586e771693560e6f, type: 2}

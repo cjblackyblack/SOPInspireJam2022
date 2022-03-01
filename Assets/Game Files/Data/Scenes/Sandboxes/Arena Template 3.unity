@@ -353,7 +353,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 508c7bbced5b0d04dbfd36ca4af5eea1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0f4b1de0370aa6a4aa083af0605f1f20, type: 2}
+      objectReference: {fileID: 2100000, guid: 7681cc5cfa4c95c4ebdaf52073b36c2b, type: 2}
     - target: {fileID: 919132149155446097, guid: 508c7bbced5b0d04dbfd36ca4af5eea1, type: 3}
       propertyPath: m_Name
       value: skybox (2)
@@ -8834,7 +8834,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 508c7bbced5b0d04dbfd36ca4af5eea1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7681cc5cfa4c95c4ebdaf52073b36c2b, type: 2}
+      objectReference: {fileID: 2100000, guid: 0f4b1de0370aa6a4aa083af0605f1f20, type: 2}
     - target: {fileID: 919132149155446097, guid: 508c7bbced5b0d04dbfd36ca4af5eea1, type: 3}
       propertyPath: m_Name
       value: skybox

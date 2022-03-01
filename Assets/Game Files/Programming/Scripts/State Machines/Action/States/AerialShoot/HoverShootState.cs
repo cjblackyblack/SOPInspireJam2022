@@ -7,6 +7,7 @@ public class HoverShootState : SmartState
 {
     public float GravityMod;
     public int MinTime;
+
     public override void OnEnter(SmartObject smartObject)
     {
         if (smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.Aerial && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Jump)
@@ -31,6 +32,7 @@ public class HoverShootState : SmartState
 
         smartObject.AirJumps--;
         smartObject.GravityModifier = GravityMod;
+            smartObject.ToggleBodyVFX(BodyVFX[0].BodyVFX, true);
     }
 
     public override void OnExit(SmartObject smartObject)
@@ -38,6 +40,8 @@ public class HoverShootState : SmartState
         base.OnExit(smartObject);
         smartObject.ClimbingInfo.CanGrab = false;
         smartObject.GravityModifier = 1;
+        for (int i = 0; i < BodyVFX.Length; i++)
+            smartObject.ToggleBodyVFX(BodyVFX[i].BodyVFX, false);
     }
     public override void BeforeCharacterUpdate(SmartObject smartObject, float deltaTime)
     {
@@ -59,6 +63,9 @@ public class HoverShootState : SmartState
 
     public override void AfterCharacterUpdate(SmartObject smartObject, float deltaTime)
     {
+        CreateVFX(smartObject);
+        CreateBodyVFX(smartObject);
+        CreateSFX(smartObject);
 
         //if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
         //    smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);

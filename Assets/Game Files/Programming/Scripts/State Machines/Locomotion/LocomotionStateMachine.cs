@@ -43,6 +43,9 @@ public class LocomotionStateMachine : SerializedMonoBehaviour
 
 	public void ChangeLocomotionState(LocomotionStates locomotionState)
 	{
+		if (smartObject.ActionStateMachine.CurrentActionState == DeadState)
+			return;
+
 		NextLocomotionState = locomotionState;
 		PreviousLocomotionState = CurrentLocomotionState;
 		PreviousLocomotionEnum = CurrentLocomotionEnum;

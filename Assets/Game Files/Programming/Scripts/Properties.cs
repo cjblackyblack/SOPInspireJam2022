@@ -728,25 +728,34 @@ public enum BodyVFX {Weapon1, Weapon2, Boost, Jump, Hover }
 [System.Serializable]
 public class BodyVFXContainer
 {
+    public BodyVFX BodyVFX;
     public int Time;
     public bool Toggle;
-    public BodyVFX BodyVFX;
 }
 
 [System.Serializable]
 public class VFXContainer 
 {
-    public int Time;
     public GameObject VFX;
     public Vector3 Position;
     public Vector3 Rotation;
+    public int Time;
+    public bool Local;
 }
 
 [System.Serializable]
 public class SFXContainer 
 {
-    public int Time;
     public SFX SFX;
+    public int Time;
+}
+
+[System.Serializable]
+public class ProjectileContainer
+{
+    public int Transform;
+    public int Time;
+    public bool Toggle;
 }
 
 #endregion

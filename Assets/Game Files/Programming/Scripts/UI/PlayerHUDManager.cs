@@ -147,5 +147,4 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
         float sec = time - (hr * 3600) - (min * 60);
         return $"{(hr > 0 ? $"{hr}:" : "")}{min:00}:{sec:00.00}";
     }
-
 }

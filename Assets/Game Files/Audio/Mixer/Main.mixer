@@ -16,7 +16,10 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters: []
-  m_AudioMixerGroupViews: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - a01c91bbc534f414ab5e633897836b05
+    name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
@@ -34,6 +37,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
+  - {fileID: 6529946391372681356}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -61,5 +65,28 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: a05f9817bd6ada94f81aea525f8c4582
-  m_FloatValues: {}
+  m_FloatValues:
+    18d89c2353817e349866447cbc3edc62: 0.105
+    ec69aa75d6523b040baf476d3b0ab4ca: -40
+    1af848cc3ac4fb14b81f561d8c4b2265: 0
   m_TransitionOverrides: {}
+--- !u!244 &6529946391372681356
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 2584a08f0bc5b2c4da669b5ffee06c99
+  m_EffectName: Normalize
+  m_MixLevel: 5fc05f5cec4e25c49a8f4de3bd342637
+  m_Parameters:
+  - m_ParameterName: Fade in time
+    m_GUID: 1af848cc3ac4fb14b81f561d8c4b2265
+  - m_ParameterName: Lowest volume
+    m_GUID: 18d89c2353817e349866447cbc3edc62
+  - m_ParameterName: Maximum amp
+    m_GUID: c9c5d13b612fb874799ec61ed74eb03c
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0

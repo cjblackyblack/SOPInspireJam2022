@@ -103,10 +103,10 @@ public class LocomotionAerialState : LocomotionState
 
 	public override void PostGroundingUpdate(SmartObject smartObject, float deltaTime)
 	{
-        if (smartObject.Motor.GroundingStatus.IsStableOnGround)
+        if (smartObject.Motor.GroundingStatus.IsStableOnGround )
         {
             //Debug.Log(smartObject.AirTime);
-            if (smartObject.CurrentAirTime > NoLandAnimationTime && smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Boost)
+            if (smartObject.CurrentAirTime > NoLandAnimationTime && smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Boost && smartObject.ActionStateMachine.CurrentActionState != smartObject.LocomotionStateMachine.DeadState)
                 if((smartObject.ActionStateMachine.CurrentActionState as AerialAttackState) != null)
 				{
                     smartObject.ActionStateMachine.ChangeActionState((smartObject.ActionStateMachine.CurrentActionState as AerialAttackState).LandState);
@@ -115,7 +115,7 @@ public class LocomotionAerialState : LocomotionState
                 else if(smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Hurt)
                 smartObject.ActionStateMachine.ChangeActionState(smartObject.LocomotionStateMachine.LandState);
 
-            if (smartObject.CurrentAirTime > 6 && (smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Jump ))
+            if (smartObject.CurrentAirTime > 6 && (smartObject.ActionStateMachine.CurrentActionEnum != ActionStates.Jump) && smartObject.ActionStateMachine.CurrentActionState != smartObject.LocomotionStateMachine.DeadState)
             {
                 smartObject.LocomotionStateMachine.ChangeLocomotionState(LocomotionStates.Grounded);
             }

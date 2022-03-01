@@ -10,6 +10,7 @@ public class StandardTravelProjectileState : ProjectileState
 	public HitboxData[] hitboxes;
 	public TangibilityFrames[] TangibilityFrames;
 	public GameObject[] HitParticles = new GameObject[4];// match index to PhysicalTangibility Enum for reaction none for intangible ever
+	public SFX HitSFX;
 	public bool Speculative;
 	public override void OnEnter(ProjectileObject projectileObject)
 	{
@@ -162,18 +163,18 @@ public class StandardTravelProjectileState : ProjectileState
 		{
 			case PhysicalObjectTangibility.Normal:
 				{
-					CreateHitFX(0, hurtBox);
+					CreateHitFX(0, hitbox);
 				}
 				break;
 			case PhysicalObjectTangibility.Armor:
 				{
 					if (FlagsExtensions.HasFlag(hitbox.DamageInstance.breakthroughType, BreakthroughType.ArmorPierce))
 					{
-						CreateHitFX(0, hurtBox);
+						CreateHitFX(0, hitbox);
 					}
 					else
 					{
-
+						CreateHitFX(1, hitbox);
 					}
 				}
 				break;
@@ -182,7 +183,7 @@ public class StandardTravelProjectileState : ProjectileState
 					if (FlagsExtensions.HasFlag(hitbox.DamageInstance.breakthroughType, BreakthroughType.GuardPierce) || hitbox.DamageInstance.unstoppable)
 					{
 						if(!hitbox.DamageInstance.unstoppable)
-							CreateHitFX(0, hurtBox);
+							CreateHitFX(0, hitbox);
 					}
 					else
 					{
@@ -197,12 +198,15 @@ public class StandardTravelProjectileState : ProjectileState
 				}
 				break;
 		}
+		projectileObject.CurrentTime = MaxTime + 100;
+		projectileObject.CurrentFrame = MaxTime + 100;
 		//Instantiate(HitParticles[(int)hitBox.CurrentBoxTangibility], hitBox.transform.position, Quaternion.identity);
 	}
 
 	void CreateHitFX(int index, CombatBox hitbox)
 	{
 		Instantiate(HitParticles[index], hitbox.transform.position, Quaternion.identity);
+		HitSFX.PlaySFX(hitbox.SourceObject);
 	}
 
 	private void OnValidate()

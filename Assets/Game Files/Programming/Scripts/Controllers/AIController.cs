@@ -8,12 +8,19 @@ public class AIController : BaseController
 
 	public AIBehaviour CurrentBehaviour;
     public float CurrentTime;
+
+	private void Start()
+	{
+		CurrentTime = Random.Range(0, 1000);
+	}
 	private void FixedUpdate()
 	{
         CurrentTime += 1;
 	}
+
 	public override void BeforeObjectUpdate()
 	{
+		if(this.enabled)
 		CurrentBehaviour.UpdateBehaviour(this);
         //Input = new Vector2(CurrentBehaviour.ForwardCurve.Evaluate(Time.time), CurrentBehaviour.StrafeCurve.Evaluate(CurrentTime));
         SmartObject.SetInputDir(Input, true);

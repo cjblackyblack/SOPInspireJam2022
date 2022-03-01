@@ -56,8 +56,10 @@ public class FallState : SmartState
         if (smartObject.Controller.Button1Buffer > 0 && smartObject.Cooldown <= 0)
             if (smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Attack && smartObject.CurrentFrame < 6)
             {
-                if ((smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState).FollowUpState)
-                    smartObject.ActionStateMachine.ChangeActionState((smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState).FollowUpState);
+                if (smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack])
+                    if (smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState)
+                        if ((smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState).FollowUpState)
+                             smartObject.ActionStateMachine.ChangeActionState((smartObject.LocomotionStateMachine.CurrentLocomotionState.SmartStates[(int)ActionStates.Attack] as AttackState).FollowUpState);
             }
             else
                 smartObject.ActionStateMachine.ChangeActionState(ActionStates.Attack);

@@ -170,17 +170,22 @@ public class RoundController : MonoBehaviour
 
 		PlayerManager.Instance.PlayerObject.GetComponent<PlayerInput>().enabled = enabled;
 
-
+		CameraManager.Instance.FreeLookCam.gameObject.SetActive(enabled);
 		CameraManager.Instance.FreeLookCam.Priority = enabled ? 10 : 0;
 		//if (enabled)
 		//	CameraManager.Instance.ResetCamera();
 		started = enabled;
-
+		GameManager.Instance.MusicSource.loop = false;
 		GameManager.Instance.MusicSource.Stop();
-		GameManager.Instance.MusicSource.clip = GameManager.Instance.FightTrack;
+		if (enabled)
+		{
+			GameManager.Instance.MusicSource.clip = GameManager.Instance.FightTrack;
+			GameManager.Instance.MusicSource.loop = true;
+		}
 		GameManager.Instance.MusicSource.Play();
 
-		if(enabled) {
+		if(enabled) 
+		{
 			PlayerHUDManager.Instance.StartRoundTimer(120);
         }
 	}

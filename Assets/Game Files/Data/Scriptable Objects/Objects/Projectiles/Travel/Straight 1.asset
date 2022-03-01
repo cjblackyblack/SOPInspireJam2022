@@ -318,4 +318,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  HitSFX: {fileID: 11400000, guid: b2375386ec6857b4f9a141e8eaff2bf4, type: 2}
   Speculative: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427c29b21afc3354681ad5c10644cbdb, type: 3}
   m_Name: Straight
   m_EditorClassIdentifier: 
-  MaxTime: 10
+  MaxTime: 15
   ExitState: {fileID: 11400000, guid: f3d83dba00fad6840b80dc13714d3f03, type: 2}
   MotionCurve:
     ForwardCurve:
@@ -20,7 +20,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1000
+        value: 100
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -29,7 +29,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 1000
+        value: 100
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
     TurnAroundTime: 0
     TrackingResistance: 0
   hitboxes:
-  - MaxTime: 10
+  - MaxTime: 15
     ActionTarget: 6
     RefreshID: 1
     ShareID: 0
@@ -260,8 +260,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c5f583890bd62744aaaa6cccd8409ef4, type: 2}
   TangibilityFrames: []
   HitParticles:
-  - {fileID: 4431882959470827133, guid: 4aa7fec143d7c5345ae147d66d87bf6f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  - {fileID: 4828858271255503052, guid: 025a9328e21fd2d4f876ca7e7b43f3b6, type: 3}
+  HitSFX: {fileID: 11400000, guid: b2375386ec6857b4f9a141e8eaff2bf4, type: 2}
   Speculative: 1

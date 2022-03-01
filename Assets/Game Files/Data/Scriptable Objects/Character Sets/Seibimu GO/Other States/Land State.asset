@@ -16,5 +16,15 @@ MonoBehaviour:
   AnimationTransitionTime: 0
   AnimationTransitionOffset: 0
   MaxTime: 0
+  VFX:
+  - Time: 1
+    VFX: {fileID: 5523107475336352439, guid: 02d3124f9a741184b97b0fdd4a679881, type: 3}
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Local: 0
+  BodyVFX: []
+  SFX:
+  - Time: 0
+    SFX: {fileID: 11400000, guid: a57e1c4f091cdc44aad795738fb80299, type: 2}
   LandingLag: 15
   LandingFriction: 0.1

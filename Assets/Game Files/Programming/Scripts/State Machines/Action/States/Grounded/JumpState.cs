@@ -14,7 +14,8 @@ public class JumpState : SmartState
     public float FallVelocity;
     public MotionCurve MotionCurve;
 
-	public override void OnEnter(SmartObject smartObject)
+
+    public override void OnEnter(SmartObject smartObject)
 	{
         if (((smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.GroundedShoot)|| smartObject.LocomotionStateMachine.PreviousLocomotionEnum == LocomotionStates.AerialShoot) && smartObject.ActionStateMachine.PreviousActionEnum == ActionStates.Jump)
         {
@@ -59,6 +60,11 @@ public class JumpState : SmartState
 	{
         if (smartObject.CurrentFrame > JumpFrame)// && smartObject.InputVector.sqrMagnitude > 0f)
             smartObject.MovementVector = smartObject.InputVector;
+
+        CreateVFX(smartObject);
+        CreateBodyVFX(smartObject);
+        CreateSFX(smartObject);
+
     }
 
 	public override void UpdateVelocity(SmartObject smartObject, ref Vector3 currentVelocity, float deltaTime)
