@@ -63,6 +63,7 @@ public class RoundController : MonoBehaviour
 		Director.SetGenericBinding(FinishTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
 		Director.SetGenericBinding(FinishTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
 		Director.Play();
+		PlayerHUDManager.Instance.EndRound();
 		if (win)
 		{
 			GameManager.Instance.MusicSource.Stop();
