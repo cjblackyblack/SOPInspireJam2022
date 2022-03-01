@@ -135,7 +135,7 @@ MonoBehaviour:
     m_Value: 1
   contrast:
     m_OverrideState: 1
-    m_Value: 0.475
+    m_Value: 0.669
     min: 0
     max: 1
   shoulder:
@@ -145,12 +145,12 @@ MonoBehaviour:
     max: 1
   graypointIn:
     m_OverrideState: 1
-    m_Value: 0.18
+    m_Value: 0.185
     min: 0
     max: 1
   graypointOut:
     m_OverrideState: 1
-    m_Value: 0.18
+    m_Value: 0.251
     min: 0
     max: 1
   whitepoint:
@@ -158,17 +158,17 @@ MonoBehaviour:
     m_Value: 10
   crossTalk:
     m_OverrideState: 1
-    m_Value: 0.394
+    m_Value: 0.286
     min: 0
     max: 1
   saturation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
     min: 0
     max: 1
   crossTalkSaturation:
     m_OverrideState: 1
-    m_Value: 0.039
+    m_Value: 0.382
     min: 0.001
     max: 1
 --- !u!114 &2347904018161314455
@@ -520,7 +520,7 @@ MonoBehaviour:
     max: 1
   vignette:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.696
     min: -1
     max: 1
   dither:
@@ -530,17 +530,17 @@ MonoBehaviour:
     max: 1
   zoom:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.088
     min: -1
     max: 1
   zoomDither:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
     min: 0
     max: 1
   anisotropy:
     m_OverrideState: 1
-    m_Value: 0.03
+    m_Value: -0.352
     min: -1
     max: 1
   applyToUIOverlay:
