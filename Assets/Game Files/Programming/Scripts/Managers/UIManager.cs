@@ -128,6 +128,7 @@ public class UIManager : Singleton<UIManager>
 
 	public void ChangeGameState(GameState newGameState)
 	{
+		StopAllCoroutines();
 		ToggleMainMenuUI(false);
 		ToggleCharacterSelectUI(false);
 		ToggleLoadingUI(false);

@@ -185,7 +185,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -373.93, y: 310}
+  m_AnchoredPosition: {x: -373.92993, y: 310}
   m_SizeDelta: {x: 1000, y: 250}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &239384411
@@ -1678,7 +1678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -373.93, y: 48}
+  m_AnchoredPosition: {x: -373.92993, y: 48}
   m_SizeDelta: {x: 1000, y: 200}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1307396048
@@ -4237,8 +4237,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4126918399818143105}
-  m_LocalRotation: {x: 0.039383367, y: 0.95955926, z: 0.21874037, w: -0.17276496}
-  m_LocalPosition: {x: 2.69837, y: -3.5986018, z: 7.2506366}
+  m_LocalRotation: {x: 0.039383344, y: 0.95955926, z: 0.21874022, w: -0.17276499}
+  m_LocalPosition: {x: 4.1931934, y: -5.3617687, z: 11.267289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4399016481821977531}
@@ -5997,8 +5997,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364890136726115264}
-  m_LocalRotation: {x: 0.039383367, y: 0.95955926, z: 0.21874037, w: -0.17276496}
-  m_LocalPosition: {x: 1.7830611, y: -2.038719, z: 4.791163}
+  m_LocalRotation: {x: 0.039383344, y: 0.95955926, z: 0.21874022, w: -0.17276499}
+  m_LocalPosition: {x: 4.1931934, y: -5.3617687, z: 11.267289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8364890136851025308}
@@ -6069,7 +6069,7 @@ MonoBehaviour:
   m_SmoothingTime: 0.08
   m_Damping: 1.25
   m_DampingWhenOccluded: 0.75
-  m_OptimalTargetDistance: 5.640637
+  m_OptimalTargetDistance: 13.00827
 --- !u!1 &8364890136811809525
 GameObject:
   m_ObjectHideFlags: 0
@@ -6243,7 +6243,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 5.640637
+  m_CameraDistance: 13.00827
   m_DeadZoneWidth: 0.6
   m_DeadZoneHeight: 0.6
   m_DeadZoneDepth: 0.3
@@ -6965,7 +6965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: -0.1877126, z: -5.822675}
+  m_FollowOffset: {x: 0, y: 1.355948, z: -6.782879}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -7461,7 +7461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: -0.1877126, z: -5.822675}
+  m_FollowOffset: {x: 0, y: 1.355948, z: -6.782879}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -8414,7 +8414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: -0.1877126, z: -5.822675}
+  m_FollowOffset: {x: 0, y: 1.355948, z: -6.782879}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
