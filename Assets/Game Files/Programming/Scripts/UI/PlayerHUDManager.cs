@@ -31,6 +31,7 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 
     private float roundTimer;
     private bool roundActive;
+    private bool displayUI = true;
 
     // ---
 
@@ -72,15 +73,12 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
                 roundTimerText.text = $"{(int)roundTimer:00}";
                 roundTimer -= Time.deltaTime;
             } else {
-                roundTimer = 0;
-                roundTimerText.text = "00";
-                roundActive = false;
-                OnRoundTimerEnd?.Invoke();
+                EndRound();
             }
         }
 
         // Total time
-        totalTimeText.gameObject.SetActive(displayTotalTime);
+        totalTimeText.gameObject.SetActive(displayTotalTime && displayUI);
         if(displayTotalTime)
             totalTimeText.text = FormatTime(Time.time);
 
@@ -109,18 +107,35 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
         playerHealthBar.SetSmartObject(PlayerManager.Instance.PlayerObject);
     }
 
+    public void EndRound(bool invokeTimerEnd = false) {
+        roundTimer = 0;
+        roundTimerText.text = "00";
+        roundActive = false;
+        //reticle.SetActive(false);
+        OnTargetLost();
+
+        if(invokeTimerEnd)
+            OnRoundTimerEnd?.Invoke();
+    }
+
+    public void SetUIVisible(bool active) {
+        displayUI = active;
+        playerHealthBar.gameObject.SetActive(active);
+        roundTimerText.gameObject.SetActive(active);
+    }
+
     private void OnTargetAcquired() {
         if(!roundActive)
             return;
 
         _target = TargetingManager.Instance.Target.gameObject;
-        targetHealthBar.gameObject.SetActive(true);
+        targetHealthBar.gameObject.SetActive(displayUI);
         targetHealthBar.SetSmartObject(_target.GetComponentInParent<SmartObject>());
-        targetNameText.gameObject.SetActive(displayTargetName);
+        targetNameText.gameObject.SetActive(displayTargetName && displayUI);
         targetNameText.text = _target.transform.root.name;
 
-        distanceText.gameObject.SetActive(true);
-        lineRenderer.gameObject.SetActive(true);
+        distanceText.gameObject.SetActive(displayUI);
+        lineRenderer.gameObject.SetActive(displayUI);
     }
 
     private void OnTargetLost() {
