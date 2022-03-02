@@ -19,11 +19,21 @@ public class UIManager : Singleton<UIManager>
 	public GameObject CreditsUI;
 	public GameObject ControlsUI;
 
+	public GameObject Title1;
+	public GameObject Title2;
+	public GameObject Title3;
+	public GameObject Title4;
+
 	public TextMeshProUGUI StartCountdownText;
 	public TextMeshProUGUI GameOverCountdownText;
 
 	public GameObject Region;
 	public GameObject Opponent;
+	public GameObject CSStatic;
+	public GameObject CSSSword;
+	public GameObject CSSLancer;
+
+	public GameObject[] CreditsLines;
 
 	public override void Start()
 	{
@@ -34,6 +44,7 @@ public class UIManager : Singleton<UIManager>
 	public void ToggleMainMenuUI(bool enabled)
 	{
 		MainMenuUI.gameObject.SetActive(enabled);
+			if(enabled)ShowTitle();
 	}
 
 	public void ToggleCharacterSelectUI(bool enabled)
@@ -49,7 +60,8 @@ public class UIManager : Singleton<UIManager>
 			Opponent.transform.GetChild(i - 1).gameObject.SetActive(false);
 			Region.transform.GetChild(i - 1).gameObject.SetActive(false);
 		}
-		Region.transform.GetChild(GameManager.Instance.BattleScene - 1).gameObject.SetActive(true);
+		if(GameManager.Instance.BattleScene < 5)
+			Region.transform.GetChild(GameManager.Instance.BattleScene - 1).gameObject.SetActive(true);
 
 		switch (GameManager.Instance.BattleScene)
 		{
@@ -118,6 +130,8 @@ public class UIManager : Singleton<UIManager>
 	public void ToggleCreditsUI(bool enabled)
 	{
 		CreditsUI.SetActive(enabled);
+		if (enabled)
+			ExitCredits();
 	}
 
 	public void ToggleControlsUI(bool enabled)
@@ -196,7 +210,7 @@ public class UIManager : Singleton<UIManager>
 				}
 			case GameState.Controls:
 				{
-
+					ToggleControlsUI(true);
 					break;
 				}
 		}
@@ -214,16 +228,19 @@ public class UIManager : Singleton<UIManager>
 
 	public void OnCharacterSelectButton()
 	{
+		FlashSmallStatic();
 		int index = (int)GameManager.Instance.SelectedCharacter;
 		index++;
 		if (index > 1)
 			index = 0;
 		GameManager.Instance.SelectedCharacter = (PlayerCharacter)index;
+		CSSSword.gameObject.SetActive(GameManager.Instance.SelectedCharacter == PlayerCharacter.Sword);
+		CSSLancer.gameObject.SetActive(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer);
 	}
 
 	public void OnOptionsButton()
 	{
-
+		ChangeGameState(GameState.Controls);
 	}
 
 	public void OnQuitButton()
@@ -242,11 +259,13 @@ public class UIManager : Singleton<UIManager>
 
 		IEnumerator Countdown()
 		{
+
+			yield return new WaitForSecondsRealtime(1f);
 			ToggleStartCountdownUI(true);
 			StartCountdownText.gameObject.SetActive(true);
 			StartCountdownText.text = "READY";
 			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.Pogs[0]);
-			yield return new WaitForSecondsRealtime(1.5f);
+			yield return new WaitForSecondsRealtime(2f);
 			StartCountdownText.text = "3";
 			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.CountdownClips[3]);
 			yield return new WaitForSecondsRealtime(1f);
@@ -318,6 +337,84 @@ public class UIManager : Singleton<UIManager>
 			yield return new WaitForSecondsRealtime(0.15f);
 			GameManager.Instance.SFXSource.Stop();
 			StaticUI.gameObject.SetActive(false);
+		}
+	}
+
+	public void FlashSmallStatic()
+	{
+		StartCoroutine(FlashStaticCoroutine());
+		IEnumerator FlashStaticCoroutine()
+		{
+			CSStatic.gameObject.SetActive(true);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.Static);
+			yield return new WaitForSecondsRealtime(0.1f);
+			GameManager.Instance.SFXSource.Stop();
+			CSStatic.gameObject.SetActive(false);
+		}
+	}
+
+	public void ShowTitle()
+	{
+		StartCoroutine(ShowTitleCoroutine());
+
+		IEnumerator ShowTitleCoroutine()
+		{
+			Title1.gameObject.SetActive(false);
+			Title2.gameObject.SetActive(false);
+			Title3.gameObject.SetActive(false);
+			Title4.gameObject.SetActive(false);
+			yield return new WaitForSecondsRealtime(0.25f);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.Bangs[2]);
+			Title1.gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(0.25f);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.Bangs[3]);
+			Title2.gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(0.5f);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.Bangs[1]);
+			Title3.gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(0.25f);
+			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.Bangs[0]);
+			Title4.gameObject.SetActive(true);
+		}
+	}
+
+
+
+	public void ExitCredits()
+	{
+		StartCoroutine(ShowTitleCoroutine());
+
+		IEnumerator ShowTitleCoroutine()
+		{
+			Debug.Log("I see you seeing in that you see me seeing you");
+			yield return new WaitForSecondsRealtime(6);
+			CreditsLines[0].gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(2);
+
+			CreditsLines[1].gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(2);
+
+			CreditsLines[2].gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(2);
+
+			CreditsLines[3].gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(2);
+
+			CreditsLines[4].gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(2);
+
+			CreditsLines[5].gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(2);
+
+			CreditsLines[6].gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(2);
+
+
+			CreditsLines[7].gameObject.SetActive(true);
+			yield return new WaitForSecondsRealtime(2);
+
+			yield return new WaitForSecondsRealtime(90);
+			ChangeGameState(GameState.Start);
 		}
 	}
 }

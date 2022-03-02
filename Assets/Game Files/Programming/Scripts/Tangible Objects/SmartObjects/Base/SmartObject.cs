@@ -80,6 +80,8 @@ public class SmartObject : PhysicalObject, ICharacterController
 		if(gameObject.name == PlayerManager.Instance.gameObject.name && PlayerManager.Instance.PlayerObject != this)
 			gameObject.name = BaseObjectProperties.Name + " (Clone?)";
 
+		if (FinalBoss)
+			ShadowAnimator.gameObject.transform.position = Vector3.zero;
 		//Ragdoll.DisableRagdoll();
 	}
 

@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
 	public AudioClip[] Pogs;
 	public AudioClip Static;
 	public AudioClip[] Beeps;
+	public AudioClip[] Bangs;
 	public override void Start()
 	{
 		base.Start();
@@ -81,7 +82,7 @@ public class GameManager : Singleton<GameManager>
 	public void ResetLevel()
 	{
 		MusicSource.Stop();
-		UIManager.Instance.ChangeGameState(GameState.Loading);
+		//UIManager.Instance.ChangeGameState(GameState.Loading);
 		UnLoadSceneAsync(BattleScene);
 		SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
 		BattleScene = 1;

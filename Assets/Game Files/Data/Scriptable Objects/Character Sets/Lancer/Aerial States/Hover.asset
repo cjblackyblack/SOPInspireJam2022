@@ -24,4 +24,4 @@ MonoBehaviour:
   SFX: []
   GravityMod: 0
   MinTime: 10
-  AttackState: {fileID: 0}
+  AttackState: {fileID: 11400000, guid: b0b97737c837e2743ac2e81e5b5bf9d6, type: 2}

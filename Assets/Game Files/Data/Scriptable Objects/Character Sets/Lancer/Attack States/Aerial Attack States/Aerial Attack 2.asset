@@ -316,7 +316,7 @@ MonoBehaviour:
     IgnoreProtections: 0
     UseMagic: 0
     Unstoppable: 0
-    Hitstun: 30
+    Hitstun: 35
     HitStopTime: 0.06
     HitstopType: 0
     BreakthroughType: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
     IgnoreProtections: 0
     UseMagic: 0
     Unstoppable: 0
-    Hitstun: 30
+    Hitstun: 35
     HitStopTime: 0.06
     HitstopType: 0
     BreakthroughType: 0

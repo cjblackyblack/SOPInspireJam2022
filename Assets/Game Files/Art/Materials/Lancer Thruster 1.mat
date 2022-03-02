@@ -73,7 +73,7 @@ Material:
     - _AlphaClippingScaleBiasMinMax: {r: 1, g: 0, b: 0, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _DrawDistanceOverride: {r: 100, g: 10000, b: 0, a: 0}
-    - _EmissionColor: {r: 2, g: 0.30007273, b: 0.28272247, a: 0}
+    - _EmissionColor: {r: 1.0592737, g: 0.16083212, b: 0.14974026, a: 0}
     - _MainColor: {r: 1, g: 0.45635277, b: 0.20392156, a: 1}
     - _PrecisionColorOverrideParameters: {r: 0, g: 0, b: 0, a: 0}
     - _PrecisionGeometryOverrideParameters: {r: 0, g: 0, b: 0, a: 0}

@@ -152,7 +152,7 @@ public abstract class Hitbox : CombatBox
 	public CombatBox OnHitConfirm(HitboxData hitboxData, TangibleObject sourceObject, CombatBox hitBox)
 	{
 
-		Debug.Log($"Processing {sourceObject.gameObject.name} hit {hitBox.gameObject.name} with hitbox {sourceObject.Hitboxes[CombatBoxID].gameObject.name}");
+		//Debug.Log($"Processing {sourceObject.gameObject.name} hit {hitBox.gameObject.name} with hitbox {sourceObject.Hitboxes[CombatBoxID].gameObject.name}");
 
 		DamageInstance = new DamageInstance(SourceObject, AttackID, hitboxData.StatusEffects, hitboxData.Unstoppable, hitboxData.Damage, hitboxData.Hitstun, hitboxData.HitStopTime, hitboxData.HitstopType,
 											hitboxData.BreakthroughType, hitboxData.KnockbackType, hitboxData.KnockbackStrength, hitboxData.KnockbackDirection,

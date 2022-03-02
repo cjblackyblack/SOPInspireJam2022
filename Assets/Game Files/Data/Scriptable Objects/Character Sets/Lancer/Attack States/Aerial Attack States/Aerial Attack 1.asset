@@ -25,8 +25,8 @@ MonoBehaviour:
     Time: 20
     Toggle: 0
   SFX:
-  - Time: 7
-    SFX: {fileID: 11400000, guid: 56be89a7018ac3644be8a5abc485ae54, type: 2}
+  - SFX: {fileID: 11400000, guid: 56be89a7018ac3644be8a5abc485ae54, type: 2}
+    Time: 7
   IASA: 24
   FollowUpState: {fileID: 11400000, guid: b0b97737c837e2743ac2e81e5b5bf9d6, type: 2}
   LandState: {fileID: 11400000, guid: d715ac695a533d34ca57febe419eb0d1, type: 2}
@@ -343,7 +343,7 @@ MonoBehaviour:
     IgnoreProtections: 0
     UseMagic: 0
     Unstoppable: 0
-    Hitstun: 15
+    Hitstun: 18
     HitStopTime: 0.04
     HitstopType: 0
     BreakthroughType: 0

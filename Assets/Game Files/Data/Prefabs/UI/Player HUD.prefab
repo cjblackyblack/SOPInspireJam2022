@@ -430,6 +430,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 7310740262726924656}
+  RoundTime: 0
   RoundTimer: 0
   SpeedrunTime: 0
 --- !u!1 &4612010137768126859
@@ -702,7 +703,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

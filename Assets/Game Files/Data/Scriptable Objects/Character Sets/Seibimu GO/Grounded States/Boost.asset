@@ -362,4 +362,4 @@ MonoBehaviour:
     TrackingResistance: 0
   DirectionControl: 0.1
   CoyoteTime: 4
-  BoostAttack: {fileID: 11400000, guid: daf3c690ec08a5642a76efbdb70ac82c, type: 2}
+  BoostAttack: {fileID: 11400000, guid: dd276b9f8073cc7419d49ec615dbf79a, type: 2}
