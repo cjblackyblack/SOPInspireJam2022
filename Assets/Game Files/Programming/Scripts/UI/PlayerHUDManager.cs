@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.Rendering;
 
 public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 
@@ -59,13 +60,15 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
     }
 
     private void OnEnable() {
-        Application.onBeforeRender += SetLineRenderer;
+        //Application.onBeforeRender += SetLineRenderer;
+        RenderPipelineManager.beginCameraRendering += SetLineRenderer;
         TargetingManager.Instance.OnSwitchTarget += UpdateTarget;
         roundTimerText.text = "";
     }
 
     private void OnDisable() {
-        Application.onBeforeRender -= SetLineRenderer;
+        //Application.onBeforeRender -= SetLineRenderer;
+        RenderPipelineManager.beginCameraRendering -= SetLineRenderer;
         TargetingManager.Instance.OnSwitchTarget -= UpdateTarget;
     }
 
@@ -157,6 +160,10 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 
         distanceText.gameObject.SetActive(false);
         lineRenderer.gameObject.SetActive(false);
+    }
+
+    private void SetLineRenderer(ScriptableRenderContext context, Camera camera) {
+        SetLineRenderer();
     }
 
     private void SetLineRenderer() {
