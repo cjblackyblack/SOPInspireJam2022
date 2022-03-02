@@ -16,8 +16,16 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 14000000
-  lastScan: 637818206218146047
+  lastScan: 637818215210797477
   supportSerializedTypes:
+  - TypeName: Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[ActionStates,
+      Assembly-CSharp],[SmartState, Assembly-CSharp]], Unity.CollabProxy.Editor
+    IsCustom: 1
+    Emit: 0
+  - TypeName: Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[LocomotionStates,
+      Assembly-CSharp],[LocomotionState, Assembly-CSharp]], Unity.CollabProxy.Editor
+    IsCustom: 1
+    Emit: 0
   - TypeName: ActionStates, Assembly-CSharp
     IsCustom: 0
     Emit: 1
@@ -49,14 +57,6 @@ MonoBehaviour:
     IsCustom: 0
     Emit: 1
   - TypeName: LocomotionStates, Assembly-CSharp
-    IsCustom: 0
-    Emit: 1
-  - TypeName: Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[ActionStates,
-      Assembly-CSharp],[SmartState, Assembly-CSharp]], Unity.CollabProxy.Editor
-    IsCustom: 0
-    Emit: 1
-  - TypeName: Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[LocomotionStates,
-      Assembly-CSharp],[LocomotionState, Assembly-CSharp]], Unity.CollabProxy.Editor
     IsCustom: 0
     Emit: 1
   - TypeName: SmartState, Assembly-CSharp
