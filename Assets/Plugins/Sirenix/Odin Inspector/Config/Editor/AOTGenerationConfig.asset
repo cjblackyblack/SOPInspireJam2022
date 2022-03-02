@@ -12,9 +12,53 @@ MonoBehaviour:
   m_Script: {fileID: 1726182683, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
   m_Name: AOTGenerationConfig
   m_EditorClassIdentifier: 
-  automateBeforeBuilds: 0
+  automateBeforeBuilds: 1
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
-  automateForPlatforms: 0900000014000000
-  lastScan: 0
-  supportSerializedTypes: []
+  automateForPlatforms: 14000000
+  lastScan: 637818206218146047
+  supportSerializedTypes:
+  - TypeName: ActionStates, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[ActionStates, Assembly-CSharp],[SmartState,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[LocomotionStates, Assembly-CSharp],[LocomotionState,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[ActionStates, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[LocomotionStates,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[ActionStates, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[LocomotionStates, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: LocomotionState, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: LocomotionStates, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[ActionStates,
+      Assembly-CSharp],[SmartState, Assembly-CSharp]], Unity.CollabProxy.Editor
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[LocomotionStates,
+      Assembly-CSharp],[LocomotionState, Assembly-CSharp]], Unity.CollabProxy.Editor
+    IsCustom: 0
+    Emit: 1
+  - TypeName: SmartState, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
