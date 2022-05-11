@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
 	public PlayerCharacter SelectedCharacter;
+	public PlayerCharacter SelectedCharacter2;
+	public bool Multiplayer;
 
 	public GameObject PlayerLancer;
 	public GameObject PlayerSword;
+
+	public GameObject PlayerLancerP2;
+	public GameObject PlayerSwordP2;
+
 	public GameObject AILancer;
 	public GameObject AISword;
 	public GameObject AIBoss;
@@ -63,6 +69,9 @@ public class GameManager : Singleton<GameManager>
 	public void StartGame()
 	{
 		//SHOW UI LOADING SCREEN
+		if (Multiplayer)
+			BattleScene = Random.Range(1, 5);
+
 		LoadBattleSceneAsync(BattleScene);
 		//HIDE UI LOADING SCREEN
 	}

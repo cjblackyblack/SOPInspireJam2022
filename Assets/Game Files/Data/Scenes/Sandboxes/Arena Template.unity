@@ -423,9 +423,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1858061863971786896, guid: 7f0dbacfff7d4b84a88c7ba1033c5d28, type: 3}
+      propertyPath: m_TagString
+      value: Boundary
+      objectReference: {fileID: 0}
     - target: {fileID: 1858061864160343790, guid: 7f0dbacfff7d4b84a88c7ba1033c5d28, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858061864160343790, guid: 7f0dbacfff7d4b84a88c7ba1033c5d28, type: 3}
+      propertyPath: m_TagString
+      value: Boundary
       objectReference: {fileID: 0}
     - target: {fileID: 1858061864523964083, guid: 7f0dbacfff7d4b84a88c7ba1033c5d28, type: 3}
       propertyPath: m_IsActive
@@ -447,9 +455,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1858061864582734941, guid: 7f0dbacfff7d4b84a88c7ba1033c5d28, type: 3}
+      propertyPath: m_TagString
+      value: Boundary
+      objectReference: {fileID: 0}
     - target: {fileID: 1858061864879338269, guid: 7f0dbacfff7d4b84a88c7ba1033c5d28, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858061864879338269, guid: 7f0dbacfff7d4b84a88c7ba1033c5d28, type: 3}
+      propertyPath: m_TagString
+      value: Boundary
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f0dbacfff7d4b84a88c7ba1033c5d28, type: 3}

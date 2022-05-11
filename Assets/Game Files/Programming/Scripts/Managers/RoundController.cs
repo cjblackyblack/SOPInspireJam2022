@@ -12,7 +12,9 @@ public class RoundController : MonoBehaviour
 	public TimelineAsset StartTimeline;
 	public TimelineAsset WinTimeline;
 	public TimelineAsset LoseTimeline;
+	public TimelineAsset MPTimeline;
 	public CinemachineVirtualCamera RoundEndCamera;
+	public CinemachineVirtualCamera RoundEndCamera2;
 	public Transform[] SpawnPoints;
 	public GameObject[] Opponents;
 	public bool MirrorMatch;
@@ -45,15 +47,25 @@ public class RoundController : MonoBehaviour
 
 		PlayerHUDManager.Instance.SpeedrunTime += Time.deltaTime;
 
-			for (int i = ActiveOpponents.Count -1; i >= 0 ; i--)
+
+		if (!GameManager.Instance.Multiplayer)
+		{
+
+			for (int i = ActiveOpponents.Count - 1; i >= 0; i--)
 				if (ActiveOpponents[i].Stats.HP <= 0)
 					ActiveOpponents.RemoveAt(i);
 
-		if (ActiveOpponents.Count == 0)
-			FinishRound(true);
+			if (ActiveOpponents.Count == 0)
+				FinishRound(true);
 
-		if (PlayerManager.Instance.PlayerObject.Stats.HP <= 0 || (PlayerHUDManager.Instance.RoundTimer < 0f && started))
-			FinishRound(false);
+			if (PlayerManager.Instance.PlayerObjectP1.Stats.HP <= 0 || (PlayerHUDManager.Instance.RoundTimer < 0f && started))
+				FinishRound(false);
+		}
+		else
+		{
+			if (PlayerManager.Instance.PlayerObjectP1.Stats.HP <= 0 || PlayerManager.Instance.PlayerObjectP2.Stats.HP <= 0 || (PlayerHUDManager.Instance.RoundTimer < 0f && started))
+				FinishRound(false);
+		}
 	}
 
 	public void StartRound()
@@ -65,33 +77,54 @@ public class RoundController : MonoBehaviour
 	public void EndTimerTrigger()
 	{
 		
-		PlayerManager.Instance.PlayerObject.ActionStateMachine.ChangeActionState(PlayerManager.Instance.PlayerObject.LocomotionStateMachine.DeadState);
+		PlayerManager.Instance.PlayerObjectP1.ActionStateMachine.ChangeActionState(PlayerManager.Instance.PlayerObjectP1.LocomotionStateMachine.DeadState);
+		if (GameManager.Instance.Multiplayer)
+		{
+			PlayerManager.Instance.PlayerObjectP1.ActionStateMachine.ChangeActionState(PlayerManager.Instance.PlayerObjectP1.LocomotionStateMachine.DeadState);
+		}
 	}
+
 	public void FinishRound(bool win)
 	{
-		if (win)
+		if (!GameManager.Instance.Multiplayer)
 		{
-			Director.playableAsset = WinTimeline;
-			Director.SetGenericBinding(WinTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
-			Director.SetGenericBinding(WinTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
-			GameManager.Instance.MusicSource.Stop();
-			GameManager.Instance.MusicSource.clip = GameManager.Instance.WinTrack;
-			GameManager.Instance.MusicSource.Play();
+			if (win)
+			{
+				Director.playableAsset = WinTimeline;
+				Director.SetGenericBinding(WinTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
+				Director.SetGenericBinding(WinTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObjectP1.Animator);
+				GameManager.Instance.MusicSource.Stop();
+				GameManager.Instance.MusicSource.clip = GameManager.Instance.WinTrack;
+				GameManager.Instance.MusicSource.Play();
 
+			}
+			else
+			{
+				Director.playableAsset = LoseTimeline;
+				Director.SetGenericBinding(LoseTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
+				Director.SetGenericBinding(LoseTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObjectP1.Animator);
+				GameManager.Instance.GameOver();
+				if (PlayerHUDManager.Instance.RoundTimer <= 0)
+					EndTimerTrigger();
+			}
 		}
 		else
 		{
-			Director.playableAsset = LoseTimeline;
+			Director.playableAsset = MPTimeline;
 			Director.SetGenericBinding(LoseTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
-			Director.SetGenericBinding(LoseTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
-			GameManager.Instance.GameOver();
-			if (PlayerHUDManager.Instance.RoundTimer <= 0)
-				EndTimerTrigger();
+			Director.SetGenericBinding(LoseTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObjectP1.Animator); //winner
+			Director.SetGenericBinding(LoseTimeline.GetRootTrack(3), PlayerManager.Instance.PlayerObjectP1.Animator); //loser
+			Director.SetGenericBinding(LoseTimeline.GetRootTrack(4), PlayerManager.Instance.PlayerObjectP1.Animator); //second loser for time out
+			GameManager.Instance.MusicSource.Stop();
+			GameManager.Instance.MusicSource.clip = GameManager.Instance.WinTrack;
+			GameManager.Instance.MusicSource.Play();
 		}
+
 		PlayerHUDManager.Instance.EndRound();
 		Director.extrapolationMode = DirectorWrapMode.Hold;
 		Director.Play();
 		started = false;
+
 	}
 
 	public void NextRound() //called by timeline started in Finish Round
@@ -115,38 +148,50 @@ public class RoundController : MonoBehaviour
 	public void PlaceEntities()
 	{ 
 		GameObject player = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancer : GameManager.Instance.PlayerSword, SpawnPoints[0].position, SpawnPoints[0].rotation);
-		PlayerManager.Instance.PlayerController = player.GetComponent<PlayerController>();
-		PlayerManager.Instance.PlayerObject = player.GetComponent<SmartObject>();
-		EntityManager.Instance.Entities.Add(PlayerManager.Instance.PlayerObject);
-		RoundEndCamera.Follow = PlayerManager.Instance.PlayerObject.TargetPosiitions[0].transform;
-		RoundEndCamera.LookAt = PlayerManager.Instance.PlayerObject.TargetPosiitions[0].transform;
+		PlayerManager.Instance.PlayerControllerP1 = player.GetComponent<PlayerController>();
+		PlayerManager.Instance.PlayerObjectP1 = player.GetComponent<SmartObject>();
+		EntityManager.Instance.Entities.Add(PlayerManager.Instance.PlayerObjectP1);
+		RoundEndCamera.Follow = PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].transform;
+		RoundEndCamera.LookAt = PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].transform;
 
-		if (MirrorMatch)
+		if (!GameManager.Instance.Multiplayer)
 		{
-			GameObject mirror = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AILancer : GameManager.Instance.AISword, SpawnPoints[1].position, SpawnPoints[1].rotation);
-			mirror.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObject.TargetPosiitions[0].GetComponent<TargetableObject>();
-			EntityManager.Instance.Entities.Add(mirror.GetComponent<SmartObject>());
-			ActiveOpponents.Add(mirror.GetComponent<SmartObject>());
+			if (MirrorMatch)
+			{
+				GameObject mirror = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AILancer : GameManager.Instance.AISword, SpawnPoints[1].position, SpawnPoints[1].rotation);
+				mirror.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].GetComponent<TargetableObject>();
+				EntityManager.Instance.Entities.Add(mirror.GetComponent<SmartObject>());
+				ActiveOpponents.Add(mirror.GetComponent<SmartObject>());
 
 
-		}
-		else if (ReverseMatch)
-		{
-			GameObject reverse = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AISword : GameManager.Instance.AILancer, SpawnPoints[1].position, SpawnPoints[1].rotation);
-			reverse.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObject.TargetPosiitions[0].GetComponent<TargetableObject>();
-			EntityManager.Instance.Entities.Add(reverse.GetComponent<SmartObject>());
-			ActiveOpponents.Add(reverse.GetComponent<SmartObject>());
+			}
+			else if (ReverseMatch)
+			{
+				GameObject reverse = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.AISword : GameManager.Instance.AILancer, SpawnPoints[1].position, SpawnPoints[1].rotation);
+				reverse.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].GetComponent<TargetableObject>();
+				EntityManager.Instance.Entities.Add(reverse.GetComponent<SmartObject>());
+				ActiveOpponents.Add(reverse.GetComponent<SmartObject>());
+			}
+			else
+			{
+				if (Opponents?.Length > 0)
+					for (int i = 0; i < Opponents.Length; i++)
+					{
+						GameObject indexedOpponent = Instantiate(Opponents[i], SpawnPoints[i + 1].position, SpawnPoints[i + 1].rotation);
+						indexedOpponent.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].GetComponent<TargetableObject>();
+						EntityManager.Instance.Entities.Add(indexedOpponent.GetComponent<SmartObject>());
+						ActiveOpponents.Add(indexedOpponent.GetComponent<SmartObject>());
+					}
+			}
 		}
 		else
 		{
-			if (Opponents?.Length > 0)
-				for (int i = 0; i < Opponents.Length; i++)
-				{
-					GameObject indexedOpponent = Instantiate(Opponents[i], SpawnPoints[i+1].position, SpawnPoints[i+1].rotation);
-					indexedOpponent.GetComponent<SmartObject>().Target = PlayerManager.Instance.PlayerObject.TargetPosiitions[0].GetComponent<TargetableObject>();
-					EntityManager.Instance.Entities.Add(indexedOpponent.GetComponent<SmartObject>());
-					ActiveOpponents.Add(indexedOpponent.GetComponent<SmartObject>());
-				}
+			GameObject player2 = Instantiate(GameManager.Instance.SelectedCharacter2 == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancerP2 : GameManager.Instance.PlayerSwordP2, SpawnPoints[1].position, SpawnPoints[1].rotation);
+			PlayerManager.Instance.PlayerControllerP2 = player2.GetComponent<PlayerController>();
+			PlayerManager.Instance.PlayerObjectP2 = player2.GetComponent<SmartObject>();
+			EntityManager.Instance.Entities.Add(PlayerManager.Instance.PlayerObjectP2);
+			RoundEndCamera2.Follow = PlayerManager.Instance.PlayerObjectP2.TargetPosiitions[0].transform;
+			RoundEndCamera2.LookAt = PlayerManager.Instance.PlayerObjectP2.TargetPosiitions[0].transform;
 		}
 	}
 
@@ -156,11 +201,18 @@ public class RoundController : MonoBehaviour
 		Director.playableAsset = StartTimeline;
 		Director.extrapolationMode = DirectorWrapMode.None;
 		Director.SetGenericBinding(StartTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
-		Director.SetGenericBinding(StartTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObject.Animator);
-		Director.SetGenericBinding(StartTimeline.GetRootTrack(3), EntityManager.Instance.Entities[1].Animator);
-		if(Opponents.Length > 1)
-			for(int i = 0; i < Opponents.Length; i++)
-			Director.SetGenericBinding(StartTimeline.GetRootTrack(i+3), EntityManager.Instance.Entities[i+1].Animator);
+		Director.SetGenericBinding(StartTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObjectP1.Animator);
+		if (!GameManager.Instance.Multiplayer)
+		{
+			Director.SetGenericBinding(StartTimeline.GetRootTrack(3), EntityManager.Instance.Entities[1].Animator);
+			if (Opponents.Length > 1)
+				for (int i = 0; i < Opponents.Length; i++)
+					Director.SetGenericBinding(StartTimeline.GetRootTrack(i + 3), EntityManager.Instance.Entities[i + 1].Animator);
+		}
+		else
+		{
+			Director.SetGenericBinding(StartTimeline.GetRootTrack(3), PlayerManager.Instance.PlayerObjectP2.Animator);
+		}
 		Director.Play();
 	}
 
@@ -194,7 +246,7 @@ public class RoundController : MonoBehaviour
 		}
 
 
-		PlayerManager.Instance.PlayerObject.GetComponent<PlayerInput>().enabled = enabled;
+		PlayerManager.Instance.PlayerObjectP1.GetComponent<PlayerInput>().enabled = enabled;
 
 		CameraManager.Instance.FreeLookCam.gameObject.SetActive(enabled);
 		CameraManager.Instance.FreeLookCam.Priority = enabled ? 10 : 0;
@@ -216,6 +268,13 @@ public class RoundController : MonoBehaviour
 		{
 			PlayerHUDManager.Instance.StartRoundTimer(180);
 			TargetingManager.Instance.RenderingRectImage.gameObject.SetActive(true);
+		}
+
+		if (GameManager.Instance.Multiplayer)
+		{
+			PlayerManager.Instance.PlayerObjectP2.GetComponent<PlayerInput>().enabled = enabled;
+			CameraManagerP2.Instance.FreeLookCam.gameObject.SetActive(enabled);
+			CameraManagerP2.Instance.FreeLookCam.Priority = enabled ? 10 : 0;
 		}
 	}
 }

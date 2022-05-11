@@ -239,6 +239,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrier Level
       objectReference: {fileID: 0}
+    - target: {fileID: 3623244650872812556, guid: e24d1245baaec564eaa1c20575ee2dcd, type: 3}
+      propertyPath: m_TagString
+      value: Boundary
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623244651378581842, guid: e24d1245baaec564eaa1c20575ee2dcd, type: 3}
+      propertyPath: m_TagString
+      value: Boundary
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623244651455882508, guid: e24d1245baaec564eaa1c20575ee2dcd, type: 3}
+      propertyPath: m_TagString
+      value: Boundary
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623244651589582814, guid: e24d1245baaec564eaa1c20575ee2dcd, type: 3}
+      propertyPath: m_TagString
+      value: Boundary
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e24d1245baaec564eaa1c20575ee2dcd, type: 3}
 --- !u!1001 &1121178480748954788

@@ -15,6 +15,30 @@ MonoBehaviour:
   automateBeforeBuilds: 0
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
-  automateForPlatforms: 0900000014000000
-  lastScan: 0
-  supportSerializedTypes: []
+  automateForPlatforms: 14000000
+  lastScan: 637839078274447702
+  supportSerializedTypes:
+  - TypeName: System.Collections.Generic.Dictionary`2[[ActionStates, Assembly-CSharp],[SmartState,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[LocomotionStates, Assembly-CSharp],[LocomotionState,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[ActionStates, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[LocomotionStates,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[ActionStates, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[LocomotionStates, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1

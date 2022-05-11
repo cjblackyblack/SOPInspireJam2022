@@ -90,7 +90,7 @@ public class PoolManager : Singleton<PoolManager>
 	private void Update()
 	{
 		if (Keyboard.current.tabKey.wasPressedThisFrame)
-			GetObject("test", PlayerManager.Instance.PlayerObject.transform.position + Random.insideUnitSphere + Vector3.up, Random.rotation);
+			GetObject("test", PlayerManager.Instance.PlayerObjectP1.transform.position + Random.insideUnitSphere + Vector3.up, Random.rotation);
 	}
 
 	private class ObjectInstance

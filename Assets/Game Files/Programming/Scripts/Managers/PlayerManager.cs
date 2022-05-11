@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager> 
 {
-	public PlayerController PlayerController;
-	public SmartObject PlayerObject;
+	public PlayerController PlayerControllerP1;
+	public SmartObject PlayerObjectP1;
+
+	public PlayerController PlayerControllerP2;
+	public SmartObject PlayerObjectP2;
 
 	public override void Start()
 	{

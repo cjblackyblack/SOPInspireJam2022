@@ -28,7 +28,5 @@ public class DropShadow : MonoBehaviour
             // If raycast not hitting (air beneath feet), position it far away
             transform.position = new Vector3(0f, 1000f, 0f);
         }
-
-
     }
 }

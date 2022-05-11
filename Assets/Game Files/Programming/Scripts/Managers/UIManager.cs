@@ -9,6 +9,7 @@ public class UIManager : Singleton<UIManager>
 	public GameState CurrentGameState;
 	public GameObject MainMenuUI;
 	public GameObject CharacterSelectUI;
+	public GameObject CharacterSelect2PUI;
 	public GameObject LoadingUI;
 	public GameObject StaticUI;
 	public GameObject PlayerUI;
@@ -33,6 +34,14 @@ public class UIManager : Singleton<UIManager>
 	public GameObject CSSSword;
 	public GameObject CSSLancer;
 
+	public GameObject CSStaticMP1;
+	public GameObject CSSSwordMP1;
+	public GameObject CSSLancerMP1;
+
+	public GameObject CSStaticMP2;
+	public GameObject CSSSwordMP2;
+	public GameObject CSSLancerMP2;
+
 	public GameObject[] CreditsLines;
 
 	public override void Start()
@@ -52,6 +61,11 @@ public class UIManager : Singleton<UIManager>
 		CharacterSelectUI.gameObject.SetActive(enabled);
 	}
 
+	public void ToggleCharacterSelect2PUI(bool enabled)
+	{
+		CharacterSelect2PUI.gameObject.SetActive(enabled);
+	}
+
 	public void ToggleLoadingUI(bool enabled)
 	{
 		LoadingUI.gameObject.SetActive(enabled);
@@ -60,45 +74,54 @@ public class UIManager : Singleton<UIManager>
 			Opponent.transform.GetChild(i - 1).gameObject.SetActive(false);
 			Region.transform.GetChild(i - 1).gameObject.SetActive(false);
 		}
-		if(GameManager.Instance.BattleScene < 5)
-			Region.transform.GetChild(GameManager.Instance.BattleScene - 1).gameObject.SetActive(true);
 
-		switch (GameManager.Instance.BattleScene)
+		if (!GameManager.Instance.Multiplayer)
 		{
-			case 1:
-				{
-					if(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer)
+			if (GameManager.Instance.BattleScene < 5)
+				Region.transform.GetChild(GameManager.Instance.BattleScene - 1).gameObject.SetActive(true);
+
+			switch (GameManager.Instance.BattleScene)
+			{
+				case 1:
 					{
-						Opponent.transform.GetChild(0).gameObject.SetActive(true);
+						if (GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer)
+						{
+							Opponent.transform.GetChild(0).gameObject.SetActive(true);
+						}
+						else
+						{
+							Opponent.transform.GetChild(1).gameObject.SetActive(true);
+						}
+						break;
 					}
-					else
+				case 2:
 					{
-						Opponent.transform.GetChild(1).gameObject.SetActive(true);
+						if (GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer)
+						{
+							Opponent.transform.GetChild(1).gameObject.SetActive(true);
+						}
+						else
+						{
+							Opponent.transform.GetChild(0).gameObject.SetActive(true);
+						}
+						break;
 					}
-					break;
-				}
-			case 2:
-				{
-					if (GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer)
+				case 3:
 					{
-						Opponent.transform.GetChild(1).gameObject.SetActive(true);
+						Opponent.transform.GetChild(2).gameObject.SetActive(true);
+						break;
 					}
-					else
+				case 4:
 					{
-						Opponent.transform.GetChild(0).gameObject.SetActive(true);
+						Opponent.transform.GetChild(3).gameObject.SetActive(true);
+						break;
 					}
-					break;
-				}
-			case 3:
-				{
-					Opponent.transform.GetChild(2).gameObject.SetActive(true);
-					break;
-				}
-			case 4:
-				{
-					Opponent.transform.GetChild(3).gameObject.SetActive(true);
-					break;
-				}
+			}
+		}
+		else
+		{
+			Region.transform.GetChild(3).gameObject.SetActive(true);
+			Opponent.transform.GetChild(3).gameObject.SetActive(true);
 		}
 	}
 
@@ -145,6 +168,7 @@ public class UIManager : Singleton<UIManager>
 		StopAllCoroutines();
 		ToggleMainMenuUI(false);
 		ToggleCharacterSelectUI(false);
+		ToggleCharacterSelect2PUI(false);
 		ToggleLoadingUI(false);
 		TogglePlayerUI(false);
 		ToggleAdditionalUI(false);
@@ -153,6 +177,7 @@ public class UIManager : Singleton<UIManager>
 		ToggleGameOverUI(false);
 		ToggleCreditsUI(false);
 		ToggleControlsUI(false);
+
 		FlashStatic();
 
 		CurrentGameState = newGameState;
@@ -172,6 +197,13 @@ public class UIManager : Singleton<UIManager>
 					ToggleCharacterSelectUI(true);
 					break;
 				}
+			case GameState.CharacterSelect2P:
+				{
+					Cursor.lockState = CursorLockMode.None;
+					Cursor.visible = true;
+					ToggleCharacterSelect2PUI(true);
+					break;
+				}
 			case GameState.Loading:
 				{
 					ToggleLoadingUI(true);
@@ -184,8 +216,16 @@ public class UIManager : Singleton<UIManager>
 					TogglePlayerUI(true);
 					ToggleAdditionalUI(true);
 					if (FindObjectOfType<RoundController>())
-						FindObjectOfType<RoundController>().StartRound(); //yes i see the spaghetti here no i will not be fixing it
-					CameraManager.Instance.SetTarget(PlayerManager.Instance.PlayerObject.TargetPosiitions[0].transform);
+						FindObjectOfType<RoundController>().StartRound(); //yes i see the spaghetti here no i will not be fixing it //PS I FIXED IN GRASS GAME IS MUCH BETTER THERE SO HAHAAH FUCK YOU!
+					if (!GameManager.Instance.Multiplayer)
+					{
+						CameraManager.Instance.SetTarget(PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].transform);
+					}
+					else
+					{
+						CameraManager.Instance.SetTarget(PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].transform);
+						CameraManagerP2.Instance.SetTarget(PlayerManager.Instance.PlayerObjectP2.TargetPosiitions[0].transform);
+					}
 
 					break;
 				}
@@ -218,6 +258,13 @@ public class UIManager : Singleton<UIManager>
 
 	public void OnStartButton()
 	{
+		GameManager.Instance.Multiplayer = false;
+		GameManager.Instance.StartGame();
+	}
+
+	public void OnStartButtonMP()
+	{
+		GameManager.Instance.Multiplayer = true;
 		GameManager.Instance.StartGame();
 	}
 
@@ -226,9 +273,14 @@ public class UIManager : Singleton<UIManager>
 		ChangeGameState(GameState.CharacterSelect);
 	}
 
+	public void OnMultiplayerStart()
+	{
+		ChangeGameState(GameState.CharacterSelect2P);
+	}
+
 	public void OnCharacterSelectButton()
 	{
-		FlashSmallStatic();
+		FlashSmallStatic(0);
 		int index = (int)GameManager.Instance.SelectedCharacter;
 		index++;
 		if (index > 1)
@@ -236,6 +288,30 @@ public class UIManager : Singleton<UIManager>
 		GameManager.Instance.SelectedCharacter = (PlayerCharacter)index;
 		CSSSword.gameObject.SetActive(GameManager.Instance.SelectedCharacter == PlayerCharacter.Sword);
 		CSSLancer.gameObject.SetActive(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer);
+	}
+
+	public void OnCharacterSelectButtonMP1()
+	{
+		FlashSmallStatic(1);
+		int index = (int)GameManager.Instance.SelectedCharacter;
+		index++;
+		if (index > 1)
+			index = 0;
+		GameManager.Instance.SelectedCharacter = (PlayerCharacter)index;
+		CSSSwordMP1.gameObject.SetActive(GameManager.Instance.SelectedCharacter == PlayerCharacter.Sword);
+		CSSLancerMP1.gameObject.SetActive(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer);
+	}
+
+	public void OnCharacterSelectButtonMP2()
+	{
+		FlashSmallStatic(2);
+		int index = (int)GameManager.Instance.SelectedCharacter2;
+		index++;
+		if (index > 1)
+			index = 0;
+		GameManager.Instance.SelectedCharacter2 = (PlayerCharacter)index;
+		CSSSwordMP2.gameObject.SetActive(GameManager.Instance.SelectedCharacter2 == PlayerCharacter.Sword);
+		CSSLancerMP2.gameObject.SetActive(GameManager.Instance.SelectedCharacter2 == PlayerCharacter.Lancer);
 	}
 
 	public void OnOptionsButton()
@@ -340,16 +416,50 @@ public class UIManager : Singleton<UIManager>
 		}
 	}
 
-	public void FlashSmallStatic()
+	public void FlashSmallStatic(int index)
 	{
 		StartCoroutine(FlashStaticCoroutine());
 		IEnumerator FlashStaticCoroutine()
 		{
-			CSStatic.gameObject.SetActive(true);
+			switch (index) 
+			{
+				case 0:
+					CSStatic.gameObject.SetActive(true);
+					break;
+				case 1:
+					CSStaticMP1.gameObject.SetActive(true);
+					break;
+				case 2:
+					CSStaticMP2.gameObject.SetActive(true);
+					break;
+				default:
+					CSStatic.gameObject.SetActive(true);
+					CSStaticMP1.gameObject.SetActive(true);
+					CSStaticMP2.gameObject.SetActive(true);
+					break;
+			}
+
 			GameManager.Instance.SFXSource.PlayOneShot(GameManager.Instance.Static);
 			yield return new WaitForSecondsRealtime(0.1f);
 			GameManager.Instance.SFXSource.Stop();
-			CSStatic.gameObject.SetActive(false);
+
+			switch (index)
+			{
+				case 0:
+					CSStatic.gameObject.SetActive(false);
+					break;
+				case 1:
+					CSStaticMP1.gameObject.SetActive(false);
+					break;
+				case 2:
+					CSStaticMP2.gameObject.SetActive(false);
+					break;
+				default:
+					CSStatic.gameObject.SetActive(false);
+					CSStaticMP1.gameObject.SetActive(false);
+					CSStaticMP2.gameObject.SetActive(false);
+					break;
+			}
 		}
 	}
 

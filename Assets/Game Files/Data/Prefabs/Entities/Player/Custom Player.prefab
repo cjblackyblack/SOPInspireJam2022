@@ -47,6 +47,9 @@ MonoBehaviour:
   CurrentTime: 0
   CurrentFrame: 0
   GunData: {fileID: 11400000, guid: a3c7f55de09d2a549b56d0e0a9cfc658, type: 2}
+  GunFX: {fileID: 0}
+  ShootFX: {fileID: 0}
+  OneShot: 0
 --- !u!1 &1393955275440021276
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +540,7 @@ MonoBehaviour:
   CurrentAirTime: 0
   TrackingTime: 0
   GravityModifier: 1
-  OrientationMethod: 0
+  OrientationMethod: 1
   InputVector: {x: 0, y: 0, z: 0}
   LookInputVector: {x: 0, y: 0, z: 0}
   MovementVector: {x: 0, y: 0, z: 0}
@@ -600,6 +603,7 @@ MonoBehaviour:
   HitStun: 0
   KnockbackDir: {x: 0, y: 0, z: 0}
   FinalBoss: 0
+  HurtSFX: {fileID: 0}
 --- !u!114 &1393955275497466871
 MonoBehaviour:
   m_ObjectHideFlags: 0

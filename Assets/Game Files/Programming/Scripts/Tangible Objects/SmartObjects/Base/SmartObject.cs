@@ -77,7 +77,7 @@ public class SmartObject : PhysicalObject, ICharacterController
 		Motor.CharacterController = this;
 		SetTimeScale(LocalTimeScale);
 		gameObject.name = BaseObjectProperties.Name;
-		if(gameObject.name == PlayerManager.Instance.gameObject.name && PlayerManager.Instance.PlayerObject != this)
+		if(gameObject.name == PlayerManager.Instance.gameObject.name && PlayerManager.Instance.PlayerObjectP1 != this)
 			gameObject.name = BaseObjectProperties.Name + " (Clone?)";
 
 		if (FinalBoss)

@@ -74,6 +74,7 @@ public enum ActionStates
     Other 
 }
 //          Locomotion Translations
+//                        IDLE      MOVE        JUMP        DOGE        ATTACK      BLOCKED  GUARD       HURT        OTHER
 //			Grounded    { Idle,     Move,       Jump,       Dodge,      Attack,     Blocked, Guard,      Hurt,       Other }
 //          Crouched    { Crouch,   CrouchMove, CrouchJump, Slide,      LowAttack,  Blocked, LowGuard,   CrouchHurt, Other }
 //			Aerial		{ Fall,		Drift,		AirDodge,	Glide,		AirAttack,	Blocked, AirGuard,	AirHurt,	Other }
@@ -264,7 +265,7 @@ public struct DamageInstance
     [ReadOnly]
     public bool useMagic;
     [ReadOnly]
-    public bool unstoppable;
+    public bool unstoppable; //continue attack even if we should have been parried? Used for combo attacks with specific openings
     [ReadOnly]
     public int hitStun;
     [ReadOnly]
@@ -763,6 +764,6 @@ public class ProjectileContainer
 
 #region Gamework
 #region Managers
-public enum GameState { Start, CharacterSelect, Loading, Intro, Gameplay, Paused, Credits, GameOver, Quitting, Controls }
+public enum GameState { Start, CharacterSelect, Loading, Intro, Gameplay, Paused, Credits, GameOver, Quitting, Controls, CharacterSelect2P }
 #endregion
 #endregion

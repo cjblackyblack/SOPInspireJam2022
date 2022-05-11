@@ -4,7 +4,7 @@ using Cinemachine;
 using Cinemachine.Utility;
 using UnityEngine;
 
-public class CameraManager : Singleton<CameraManager> 
+public class CameraManagerP2 : Singleton<CameraManagerP2> 
 {
     public Camera MainCamera;
     public bool LockedOn;
@@ -43,7 +43,7 @@ public class CameraManager : Singleton<CameraManager>
     }
 	private void Update()
     {
-        if (!PlayerManager.Instance.PlayerControllerP1)
+        if (!PlayerManager.Instance.PlayerControllerP2)
             return;
         BufferActivity();
         CameraUpdate();
@@ -65,19 +65,19 @@ public class CameraManager : Singleton<CameraManager>
 
         bool useLockOn = (BufferLock < WaitTime);
         if (!useLockOn)
-            (LockOnCam.GetCinemachineComponent(CinemachineCore.Stage.Body) as CinemachineFramingTransposer).m_CameraDistance = Vector3.Distance(FreeLookCam.gameObject.transform.position, PlayerManager.Instance.PlayerControllerP1.gameObject.transform.position);
-        LockOnCam.GetComponent<CinemachineCollider>().m_OptimalTargetDistance = Vector3.Distance(FreeLookCam.gameObject.transform.position, PlayerManager.Instance.PlayerControllerP1.gameObject.transform.position);
+            (LockOnCam.GetCinemachineComponent(CinemachineCore.Stage.Body) as CinemachineFramingTransposer).m_CameraDistance = Vector3.Distance(FreeLookCam.gameObject.transform.position, PlayerManager.Instance.PlayerControllerP2.gameObject.transform.position);
+        LockOnCam.GetComponent<CinemachineCollider>().m_OptimalTargetDistance = Vector3.Distance(FreeLookCam.gameObject.transform.position, PlayerManager.Instance.PlayerControllerP2.gameObject.transform.position);
         //NO TRANSITIONAL CAM SETTINGS
         if(!ForceRecenter)
             FreeLookCam.Priority = useLockOn ? 0 : 10;
 
-        LockOnCam.Priority = useLockOn && (!TargetsVisible(PlayerManager.Instance.PlayerObjectP1, PlayerManager.Instance.PlayerObjectP1.Target.transform) || ForceRecenter) ? 10 : 0;
+        LockOnCam.Priority = useLockOn && (!TargetsVisible(PlayerManager.Instance.PlayerObjectP2, PlayerManager.Instance.PlayerObjectP2.Target.transform) || ForceRecenter) ? 10 : 0;
         if (ForceRecenter && useLockOn)
         {
             ForceRecenter = false;
         }
 
-        if (PlayerManager.Instance.PlayerControllerP1.ButtonLockHold && LockedOn)
+        if (PlayerManager.Instance.PlayerControllerP2.ButtonLockHold && LockedOn)
         {
             FreeLookCam.Priority = 0;
             LockOnCam.Priority = 10;
@@ -130,7 +130,7 @@ public class CameraManager : Singleton<CameraManager>
     public void BufferActivity()
 	{
 
-        bool useLockOn = (LockedOn && (InputProvider.GetAxisValue(0) == 0 && InputProvider.GetAxisValue(1) == 0) && !PlayerManager.Instance.PlayerControllerP1.ButtonLockHold);
+        bool useLockOn = (LockedOn && (InputProvider.GetAxisValue(0) == 0 && InputProvider.GetAxisValue(1) == 0) && !PlayerManager.Instance.PlayerControllerP2.ButtonLockHold);
         if (!useLockOn)
             BufferLock += Time.deltaTime;
         else

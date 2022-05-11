@@ -69,7 +69,7 @@ public class DamageProcess : HitboxProcess
 						for (int j = 0; j < sourceBox.SourceObject.Hitboxes.Length; j++)//get all hitboxes
 						{
 							Hitbox _hitbox = sourceBox.SourceObject.Hitboxes[j].GetComponent<Hitbox>();
-							if (CombatUtilities.BoxGroupMatch(sourceBox.CombatBoxGroup, _hitbox.CombatBoxGroup)) //if (sourceBox.SourceObject.Hitboxes[j].GetComponent<Hitbox>().AttackID == sourceBox.AttackID)//if they're in the group
+							if (CombatUtilities.BoxGroupMatch(sourceBox.CombatBoxGroup, _hitbox.CombatBoxGroup))//if they're in the group
 								if (!_hitbox.CachedColliders.Contains(hitBox.SourceObject.Hitboxes[i]))//and they don't have the hurtbox cached
 									_hitbox.CachedColliders.Add(hitBox.SourceObject.Hitboxes[i]);//give it to them
 						}
@@ -114,7 +114,6 @@ public class DamageProcess : HitboxProcess
 							sourceBox.CachedColliders.Add(hurtBox.SourceObject.Hurtboxes[i]); //cache it
 																							  //somewhat redundant here and need to test if loop will properly grab without the two above
 
-						//if (smartObject != null)//share hurtBox with other hitboxes since we are NOT AttackingIndividualBoxes
 						for (int j = 0; j < sourceBox.SourceObject.Hitboxes.Length; j++)//get all hitboxes
 							if (CombatUtilities.BoxGroupMatch(sourceBox.SourceObject.Hitboxes[j].GetComponent<Hitbox>().CombatBoxGroup, sourceBox.CombatBoxGroup))//if they're in the group
 								if (!sourceBox.SourceObject.Hitboxes[j].GetComponent<Hitbox>().CachedColliders.Contains(hurtBox.SourceObject.Hurtboxes[i]))//and they don't have the hurtbox cached
@@ -147,7 +146,7 @@ public class DamageProcess : HitboxProcess
 				{
 					Hitbox relatedHitbox = hitBox.SourceObject.Hitboxes[k].GetComponent<Hitbox>();
 					if (relatedHitbox.ShareIncomingHitboxes)
-						if (CombatUtilities.BoxGroupMatch(hitBox.CombatBoxGroup, relatedHitbox.CombatBoxGroup))//&& relatedHitbox.CombatBoxGroupIntOBS == hitBox.CombatBoxGroupIntOBS)
+						if (CombatUtilities.BoxGroupMatch(hitBox.CombatBoxGroup, relatedHitbox.CombatBoxGroup))
 						{
 							relatedHitbox.ID = sourceBox.AttackID;//and update their ID so we don't hit them again
 

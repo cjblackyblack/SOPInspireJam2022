@@ -61,15 +61,21 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 
     private void OnEnable() {
         //Application.onBeforeRender += SetLineRenderer;
-        RenderPipelineManager.beginCameraRendering += SetLineRenderer;
-        TargetingManager.Instance.OnSwitchTarget += UpdateTarget;
-        roundTimerText.text = "";
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            RenderPipelineManager.beginCameraRendering += SetLineRenderer;
+            TargetingManager.Instance.OnSwitchTarget += UpdateTarget;
+            roundTimerText.text = "";
+        }
     }
 
     private void OnDisable() {
         //Application.onBeforeRender -= SetLineRenderer;
-        RenderPipelineManager.beginCameraRendering -= SetLineRenderer;
-        TargetingManager.Instance.OnSwitchTarget -= UpdateTarget;
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            RenderPipelineManager.beginCameraRendering -= SetLineRenderer;
+            TargetingManager.Instance.OnSwitchTarget -= UpdateTarget;
+        }
     }
 
     private void LateUpdate() {
@@ -109,8 +115,8 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
         RoundTimer = time;
         roundActive = true;
 
-        _player = PlayerManager.Instance.PlayerController.gameObject;
-        playerHealthBar.SetSmartObject(PlayerManager.Instance.PlayerObject);
+        _player = PlayerManager.Instance.PlayerControllerP1.gameObject;
+        playerHealthBar.SetSmartObject(PlayerManager.Instance.PlayerObjectP1);
     }
 
     public void EndRound(bool invokeTimerEnd = false) {

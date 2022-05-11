@@ -13,7 +13,7 @@ public class Hurtbox : CombatBox
 	public override PhysicalObjectTangibility ProcessHitAction(ref DamageInstance damageInstance)//GOT HIT AND NEED TO DECIDE TO TELL PARENT OBJ OR HAVE BEHAVIOUR BECAUSE THIS SUPPORTS THAT TOO
 	{
 
-		SourceObject.TakeDamage(ref damageInstance);//for now just always sending upward
+		SourceObject.TakeDamage(ref damageInstance);//for now just always sending upward, there may be future instances where the hurtbox has its own behaviour before sending information upward / poise or some shit too 
 		return CurrentBoxTangibility;
 	}
 }

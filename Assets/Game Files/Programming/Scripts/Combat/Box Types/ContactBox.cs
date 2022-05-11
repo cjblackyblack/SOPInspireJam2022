@@ -48,8 +48,8 @@ public class ContactBox : Hitbox //THIS IS A HITBOX THAT PASSES ITS DAMAGE RECEI
                 break;
         }
 
-		SourceObject.TakeDamage(ref damageInstance);//for now just always sending upward
-		return CurrentBoxTangibility;
+		SourceObject.TakeDamage(ref damageInstance);//for now just always sending upward, there may be future instances where the hurtbox has its own behaviour before sending information upward / poise or some shit too 
+        return CurrentBoxTangibility;
 	}
 
     public override bool ProcessHitReaction(PhysicalObjectTangibility hitTangibility, ref DamageInstance damageInstance)

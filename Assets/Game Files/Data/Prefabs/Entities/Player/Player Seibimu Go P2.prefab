@@ -885,7 +885,7 @@ GameObject:
   - component: {fileID: 1998179302587226146}
   - component: {fileID: 1998179302587226147}
   m_Layer: 6
-  m_Name: Player Seibimu Go
+  m_Name: Player Seibimu Go P2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

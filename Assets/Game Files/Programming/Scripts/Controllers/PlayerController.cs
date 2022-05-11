@@ -33,8 +33,8 @@ public class PlayerController : BaseController
 
 	private void Start()
 	{
-		PlayerManager.Instance.PlayerController = this;
-		PlayerManager.Instance.PlayerObject = SmartObject;
+		PlayerManager.Instance.PlayerControllerP1 = this;
+		PlayerManager.Instance.PlayerObjectP1 = SmartObject;
 	}
 
 	public override void BeforeObjectUpdate()

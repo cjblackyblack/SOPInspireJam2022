@@ -37,7 +37,6 @@ public abstract class Hitbox : CombatBox
 
 	public void SetHitboxData(HitboxData hitboxData) //set this so other hitboxes can know what they're colliding with
 	{
-		//Debug.Log("setting Data");
 		SmartObject smartObject = SourceObject as SmartObject;
 		if (hitboxData.RefreshID)
 		{
@@ -58,7 +57,6 @@ public abstract class Hitbox : CombatBox
 		CachedColliders = new List<Collider>();
 		ShareIncomingHitboxes = hitboxData.ShareIncomingHitboxes;
 		HitColliders = new Collider[16];
-		//CombatBoxGroup = hitboxData.HitboxGroup;
 		DamageInstance = new DamageInstance(SourceObject, AttackID, hitboxData.StatusEffects, hitboxData.Unstoppable, hitboxData.Damage, hitboxData.Hitstun, hitboxData.HitStopTime, hitboxData.HitstopType,
 											hitboxData.BreakthroughType, hitboxData.KnockbackType, hitboxData.KnockbackStrength, hitboxData.KnockbackDirection,
 											hitboxData.FlatDamage, hitboxData.IgnoreProtections, hitboxData.UseMagic, hitboxData.AttackBoxesIndividually);
@@ -82,10 +80,10 @@ public abstract class Hitbox : CombatBox
 
 		sortedBoxes.Clear();
 
-		for (int j = 0; j < HitColliders.Length; j++)
-			if (HitColliders[j] != null) 
+		for (int i = 0; i < HitColliders.Length; i++)
+			if (HitColliders[i] != null) 
 			{
-				if (HitColliders[j].TryGetComponent(out CombatBox possibleBox))//this could be a new best box
+				if (HitColliders[i].TryGetComponent(out CombatBox possibleBox))//this could be a new best box
 				{
 					if (possibleBox.Active)
 					{
@@ -105,20 +103,20 @@ public abstract class Hitbox : CombatBox
 				}
 			}
 
-		for (int i = 0; i < sortedBoxes.Count; i++)
+		for (int j = 0; j < sortedBoxes.Count; j++)
 		{
-			if (ValidHitID(sortedBoxes[i]))
+			if (ValidHitID(sortedBoxes[j]))
 			{
 				SmartObject smartSource = SourceObject as SmartObject;
 				if (smartSource != null)
 				{
-					if (CombatUtilities.ValidTarget(smartSource, sortedBoxes[i].SourceObject, hitboxData.ActionTarget, true))
-						return OnHitConfirm(hitboxData, SourceObject, (sortedBoxes[i]));
+					if (CombatUtilities.ValidTarget(smartSource, sortedBoxes[j].SourceObject, hitboxData.ActionTarget, true))
+						return OnHitConfirm(hitboxData, SourceObject, (sortedBoxes[j]));
 				}
 				else
 				{
-					if (CombatUtilities.ValidTarget(SourceObject, sortedBoxes[i].SourceObject, hitboxData.ActionTarget, true))
-						return OnHitConfirm(hitboxData, SourceObject, (sortedBoxes[i])); //the return is here so that hitboxes are calculated first to detect incoming clangs, if there isn't one, the hurtbox is damaged next frame in a situation where hitboxes and hurtboxes overlap
+					if (CombatUtilities.ValidTarget(SourceObject, sortedBoxes[j].SourceObject, hitboxData.ActionTarget, true))
+						return OnHitConfirm(hitboxData, SourceObject, (sortedBoxes[j])); //the return is here so that hitboxes are calculated first to detect incoming clangs, if there isn't one, the hurtbox is damaged next frame in a situation where hitboxes and hurtboxes overlap
 				}
 			}
 		}
@@ -158,8 +156,6 @@ public abstract class Hitbox : CombatBox
 											hitboxData.BreakthroughType, hitboxData.KnockbackType, hitboxData.KnockbackStrength, hitboxData.KnockbackDirection,
 											hitboxData.FlatDamage, hitboxData.IgnoreProtections, hitboxData.UseMagic, hitboxData.AttackBoxesIndividually);
 		bool processing = true;
-
-		//Hitbox sourceBox = sourceObject.Hitboxes[hitboxData.Hitbox].GetComponent<Hitbox>();
 
 		for (int i = 0; i < hitboxData.HitboxProcesses.Length; i++)
 			if (processing)

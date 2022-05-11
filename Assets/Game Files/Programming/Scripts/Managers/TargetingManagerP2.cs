@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Cinemachine;
 using System;
 
-public class TargetingManager : Singleton<TargetingManager>
+public class TargetingManagerP2 : Singleton<TargetingManager>
 {
 	public LayerMask Targetable;
 
@@ -39,7 +39,7 @@ public class TargetingManager : Singleton<TargetingManager>
 
 	private void Update()
 	{
-		if (!PlayerManager.Instance.PlayerControllerP1)
+		if (!PlayerManager.Instance.PlayerControllerP2)
 			return;
 
 		if (Target == null)
@@ -47,7 +47,7 @@ public class TargetingManager : Singleton<TargetingManager>
 
 		if (TargetingState != TargetingState.None)
 		{
-			TargetingRect.position = new Vector2(CameraManager.Instance.MainCamera.WorldToScreenPoint(Target.transform.position).x, CameraManager.Instance.MainCamera.WorldToScreenPoint(Target.transform.position).y);
+			TargetingRect.position = new Vector2(CameraManagerP2.Instance.MainCamera.WorldToScreenPoint(Target.transform.position).x, CameraManagerP2.Instance.MainCamera.WorldToScreenPoint(Target.transform.position).y);
 			RenderingRect.transform.localPosition = Vector3.Lerp(RenderingRect.transform.localPosition, TargetingRect.transform.localPosition, LerpSpeed);
 			RenderingRectImage.transform.localEulerAngles += (Vector3.forward * RotateSpeed * Time.deltaTime);
 			if (!RenderingRect.gameObject.activeSelf)
@@ -67,10 +67,10 @@ public class TargetingManager : Singleton<TargetingManager>
 		if (targetUpdateTicker > TargetUpdateTime)
 		{
 
-			if (PlayerManager.Instance.PlayerObjectP1.ActionStateMachine.CurrentActionEnum != ActionStates.Attack)
+			if (PlayerManager.Instance.PlayerObjectP2.ActionStateMachine.CurrentActionEnum != ActionStates.Attack)
 			{
 				targetUpdateTicker = 0;
-				PlayerManager.Instance.PlayerObjectP1.Controller.PollForTargets(); //Calls AutoTarget if things are found
+				PlayerManager.Instance.PlayerObjectP2.Controller.PollForTargets(); //Calls AutoTarget if things are found
 			}
 		}
 
@@ -83,7 +83,7 @@ public class TargetingManager : Singleton<TargetingManager>
 				switchTicker = 0;
 			}
 		}
-		if (PlayerManager.Instance.PlayerControllerP1.lookInput == Vector2.zero)
+		if (PlayerManager.Instance.PlayerControllerP2.lookInput == Vector2.zero)
 			tryTargetSwitch = false;                                 
 
 		//if (lockedOn && (((tryTargetSwitch && !targetSwitched) || !tryTargetSwitch) && PlayerManager.Instance.PlayerController.ButtonLockReleaseBuffer > 0) )
@@ -101,7 +101,7 @@ public class TargetingManager : Singleton<TargetingManager>
 
 		TargetingState = TargetingState.None;
 		Target = null;
-		PlayerManager.Instance.PlayerObjectP1.Target = null;
+		PlayerManager.Instance.PlayerObjectP2.Target = null;
 
 		Collider shortestTarget = null;
 
@@ -109,8 +109,8 @@ public class TargetingManager : Singleton<TargetingManager>
 			if (targetableObject != null)
 			{
 				bool forceContinue = false;
-				for (int i = 0; i < PlayerManager.Instance.PlayerObjectP1.TargetPosiitions.Length; i++)
-					if (targetableObject == PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[i])
+				for (int i = 0; i < PlayerManager.Instance.PlayerObjectP2.TargetPosiitions.Length; i++)
+					if (targetableObject == PlayerManager.Instance.PlayerObjectP2.TargetPosiitions[i])
 						forceContinue = true;
 
 				if (forceContinue)
@@ -118,8 +118,8 @@ public class TargetingManager : Singleton<TargetingManager>
 
 				if (shortestTarget == null)
 					shortestTarget = targetableObject;
-				else if ((targetableObject.transform.position - PlayerManager.Instance.PlayerObjectP1.transform.position).sqrMagnitude * (1 / targetableObject.GetComponent<TargetableObject>().Weight) < (shortestTarget.transform.position - PlayerManager.Instance.PlayerObjectP1.transform.position).sqrMagnitude * (1 / shortestTarget.GetComponent<TargetableObject>().Weight))
-					if((targetableObject.transform.position - PlayerManager.Instance.PlayerObjectP1.transform.position).magnitude <= targetableObject.GetComponent<TargetableObject>().Radius)
+				else if ((targetableObject.transform.position - PlayerManager.Instance.PlayerObjectP2.transform.position).sqrMagnitude * (1 / targetableObject.GetComponent<TargetableObject>().Weight) < (shortestTarget.transform.position - PlayerManager.Instance.PlayerObjectP2.transform.position).sqrMagnitude * (1 / shortestTarget.GetComponent<TargetableObject>().Weight))
+					if((targetableObject.transform.position - PlayerManager.Instance.PlayerObjectP2.transform.position).magnitude <= targetableObject.GetComponent<TargetableObject>().Radius)
 						shortestTarget = targetableObject;
 			}
 
@@ -135,22 +135,22 @@ public class TargetingManager : Singleton<TargetingManager>
 			TargetingState = TargetingState.None;
 			targetUpdateTicker = TargetUpdateTime;
 			lockedOn = false;
-			CameraManager.Instance.LockedOn = false;
+			CameraManagerP2.Instance.LockedOn = false;
 			RenderingRect.GetComponent<Image>().sprite = AutoSprite;
-			PlayerManager.Instance.PlayerObjectP1.TargetingCollider.transform.localScale = new Vector3(9f, 8f, 9f);
+			PlayerManager.Instance.PlayerObjectP2.TargetingCollider.transform.localScale = new Vector3(9f, 8f, 9f);
 		}
 		else if (TargetingState == TargetingState.Auto)
 		{
-			PlayerManager.Instance.PlayerControllerP1.ButtonLockReleaseBuffer = 0;
+			PlayerManager.Instance.PlayerControllerP2.ButtonLockReleaseBuffer = 0;
 			TargetingState = TargetingState.Locked;
 			lockedOn = true;
-			CameraManager.Instance.LockedOn = true;
+			CameraManagerP2.Instance.LockedOn = true;
 			RenderingRect.GetComponent<Image>().sprite = LockSprite;
-			PlayerManager.Instance.PlayerObjectP1.TargetingCollider.transform.localScale = new Vector3(90f, 80f, 90f);
+			PlayerManager.Instance.PlayerObjectP2.TargetingCollider.transform.localScale = new Vector3(90f, 80f, 90f);
 		}
 
 		if(lockedOn)
-			CameraManager.Instance.ResetCamera();
+			CameraManagerP2.Instance.ResetCamera();
 	}
 
 	//Get Player Input
@@ -168,7 +168,7 @@ public class TargetingManager : Singleton<TargetingManager>
 		if (switchCooldown)
 			return;
 
-		if (PlayerManager.Instance.PlayerControllerP1.lookInput == Vector2.zero)
+		if (PlayerManager.Instance.PlayerControllerP2.lookInput == Vector2.zero)
 		{
 			return;
 		}
@@ -181,21 +181,21 @@ public class TargetingManager : Singleton<TargetingManager>
 			if (targetableObject != null)
 			{
 				bool forceContinue = false;
-				for (int i = 0; i < PlayerManager.Instance.PlayerObjectP1.TargetPosiitions.Length; i++)
-					if (targetableObject == PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[i])
+				for (int i = 0; i < PlayerManager.Instance.PlayerObjectP2.TargetPosiitions.Length; i++)
+					if (targetableObject == PlayerManager.Instance.PlayerObjectP2.TargetPosiitions[i])
 						forceContinue = true;
 
 				if (forceContinue)
 					continue;
 
 				//Compare screenspace direction with supplied input
-				if (Vector2.Dot((CameraManager.Instance.MainCamera.WorldToScreenPoint(targetableObject.transform.position) - CameraManager.Instance.MainCamera.WorldToScreenPoint(Target.transform.position)).normalized, PlayerManager.Instance.PlayerControllerP1.lookInput.normalized) < TargetSwitchAccuracy)				
+				if (Vector2.Dot((CameraManagerP2.Instance.MainCamera.WorldToScreenPoint(targetableObject.transform.position) - CameraManagerP2.Instance.MainCamera.WorldToScreenPoint(Target.transform.position)).normalized, PlayerManager.Instance.PlayerControllerP2.lookInput.normalized) < TargetSwitchAccuracy)				
 					continue;
 
 				if (shortestTarget == null)
 					shortestTarget = targetableObject;
 				else if ((targetableObject.transform.position - Target.transform.position).sqrMagnitude * (1 / targetableObject.GetComponent<TargetableObject>().Weight) < (shortestTarget.transform.position - Target.transform.position).sqrMagnitude * (1 / shortestTarget.GetComponent<TargetableObject>().Weight))
-					if ((targetableObject.transform.position - PlayerManager.Instance.PlayerObjectP1.transform.position).magnitude <= targetableObject.GetComponent<TargetableObject>().Radius)
+					if ((targetableObject.transform.position - PlayerManager.Instance.PlayerObjectP2.transform.position).magnitude <= targetableObject.GetComponent<TargetableObject>().Radius)
 						shortestTarget = targetableObject;
 			}
 
@@ -214,7 +214,7 @@ public class TargetingManager : Singleton<TargetingManager>
 		targetSwitched = true;
 		Target = targetableObject;
 		TargetGroup.target = targetableObject.transform;
-		PlayerManager.Instance.PlayerObjectP1.Target = Target;
+		PlayerManager.Instance.PlayerObjectP2.Target = Target;
 		OnSwitchTarget?.Invoke();
 	}
 }
