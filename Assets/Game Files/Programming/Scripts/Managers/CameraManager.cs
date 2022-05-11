@@ -71,7 +71,7 @@ public class CameraManager : Singleton<CameraManager>
         if(!ForceRecenter)
             FreeLookCam.Priority = useLockOn ? 0 : 10;
 
-        LockOnCam.Priority = useLockOn && (!TargetsVisible(PlayerManager.Instance.PlayerObjectP1, PlayerManager.Instance.PlayerObjectP1.Target.transform) || ForceRecenter) ? 10 : 0;
+        LockOnCam.Priority = useLockOn && (!TargetsVisible(PlayerManager.Instance.PlayerObjectP1, EntityManager.Instance.Entities[1].TargetPosiitions[0].transform) || ForceRecenter) ? 10 : 0;
         if (ForceRecenter && useLockOn)
         {
             ForceRecenter = false;

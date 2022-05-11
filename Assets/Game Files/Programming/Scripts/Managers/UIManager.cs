@@ -1,8 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -44,6 +45,8 @@ public class UIManager : Singleton<UIManager>
 
 	public GameObject[] CreditsLines;
 
+	public EventSystem eventSystem;
+	public InputSystemUIInputModule inputSystemUIInputModule;
 	public override void Start()
 	{
 		base.Start();
@@ -54,6 +57,18 @@ public class UIManager : Singleton<UIManager>
 	{
 		MainMenuUI.gameObject.SetActive(enabled);
 			if(enabled)ShowTitle();
+
+		StartCoroutine(FuckEventSystemBugs());
+
+		IEnumerator FuckEventSystemBugs()
+		{
+			eventSystem.enabled = false;
+			inputSystemUIInputModule.enabled = false;
+			yield return new WaitForSecondsRealtime(0.05f);
+
+			eventSystem.enabled = true;
+			inputSystemUIInputModule.enabled = true;
+		}
 	}
 
 	public void ToggleCharacterSelectUI(bool enabled)

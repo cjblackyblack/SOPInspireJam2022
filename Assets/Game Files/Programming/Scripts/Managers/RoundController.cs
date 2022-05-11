@@ -94,6 +94,7 @@ public class RoundController : MonoBehaviour
 				Director.SetGenericBinding(WinTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
 				Director.SetGenericBinding(WinTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObjectP1.Animator);
 				GameManager.Instance.MusicSource.Stop();
+				GameManager.Instance.MusicSource.loop = false;
 				GameManager.Instance.MusicSource.clip = GameManager.Instance.WinTrack;
 				GameManager.Instance.MusicSource.Play();
 
@@ -111,11 +112,13 @@ public class RoundController : MonoBehaviour
 		else
 		{
 			Director.playableAsset = MPTimeline;
-			Director.SetGenericBinding(LoseTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
-			Director.SetGenericBinding(LoseTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObjectP1.Animator); //winner
-			Director.SetGenericBinding(LoseTimeline.GetRootTrack(3), PlayerManager.Instance.PlayerObjectP1.Animator); //loser
-			Director.SetGenericBinding(LoseTimeline.GetRootTrack(4), PlayerManager.Instance.PlayerObjectP1.Animator); //second loser for time out
+			Director.SetGenericBinding(MPTimeline.GetRootTrack(1), CameraManager.Instance.MainCamera.GetComponent<CinemachineBrain>());
+			if(PlayerHUDManager.Instance.RoundTimer > 0f)
+			Director.SetGenericBinding(MPTimeline.GetRootTrack(2), PlayerManager.Instance.PlayerObjectP1.Animator); //winner
+			Director.SetGenericBinding(MPTimeline.GetRootTrack(3), PlayerManager.Instance.PlayerObjectP1.Animator); //loser
+			//Director.SetGenericBinding(MPTimeline.GetRootTrack(4), PlayerManager.Instance.PlayerObjectP1.Animator); //second loser for time out
 			GameManager.Instance.MusicSource.Stop();
+			GameManager.Instance.MusicSource.loop = false;
 			GameManager.Instance.MusicSource.clip = GameManager.Instance.WinTrack;
 			GameManager.Instance.MusicSource.Play();
 		}

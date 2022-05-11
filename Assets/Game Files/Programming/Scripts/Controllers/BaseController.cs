@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
+	public float CurrentTime;
 	public Vector2 Input;
 
 	public int Button1Buffer;
@@ -22,6 +23,10 @@ public class BaseController : MonoBehaviour
 	public bool Button3Hold;
 	public bool Button4Hold;
 
+	public void FixedUpdate()
+	{
+		CurrentTime += 1;
+	}
 	public virtual void BeforeObjectUpdate()
 	{
 

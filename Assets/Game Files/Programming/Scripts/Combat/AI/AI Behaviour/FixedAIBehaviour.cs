@@ -14,7 +14,7 @@ public class FixedAIBehaviour : AIBehaviour
     public AnimationCurve Button3Curve;
     public AnimationCurve Button4Curve;
 
-    public override void UpdateBehaviour(AIController aiController)
+    public override void UpdateBehaviour(BaseController aiController)
 	{
 		if(Button1Curve.Evaluate(aiController.CurrentTime) > 0)
 		{

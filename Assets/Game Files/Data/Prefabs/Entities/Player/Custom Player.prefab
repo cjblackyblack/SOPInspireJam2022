@@ -411,6 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da7a8d3fe0bba34b8399c61b9116037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentTime: 0
   Input: {x: 0, y: 0}
   Button1Buffer: 0
   Button2Buffer: 0
@@ -442,6 +443,7 @@ MonoBehaviour:
   Button3Release: {fileID: 7279885440586568849, guid: 50c87d81be04d8342b81ed871ac31e7d, type: 3}
   Button4Release: {fileID: -8533227755277453313, guid: 50c87d81be04d8342b81ed871ac31e7d, type: 3}
   PauseButton: {fileID: -8880406796501983777, guid: 50c87d81be04d8342b81ed871ac31e7d, type: 3}
+  CurrentBehaviour: {fileID: 11400000, guid: 9e738e953df59dc40bddd17006c894a4, type: 2}
 --- !u!114 &1393955275497466868
 MonoBehaviour:
   m_ObjectHideFlags: 0

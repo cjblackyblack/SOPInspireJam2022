@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class AIBehaviour : ScriptableObject
 {
-	public abstract void UpdateBehaviour(AIController aiController);
+	public abstract void UpdateBehaviour(BaseController controller);
 }

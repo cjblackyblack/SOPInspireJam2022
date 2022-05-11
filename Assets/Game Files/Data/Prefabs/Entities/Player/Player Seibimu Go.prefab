@@ -938,7 +938,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferMovement
         m_Mode: 0
@@ -954,7 +954,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferButton1
         m_Mode: 0
@@ -970,7 +970,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Button1Press[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferRelease1
         m_Mode: 0
@@ -986,7 +986,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Button1Release[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferButton2
         m_Mode: 0
@@ -1002,7 +1002,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Button2Press[/Keyboard/q]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferRelease2
         m_Mode: 0
@@ -1018,7 +1018,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Button2Release[/Keyboard/q]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferButton3
         m_Mode: 0
@@ -1034,7 +1034,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Button3Press[/Keyboard/r]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferRelease3
         m_Mode: 0
@@ -1050,7 +1050,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Button3Release[/Keyboard/r]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferButton4
         m_Mode: 0
@@ -1066,7 +1066,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Button4Press[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferRelease4
         m_Mode: 0
@@ -1081,7 +1081,19 @@ MonoBehaviour:
     m_ActionId: e97d6165-82e6-49f3-b4a0-b03795706ac9
     m_ActionName: Gameplay/Button4Release[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: PlayerPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 17f7f94e-065f-402f-a271-194daafc4f11
     m_ActionName: Gameplay/Pause[/Keyboard/e]
   - m_PersistentCalls:
@@ -1102,7 +1114,7 @@ MonoBehaviour:
     m_ActionName: UI/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferLook
         m_Mode: 0
@@ -1118,7 +1130,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Look[/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferButtonRecenter
         m_Mode: 0
@@ -1134,7 +1146,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Button15Press[/DualShock4GamepadHID/rightStickPress]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferReleaseRecenter
         m_Mode: 0
@@ -1150,7 +1162,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Button15Release[/DualShock4GamepadHID/rightStickPress]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferButtonLock
         m_Mode: 0
@@ -1166,7 +1178,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/ButtonLockPress[/DualShock4GamepadHID/rightShoulder]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1998179302587226148}
+      - m_Target: {fileID: 7755709749970833463, guid: ef994ec52c7b07f4282880e4fcd5e511, type: 3}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: BufferReleaseLock
         m_Mode: 0
@@ -1197,6 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da7a8d3fe0bba34b8399c61b9116037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentTime: 0
   Input: {x: 0, y: 0}
   Button1Buffer: 0
   Button2Buffer: 0
@@ -1228,6 +1241,7 @@ MonoBehaviour:
   Button3Release: {fileID: 7279885440586568849, guid: 50c87d81be04d8342b81ed871ac31e7d, type: 3}
   Button4Release: {fileID: -8533227755277453313, guid: 50c87d81be04d8342b81ed871ac31e7d, type: 3}
   PauseButton: {fileID: -8880406796501983777, guid: 50c87d81be04d8342b81ed871ac31e7d, type: 3}
+  CurrentBehaviour: {fileID: 11400000, guid: 9e738e953df59dc40bddd17006c894a4, type: 2}
 --- !u!114 &1998179302587226149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4424,7 +4438,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c04881d1bbe76194882bf8316fd9203f, type: 2}
     - target: {fileID: 6266707927049782863, guid: 5ecf5baac7c23d34ea3a225a90ac18a9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6806854102335723393, guid: 5ecf5baac7c23d34ea3a225a90ac18a9, type: 3}
       propertyPath: m_Materials.Array.data[0]

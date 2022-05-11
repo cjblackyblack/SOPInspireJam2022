@@ -7,15 +7,11 @@ public class AIController : BaseController
     public SmartObject SmartObject => GetComponent<SmartObject>();
 
 	public AIBehaviour CurrentBehaviour;
-    public float CurrentTime;
+
 
 	private void Start()
 	{
 		CurrentTime = Random.Range(0, 1000);
-	}
-	private void FixedUpdate()
-	{
-        CurrentTime += 1;
 	}
 
 	public override void BeforeObjectUpdate()

@@ -50,7 +50,18 @@ public class GameManager : Singleton<GameManager>
 		}
 	}
 
+	private void Update()
+	{
+		
+	}
+
 	public void SetCharacter(int index)
+	{
+		Mathf.Clamp(index, 0, 1);
+		SelectedCharacter = (PlayerCharacter)index;
+	}
+
+	public void SetCharacter2P(int index)
 	{
 		Mathf.Clamp(index, 0, 1);
 		SelectedCharacter = (PlayerCharacter)index;
@@ -91,7 +102,7 @@ public class GameManager : Singleton<GameManager>
 	public void ResetLevel()
 	{
 		MusicSource.Stop();
-		//UIManager.Instance.ChangeGameState(GameState.Loading);
+		UIManager.Instance.ChangeGameState(GameState.Loading);
 		UnLoadSceneAsync(BattleScene);
 		SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
 		BattleScene = 1;
