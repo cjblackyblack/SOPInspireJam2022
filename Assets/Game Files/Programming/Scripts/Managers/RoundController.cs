@@ -149,15 +149,20 @@ public class RoundController : MonoBehaviour
 	}
 
 	public void PlaceEntities()
-	{ 
-		GameObject player = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancer : GameManager.Instance.PlayerSword, SpawnPoints[0].position, SpawnPoints[0].rotation);
-		PlayerManager.Instance.PlayerControllerP1 = player.GetComponent<PlayerController>();
+	{
+        PlayerManager.Instance.inputManager.playerPrefab = GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancer : GameManager.Instance.PlayerSword;
+        PlayerInput player = PlayerManager.Instance.inputManager.JoinPlayer(0, 0, null, InputSystem.devices[0]);
+        player.transform.position = SpawnPoints[0].position;
+        player.transform.rotation = SpawnPoints[0].rotation;
+        //GameObject player = Instantiate(GameManager.Instance.SelectedCharacter == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancer : GameManager.Instance.PlayerSword, SpawnPoints[0].position, SpawnPoints[0].rotation);
+        PlayerManager.Instance.PlayerControllerP1 = player.GetComponent<PlayerController>();
 		PlayerManager.Instance.PlayerObjectP1 = player.GetComponent<SmartObject>();
 		EntityManager.Instance.Entities.Add(PlayerManager.Instance.PlayerObjectP1);
 		RoundEndCamera.Follow = PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].transform;
-		RoundEndCamera.LookAt = PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].transform;
+		RoundEndCamera.LookAt = PlayerManager.Instance.PlayerObjectP1.TargetPosiitions[0].transform;     
 
-		if (!GameManager.Instance.Multiplayer)
+
+        if (!GameManager.Instance.Multiplayer)
 		{
 			if (MirrorMatch)
 			{
@@ -189,8 +194,12 @@ public class RoundController : MonoBehaviour
 		}
 		else
 		{
-			GameObject player2 = Instantiate(GameManager.Instance.SelectedCharacter2 == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancerP2 : GameManager.Instance.PlayerSwordP2, SpawnPoints[1].position, SpawnPoints[1].rotation);
-			PlayerManager.Instance.PlayerControllerP2 = player2.GetComponent<PlayerController>();
+            PlayerManager.Instance.inputManager.playerPrefab = GameManager.Instance.SelectedCharacter2 == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancer : GameManager.Instance.PlayerSword;
+            PlayerInput player2 = PlayerManager.Instance.inputManager.JoinPlayer(1, 1, null, InputSystem.devices[1]);
+            player2.transform.position = SpawnPoints[1].position;
+            player2.transform.rotation = SpawnPoints[1].rotation;
+            //GameObject player2 = Instantiate(GameManager.Instance.SelectedCharacter2 == PlayerCharacter.Lancer ? GameManager.Instance.PlayerLancerP2 : GameManager.Instance.PlayerSwordP2, SpawnPoints[1].position, SpawnPoints[1].rotation);
+            PlayerManager.Instance.PlayerControllerP2 = player2.GetComponent<PlayerController>();
 			PlayerManager.Instance.PlayerObjectP2 = player2.GetComponent<SmartObject>();
 			EntityManager.Instance.Entities.Add(PlayerManager.Instance.PlayerObjectP2);
 			RoundEndCamera2.Follow = PlayerManager.Instance.PlayerObjectP2.TargetPosiitions[0].transform;
