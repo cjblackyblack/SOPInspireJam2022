@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Cinemachine;
 using System;
 
-public class TargetingManagerP2 : Singleton<TargetingManager>
+public class TargetingManagerP2 : Singleton<TargetingManagerP2>
 {
 	public LayerMask Targetable;
 
